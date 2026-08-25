@@ -4,10 +4,10 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight, ChevronDown, CheckCircle2, Building2 } from 'lucide-react';
 
 const LIVE_SITE_UPDATES = [
-  { site: 'Horizon HQ (Gurugram)', event: 'Acoustic Paneling: 420 Sqm Verified (GRN #0241)', time: 'Just now' },
-  { site: 'Fintech Hub (BKC Mumbai)', event: 'Client Certified RA Bill #04 (₹148.2 Lakhs)', time: '3m ago' },
-  { site: 'Aura Biotech (Bengaluru)', event: 'MEP VRF Pressure Test Passed @ 1.5x WP', time: '12m ago' },
-  { site: 'Oberoi Penthouse (Worli)', event: 'Tripartite JMR #02 Signed by Principal Architect', time: '18m ago' },
+  { site: 'Site Alpha (Gurugram)', event: 'Acoustic Paneling: 420 Sqm Verified (GRN #0241)', time: 'Just now' },
+  { site: 'Corporate Hub (BKC Mumbai)', event: 'Client Certified RA Bill #04 (₹148.2 Lakhs)', time: '3m ago' },
+  { site: 'Tech Campus (Bengaluru)', event: 'MEP VRF Pressure Test Passed @ 1.5x WP', time: '12m ago' },
+  { site: 'Penthouse Fit-Out (Worli)', event: 'Tripartite JMR #02 Signed by Principal Architect', time: '18m ago' },
 ];
 
 export default function Hero({ onOpenDemo }) {

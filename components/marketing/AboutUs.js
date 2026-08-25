@@ -82,7 +82,7 @@ export default function AboutUs({ onOpenDemo }) {
 
               <div className="pt-2 flex items-center gap-1.5 text-[11px] font-mono text-emerald-400">
                 <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
-                <span>Field Tested on 500+ Projects</span>
+                <span>Built for Commercial & Turnkey Fit-Outs</span>
               </div>
             </div>
           );

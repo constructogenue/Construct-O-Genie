@@ -5,7 +5,6 @@ import ArchitecturalCanvas from './ArchitecturalCanvas';
 import ArchitecturalLightTailCursor from './ArchitecturalLightTailCursor';
 import Navbar from './Navbar';
 import Hero from './Hero';
-import SocialProof from './SocialProof';
 import ProductPillars from './ProductPillars';
 import CommandCentre from './CommandCentre';
 import BOQSpine from './BOQSpine';
@@ -76,9 +75,6 @@ export default function ConstructOGenieApp() {
         <Hero 
           onOpenDemo={() => setDemoOpen(true)} 
         />
-
-        {/* Act 1.5: Social Proof & Turnkey Contractor Logos */}
-        <SocialProof />
         
         {/* Act 2: Complete Platform Overview (4 Product Pillars) */}
         <ProductPillars 
