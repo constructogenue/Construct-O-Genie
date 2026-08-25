@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, ChevronDown, CheckCircle2, Activity, Building2 } from 'lucide-react';
+import { ArrowRight, ChevronDown, CheckCircle2, Building2 } from 'lucide-react';
 
 const LIVE_SITE_UPDATES = [
   { site: 'Horizon HQ (Gurugram)', event: 'Acoustic Paneling: 420 Sqm Verified (GRN #0241)', time: 'Just now' },
@@ -23,7 +23,7 @@ export default function Hero({ onOpenDemo }) {
   const currentUpdate = LIVE_SITE_UPDATES[activeUpdateIndex];
 
   return (
-    <section id="overview" className="relative min-h-[90vh] flex flex-col justify-center items-center text-center px-4 sm:px-6 lg:px-8 pt-28 pb-16 z-10 bg-transparent">
+    <section id="overview" className="relative min-h-[85vh] flex flex-col justify-center items-center text-center px-4 sm:px-6 lg:px-8 pt-28 pb-14 z-10 bg-transparent">
       
       {/* Category Tag */}
       <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0A0D14]/80 border border-white/15 backdrop-blur-2xl text-slate-200 text-xs mb-6 shadow-xl">
@@ -32,23 +32,23 @@ export default function Hero({ onOpenDemo }) {
           <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
         </span>
         <span className="font-semibold text-white tracking-wide">
-          Construction Management Software
+          Turnkey Interior Construction OS
         </span>
         <span className="text-white/20">|</span>
-        <span className="text-slate-300">Built for Turnkey Interior Contractors</span>
+        <span className="text-slate-300">Engineered for Commercial Fit-Out Contractors</span>
       </div>
 
       {/* Monumental Headline */}
       <div className="max-w-4xl mx-auto space-y-4">
-        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.06] uppercase drop-shadow-[0_10px_35px_rgba(0,0,0,0.9)] font-display">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.08] font-display">
           FROM BARE SHELL <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400">
-            TO HANDOVER.
+            TO FINAL HANDOVER.
           </span>
         </h1>
 
         <p className="text-base sm:text-lg md:text-xl font-normal text-slate-200 max-w-2xl mx-auto tracking-normal leading-relaxed drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)] font-sans">
-          Manage estimation, BOQs, site progress, vendor procurement, and project billing on a single unified platform.
+          Manage estimation, locked BOQ line items, site DPRs, vendor procurement, and two-way billing sync with Tally / SAP & other ERPs.
         </p>
       </div>
 
@@ -72,7 +72,7 @@ export default function Hero({ onOpenDemo }) {
       </div>
 
       {/* Live Site Stream Ticker */}
-      <div className="mt-12 w-full max-w-xl mx-auto">
+      <div className="mt-10 w-full max-w-xl mx-auto">
         <div className="px-4 py-2.5 rounded-2xl bg-[#0A0D14]/85 border border-white/15 backdrop-blur-2xl shadow-xl flex items-center justify-between gap-3 text-left">
           <div className="flex items-center gap-2.5 min-w-0">
             <span className="flex h-2 w-2 relative shrink-0">
@@ -95,15 +95,15 @@ export default function Hero({ onOpenDemo }) {
       </div>
 
       {/* Core Platform Highlights */}
-      <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 mt-8 text-xs text-slate-300 font-sans">
+      <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 mt-8 text-xs text-slate-300 font-sans">
         {[
           'Living BOQ Item Locking',
-          'Offline Site DPR & Snagging',
+          'Offline Mobile DPR & Snagging',
           'Automated RA Invoicing',
-          'Two-Way Tally Prime Sync',
+          'Two-Way Tally / SAP & ERP Sync',
         ].map((feat) => (
           <div key={feat} className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 border border-white/10">
-            <CheckCircle2 className="w-3.5 h-3.5 text-white" />
+            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
             <span>{feat}</span>
           </div>
         ))}

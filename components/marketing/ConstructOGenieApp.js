@@ -5,15 +5,18 @@ import ArchitecturalCanvas from './ArchitecturalCanvas';
 import ArchitecturalLightTailCursor from './ArchitecturalLightTailCursor';
 import Navbar from './Navbar';
 import Hero from './Hero';
+import SocialProof from './SocialProof';
+import ProductPillars from './ProductPillars';
 import CommandCentre from './CommandCentre';
 import BOQSpine from './BOQSpine';
 import ApprovalStack from './ApprovalStack';
 import FinanceFlow from './FinanceFlow';
 import TradePackageMatrix from './TradePackageMatrix';
 import RoleTabs from './RoleTabs';
-import ProductPillars from './ProductPillars';
 import PortalsSection from './PortalsSection';
 import QualitativeOutcomes from './QualitativeOutcomes';
+import AboutUs from './AboutUs';
+import FAQSection from './FAQSection';
 import ImpactMetrics from './ImpactMetrics';
 import FinalCTA from './FinalCTA';
 import Footer from './Footer';
@@ -25,7 +28,7 @@ export default function ConstructOGenieApp() {
   const [loginOpen, setLoginOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  // Global optimized scroll listener for full-page deconstruction background
+  // Global optimized scroll listener for full-page architectural background
   useEffect(() => {
     let ticking = false;
 
@@ -50,9 +53,9 @@ export default function ConstructOGenieApp() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-transparent text-slate-100 selection:bg-white/30 selection:text-white antialiased font-sans relative">
+    <div className="min-h-screen bg-transparent text-slate-100 selection:bg-white/20 selection:text-white antialiased font-sans relative">
       
-      {/* 0. ARCHITECTURAL LUMINOUS LIGHT-TAIL CURSOR (DESKTOP AMBIENT CANVAS) */}
+      {/* 0. ARCHITECTURAL LUMINOUS LIGHT-TAIL CURSOR */}
       <ArchitecturalLightTailCursor />
 
       {/* 1. PERSISTENT ARCHITECTURAL DECONSTRUCTION BACKGROUND CANVAS */}
@@ -73,52 +76,67 @@ export default function ConstructOGenieApp() {
         <Hero 
           onOpenDemo={() => setDemoOpen(true)} 
         />
-        
-        {/* Act 1.5: Complete Platform Overview (4 Product Pillars) */}
-        <ProductPillars onOpenDemo={() => setDemoOpen(true)} />
 
-        {/* Act 2: Executive Command Centre (Multi-Site Radar) */}
+        {/* Act 1.5: Social Proof & Turnkey Contractor Logos */}
+        <SocialProof />
+        
+        {/* Act 2: Complete Platform Overview (4 Product Pillars) */}
+        <ProductPillars 
+          onOpenDemo={() => setDemoOpen(true)} 
+        />
+
+        {/* Act 3: Executive Command Centre (Multi-Site Radar) */}
         <CommandCentre 
           onOpenDemo={() => setDemoOpen(true)} 
         />
 
-        {/* Act 3: The Living BOQ Spine (Itemized Rate Analysis & Locking) */}
+        {/* Act 4: The Living BOQ Spine (Itemized Rate Analysis & Locking) */}
         <BOQSpine 
           onOpenDemo={() => setDemoOpen(true)} 
         />
 
-        {/* Act 4: Financial Governance (Maker/Checker Multi-Tier Authorization) */}
+        {/* Act 5: Financial Governance (Maker/Checker Multi-Tier Authorization) */}
         <ApprovalStack 
           onOpenDemo={() => setDemoOpen(true)} 
         />
 
-        {/* Act 5: Commercial Invoicing & Tally Prime Sync */}
+        {/* Act 6: Commercial Invoicing & Tally, SAP & ERP Sync */}
         <FinanceFlow 
           onOpenDemo={() => setDemoOpen(true)} 
         />
 
-        {/* Act 6: Turnkey Trade Package Registers */}
+        {/* Act 7: Turnkey Trade Package Registers */}
         <TradePackageMatrix 
           onOpenDemo={() => setDemoOpen(true)} 
         />
 
-        {/* Act 7: Tailored Views for Every Construction Role */}
+        {/* Act 8: Tailored Workspaces for Every Role (with Visual UI Mockup) */}
         <RoleTabs 
           onOpenDemo={() => setDemoOpen(true)} 
         />
 
-        {/* Act 8: Ecosystem Transparency Portals (Client & Subcontractor Hub) */}
+        {/* Act 9: Ecosystem Transparency Portals (Client & Subcontractor Hub) */}
         <PortalsSection />
         
-        {/* Act 9: Interactive Commercial Margin ROI Simulator */}
+        {/* Act 10: Interactive Commercial Margin ROI Simulator */}
         <QualitativeOutcomes 
           onOpenDemo={() => setDemoOpen(true)} 
         />
 
-        {/* Act 10: Industry Scale & Verified Benchmarks */}
+        {/* Act 11: About Us & Leadership Mission */}
+        <AboutUs 
+          onOpenDemo={() => setDemoOpen(true)} 
+        />
+
+        {/* Act 12: Frequently Asked Questions Accordion */}
+        <FAQSection 
+          onOpenDemo={() => setDemoOpen(true)} 
+        />
+
+        {/* Act 13: Industry Scale & Verified Benchmarks */}
         <ImpactMetrics />
         
-        {/* Act 11: Final Call to Action */}
+        {/* Act 14: Final Call to Action */}
         <FinalCTA 
           onOpenDemo={() => setDemoOpen(true)} 
         />

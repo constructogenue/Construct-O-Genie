@@ -28,7 +28,7 @@ const ARCHITECTURAL_STAGES = [
 export default function ArchitecturalCanvas({ scrollProgress: propProgress }) {
   const [internalProgress, setInternalProgress] = useState(0);
 
-  // Preload background images for smooth crossfading
+  // Preload background images
   useEffect(() => {
     ARCHITECTURAL_STAGES.forEach((stage) => {
       const img = new Image();
@@ -68,7 +68,7 @@ export default function ArchitecturalCanvas({ scrollProgress: propProgress }) {
 
   return (
     <div
-      className="fixed inset-0 w-screen h-screen pointer-events-none z-0 overflow-hidden bg-[#040608]"
+      className="fixed inset-0 w-screen h-screen pointer-events-none z-0 overflow-hidden bg-[#030508]"
       style={{
         transform: 'translateZ(0)',
         willChange: 'transform',
@@ -99,9 +99,9 @@ export default function ArchitecturalCanvas({ scrollProgress: propProgress }) {
               src={stage.src}
               alt={stage.title}
               loading="eager"
-              className="w-full h-full object-cover object-center filter brightness-[0.75] contrast-[1.12]"
+              className="w-full h-full object-cover object-center filter brightness-[0.88] contrast-[1.08] saturate-[1.1]"
               style={{
-                transform: `scale(${1.02 + effectiveProgress * 0.04})`,
+                transform: `scale(${1.01 + effectiveProgress * 0.03})`,
                 transition: 'transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
               }}
             />
@@ -109,17 +109,17 @@ export default function ArchitecturalCanvas({ scrollProgress: propProgress }) {
         );
       })}
 
-      {/* Cinematic Deep Dark Contrast Diffusion Layers for 100% Text Readability */}
-      <div className="absolute inset-0 bg-[#040609]/75 backdrop-blur-[2px] pointer-events-none z-10" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#040608]/90 via-[#040608]/60 to-[#040608]/95 pointer-events-none z-10" />
+      {/* Atmospheric Contrast Layers (Clear Architectural Visibility + Clean Readability) */}
+      <div className="absolute inset-0 bg-[#030508]/40 pointer-events-none z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#030508]/80 via-[#030508]/25 to-[#030508]/90 pointer-events-none z-10" />
 
-      {/* Titanium Reticle CAD Grid */}
+      {/* Subtle CAD Blueprint Reticle Grid */}
       <div
-        className="absolute inset-0 opacity-[0.035] pointer-events-none z-10"
+        className="absolute inset-0 opacity-[0.03] pointer-events-none z-10"
         style={{
           backgroundImage:
-            'linear-gradient(to right, rgba(255, 255, 255, 0.4) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.4) 1px, transparent 1px)',
-          backgroundSize: '96px 96px',
+            'linear-gradient(to right, rgba(255, 255, 255, 0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 1px, transparent 1px)',
+          backgroundSize: '80px 80px',
         }}
       />
     </div>

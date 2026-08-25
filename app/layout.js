@@ -1,9 +1,9 @@
 import "./globals.css";
-import { Syne, Inter, JetBrains_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, Inter, JetBrains_Mono } from "next/font/google";
 
-const syne = Syne({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["700", "800"],
+  weight: ["500", "600", "700", "800"],
   variable: "--font-display",
   display: "swap",
 });
@@ -31,20 +31,20 @@ export const viewport = {
 
 export const metadata = {
   metadataBase: new URL("https://construct-o-genie.vercel.app"),
-  title: "Construct-O-Genie — Interior & Fit-Out Construction OS",
-  description: "The unified operating system for interior design and turnkey fit-out contractors. Estimation, BOQ Line Locking, Site DPRs, Vendor Approvals, and Tally-native RA Billing.",
+  title: "Construct-O-Genie — Interior & Turnkey Fit-Out Construction OS",
+  description: "The complete operating system for turnkey interior contractors. Living BOQ Spine, Site DPRs, Maker-Checker PO Approvals, and two-way sync with Tally, SAP & other ERPs.",
   keywords: [
-    "construction management software",
-    "fit-out operating system",
-    "interior contractor software",
-    "BOQ estimation software",
-    "Joint Measurement Record JMR",
-    "Tally Prime construction billing",
+    "turnkey interior software",
+    "fit-out construction OS",
+    "BOQ item locking",
+    "Tally SAP ERP construction sync",
+    "JMR measurement record",
+    "interior general contractor ERP",
   ],
   authors: [{ name: "Construct-O-Genie Technologies" }],
   openGraph: {
     title: "Construct-O-Genie — From Bare Shell to Handover",
-    description: "The unified operating system for interior design and turnkey fit-out contractors.",
+    description: "The enterprise OS for turnkey interior design and commercial fit-out contractors.",
     url: "https://construct-o-genie.vercel.app",
     siteName: "Construct-O-Genie",
     images: [
@@ -52,7 +52,7 @@ export const metadata = {
         url: "/dashboard-screen.jpg",
         width: 1200,
         height: 630,
-        alt: "Construct-O-Genie Executive Command Centre",
+        alt: "Construct-O-Genie Executive Platform",
       },
     ],
     locale: "en_US",
@@ -60,8 +60,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Construct-O-Genie — Interior & Fit-Out OS",
-    description: "Manage estimation, BOQs, site progress, vendor procurement, and billing on a single unified platform.",
+    title: "Construct-O-Genie — Turnkey Fit-Out OS",
+    description: "BOQ Line Locking, Site DPRs, Maker/Checker Approvals, and Tally/SAP & ERP Invoicing.",
     images: ["/dashboard-screen.jpg"],
   },
   icons: {
@@ -73,8 +73,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${syne.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className="bg-[#040609] text-slate-100 antialiased font-sans selection:bg-white/30 selection:text-white">
+    <html lang="en" className={`${jakarta.variable} ${inter.variable} ${jetbrainsMono.variable} dark`}>
+      <body className="bg-[#030508] text-slate-100 antialiased font-sans selection:bg-white/20 selection:text-white">
         {children}
       </body>
     </html>

@@ -1,28 +1,47 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Menu, X } from 'lucide-react';
+import { ArrowRight, Menu, X, Smartphone } from 'lucide-react';
 
 export default function Navbar({ onOpenDemo, onOpenLogin }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('overview');
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
+      setScrolled(window.scrollY > 25);
+
+      // Simple active section detector
+      const sections = ['overview', 'command-centre', 'boq-spine', 'approvals', 'finance', 'roles', 'about', 'faq'];
+      const scrollPos = window.scrollY + 200;
+
+      for (const s of sections) {
+        const el = document.getElementById(s);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPos >= top && scrollPos < top + height) {
+            setActiveSection(s);
+            break;
+          }
+        }
+      }
     };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
-    { name: 'Overview', href: '#overview' },
-    { name: 'Command Centre', href: '#command-centre' },
-    { name: 'BOQ Spine', href: '#boq-spine' },
-    { name: 'Approvals', href: '#approvals' },
-    { name: 'Finance & Tally', href: '#finance' },
-    { name: 'Trade Packages', href: '#trade-packages' },
-    { name: 'ROI Calculator', href: '#roi-simulator' },
+    { name: 'Overview', href: '#overview', id: 'overview' },
+    { name: 'Command Centre', href: '#command-centre', id: 'command-centre' },
+    { name: 'BOQ Spine', href: '#boq-spine', id: 'boq-spine' },
+    { name: 'Approvals', href: '#approvals', id: 'approvals' },
+    { name: 'Tally / SAP & ERP', href: '#finance', id: 'finance' },
+    { name: 'Role Views', href: '#roles', id: 'roles' },
+    { name: 'About Us', href: '#about', id: 'about' },
+    { name: 'FAQ', href: '#faq', id: 'faq' },
   ];
 
   return (
@@ -30,8 +49,8 @@ export default function Navbar({ onOpenDemo, onOpenLogin }) {
       <nav
         className={`pointer-events-auto w-full max-w-7xl flex items-center justify-between px-4 sm:px-6 py-2.5 rounded-2xl transition-all duration-300 ${
           scrolled
-            ? 'bg-[#080B10]/90 border border-white/20 backdrop-blur-2xl shadow-[0_10px_35px_rgba(0,0,0,0.8)]'
-            : 'bg-[#080B10]/60 border border-white/10 backdrop-blur-md'
+            ? 'bg-[#080B10]/95 border border-white/20 backdrop-blur-2xl shadow-[0_12px_40px_rgba(0,0,0,0.85)]'
+            : 'bg-[#080B10]/70 border border-white/10 backdrop-blur-md'
         }`}
       >
         {/* Brand Logo */}
@@ -55,77 +74,85 @@ export default function Navbar({ onOpenDemo, onOpenLogin }) {
           </a>
         </div>
 
-        {/* Desktop Navigation Links */}
-        <div className="hidden xl:flex items-center gap-6 text-xs font-medium text-slate-300">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="hover:text-white transition-colors py-1 relative group"
-            >
-              {link.name}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-200 group-hover:w-full" />
-            </a>
-          ))}
+        {/* Desktop Navigation Links with Active Scroll-Spy */}
+        <div className="hidden xl:flex items-center gap-5 text-xs font-medium text-slate-300">
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.id;
+            return (
+              <a
+                key={link.name}
+                href={link.href}
+                className={`transition-colors py-1 relative ${
+                  isActive ? 'text-white font-bold' : 'text-slate-300 hover:text-white'
+                }`}
+              >
+                {link.name}
+                {isActive && (
+                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)] rounded-full" />
+                )}
+              </a>
+            );
+          })}
         </div>
 
         {/* Action Buttons */}
-        <div className="hidden sm:flex items-center gap-3 font-medium text-xs">
+        <div className="flex items-center gap-2 sm:gap-3 font-medium text-xs">
           <button
             onClick={onOpenLogin}
-            className="px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/10 transition-all cursor-pointer font-sans"
+            className="hidden sm:block px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/10 transition-all cursor-pointer font-sans"
           >
             Sign In
           </button>
+          
           <button
             onClick={onOpenDemo}
-            className="group inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl bg-white text-slate-950 font-bold text-xs hover:bg-slate-200 active:scale-95 transition-all duration-200 shadow-md cursor-pointer"
+            className="group inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-white text-slate-950 font-bold text-xs hover:bg-slate-200 active:scale-95 transition-all duration-200 shadow-md cursor-pointer uppercase tracking-wider"
           >
             <span>Book a Demo</span>
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
           </button>
-        </div>
 
-        {/* Mobile / Tablet Toggle */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="xl:hidden p-2 text-slate-300 hover:text-white cursor-pointer"
-          aria-label="Toggle Navigation Menu"
-        >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+          {/* Mobile Menu Hamburger */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="xl:hidden p-2 text-slate-300 hover:text-white cursor-pointer ml-1"
+            aria-label="Toggle Navigation Menu"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </nav>
 
-      {/* Mobile Menu Backdrop & Drawer */}
+      {/* Mobile Drawer (with Scroll Safety for small phones) */}
       {mobileMenuOpen && (
         <>
           <div 
-            className="pointer-events-auto fixed inset-0 bg-black/60 backdrop-blur-sm z-40 xl:hidden"
+            className="pointer-events-auto fixed inset-0 bg-black/70 backdrop-blur-md z-40 xl:hidden"
             onClick={() => setMobileMenuOpen(false)}
           />
-          <div className="pointer-events-auto fixed inset-x-4 top-20 p-6 rounded-3xl bg-[#0A0D12]/98 border border-white/20 backdrop-blur-2xl shadow-2xl flex flex-col gap-3 text-sm font-medium z-50 xl:hidden">
+          <div className="pointer-events-auto fixed inset-x-4 top-20 max-h-[80vh] overflow-y-auto p-6 rounded-3xl bg-[#0A0D12]/98 border border-white/20 backdrop-blur-2xl shadow-2xl flex flex-col gap-2.5 text-sm font-medium z-50 xl:hidden">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="py-2.5 text-slate-200 hover:text-white border-b border-white/10 font-sans"
+                className="py-2 text-slate-200 hover:text-white border-b border-white/10 font-sans"
               >
                 {link.name}
               </a>
             ))}
-            <div className="pt-2 flex flex-col gap-2.5">
+            <div className="pt-2 flex flex-col gap-2">
               <button
                 onClick={() => { setMobileMenuOpen(false); onOpenLogin(); }}
-                className="w-full py-3 rounded-xl bg-white/10 text-white text-xs font-semibold"
+                className="w-full py-2.5 rounded-xl bg-white/10 text-white text-xs font-semibold"
               >
-                Sign In
+                Sign In to Enterprise Portal
               </button>
               <button
                 onClick={() => { setMobileMenuOpen(false); onOpenDemo(); }}
                 className="w-full py-3 rounded-xl bg-white text-slate-950 font-bold text-xs uppercase tracking-wider"
               >
-                Book a Demo
+                Book a Live Demo
               </button>
             </div>
           </div>
