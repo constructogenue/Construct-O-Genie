@@ -1,92 +1,87 @@
 'use client';
 
 import React from 'react';
-import { Layers, ArrowUpRight, ShieldCheck, Mail, Phone, MapPin } from 'lucide-react';
+import { ShieldCheck } from 'lucide-react';
 
 export default function Footer({ onOpenDemo, onOpenLogin }) {
   return (
-    <footer className="bg-[#050709] border-t border-white/[0.08] text-slate-400 font-mono text-xs pt-16 pb-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="relative z-10 border-t border-white/10 bg-black/50 backdrop-blur-xl text-slate-400 text-xs py-14 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8">
         
-        {/* Top Grid (5 Columns) */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 pb-12 border-b border-white/[0.06]">
-          
-          {/* Brand Info (Col 1-2 on mobile, 2 on desktop) */}
-          <div className="col-span-2 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 font-bold">
-                <Layers className="w-4 h-4" />
-              </div>
-              <span className="font-bold text-base text-white font-sans tracking-tight">
+        {/* Brand (4 Cols) */}
+        <div className="md:col-span-4 space-y-4 text-left">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 flex items-center justify-center shrink-0">
+              <img
+                src="/brand/logo-icon.png"
+                alt="Construct-O-Genie Logo"
+                className="w-full h-full object-contain filter drop-shadow-[0_0_12px_rgba(255,255,255,0.5)]"
+              />
+            </div>
+            <div>
+              <span className="font-extrabold text-white text-base tracking-tight block font-display">
                 Construct-O-Genie
               </span>
-            </div>
-            <p className="text-slate-400 text-xs font-sans leading-relaxed max-w-sm">
-              The operating system for interior & fit-out companies. Connecting design, BOQs, procurement, site execution, client billing, and finance around every project.
-            </p>
-            <div className="pt-2 text-[11px] text-cyan-400">
-              ONE PROJECT. ONE SYSTEM. TOTAL CONTROL.
+              <span className="text-[10px] text-slate-300 font-mono block">
+                Interior & Fit-Out Platform
+              </span>
             </div>
           </div>
 
-          {/* Column 2: Product */}
-          <div className="space-y-3">
-            <div className="font-bold text-white uppercase text-[11px] tracking-wider font-sans">Product</div>
-            <ul className="space-y-2 text-xs">
-              <li><a href="#lifecycle" className="hover:text-cyan-400 transition-colors">Project Management</a></li>
-              <li><a href="#boq-spine" className="hover:text-cyan-400 transition-colors">BOQ & Estimation</a></li>
-              <li><a href="#roles" className="hover:text-cyan-400 transition-colors">Procurement & POs</a></li>
-              <li><a href="#site-sync" className="hover:text-cyan-400 transition-colors">Site Execution & DPR</a></li>
-              <li><a href="#finance-flow" className="hover:text-cyan-400 transition-colors">Finance & TDS Control</a></li>
-              <li><a href="#portals" className="hover:text-cyan-400 transition-colors">Client & Vendor Portals</a></li>
-            </ul>
-          </div>
+          <p className="text-xs text-slate-300 leading-relaxed font-sans">
+            The complete estimation, site tracking, and billing operating system for interior contracting and commercial turnkey fit-out enterprises.
+          </p>
 
-          {/* Column 3: Solutions */}
-          <div className="space-y-3">
-            <div className="font-bold text-white uppercase text-[11px] tracking-wider font-sans">Solutions</div>
-            <ul className="space-y-2 text-xs">
-              <li><a href="#roles" className="hover:text-cyan-400 transition-colors">Commercial Fit-Out</a></li>
-              <li><a href="#roles" className="hover:text-cyan-400 transition-colors">Design & Build (D&B)</a></li>
-              <li><a href="#roles" className="hover:text-cyan-400 transition-colors">Turnkey Interior Firms</a></li>
-              <li><a href="#roles" className="hover:text-cyan-400 transition-colors">Luxury Residential Fit-Out</a></li>
-              <li><a href="#india-ops" className="hover:text-cyan-400 transition-colors">India Commercial Ops</a></li>
-            </ul>
-          </div>
-
-          {/* Column 4: Platform & Access */}
-          <div className="space-y-3">
-            <div className="font-bold text-white uppercase text-[11px] tracking-wider font-sans">Access & Company</div>
-            <ul className="space-y-2 text-xs">
-              <li>
-                <button onClick={onOpenLogin} className="hover:text-cyan-400 transition-colors flex items-center gap-1">
-                  Sign In to ERP <ArrowUpRight className="w-3 h-3" />
-                </button>
-              </li>
-              <li>
-                <button onClick={onOpenDemo} className="text-cyan-400 hover:text-cyan-300 font-bold flex items-center gap-1">
-                  Book a Product Demo <ArrowUpRight className="w-3 h-3" />
-                </button>
-              </li>
-              <li><a href="#command-centre" className="hover:text-cyan-400 transition-colors">Command Centre</a></li>
-              <li><a href="#india-ops" className="hover:text-cyan-400 transition-colors">Security & Compliance</a></li>
-            </ul>
-          </div>
-
-        </div>
-
-        {/* Bottom Metadata & Legal */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-400 gap-4">
-          <div>
-            © {new Date().getFullYear()} Construct-O-Genie. All rights reserved. Built for the interior & fit-out industry.
-          </div>
-          <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-slate-300">Privacy Policy</a>
-            <a href="#" className="hover:text-slate-300">Terms of Service</a>
-            <a href="#" className="hover:text-slate-300">Security Architecture</a>
+          <div className="flex items-center gap-2 pt-1 text-[11px] text-emerald-400 font-mono">
+            <ShieldCheck className="w-4 h-4" />
+            <span>ISO 9001:2015 & SOC2 Type II Certified</span>
           </div>
         </div>
 
+        {/* Platform Links (2 Cols) */}
+        <div className="md:col-span-2 space-y-2 text-left">
+          <div className="text-white font-semibold uppercase tracking-wider mb-2 font-mono">Platform</div>
+          <div><a href="#overview" className="hover:text-slate-200">Overview</a></div>
+          <div><a href="#boq-estimation" className="hover:text-slate-200">BOQ & Estimation</a></div>
+          <div><a href="#project-controls" className="hover:text-slate-200">Project Controls</a></div>
+          <div><a href="#site-execution" className="hover:text-slate-200">Site Execution</a></div>
+          <div><a href="#finance-billing" className="hover:text-slate-200">Finance & Billing</a></div>
+          <div><a href="#portals" className="hover:text-slate-200">Portals</a></div>
+        </div>
+
+        {/* Industry Features (3 Cols) */}
+        <div className="md:col-span-3 space-y-2 text-left">
+          <div className="text-white font-semibold uppercase tracking-wider mb-2 font-mono">Enterprise Controls</div>
+          <div><span className="text-slate-300">Automated Tax Withholding & Retention Holds</span></div>
+          <div><span className="text-slate-300">Two-Way Tally Prime Integration</span></div>
+          <div><span className="text-slate-300">Digital Joint Measurement Records (JMR)</span></div>
+          <div><span className="text-slate-300">GFC Drawing Revision Control</span></div>
+          <div><span className="text-slate-300">GST Invoicing & Delivery Challan Match</span></div>
+        </div>
+
+        {/* CTA (3 Cols) */}
+        <div className="md:col-span-3 space-y-3 text-left">
+          <div className="text-white font-semibold uppercase tracking-wider font-mono">Deploy Construct-O-Genie</div>
+          <p className="text-xs text-slate-300 font-sans">
+            Schedule a personalized walkthrough with our construction technology specialists.
+          </p>
+          <button
+            onClick={onOpenDemo}
+            className="w-full py-3 rounded-xl bg-gradient-to-r from-white to-slate-200 text-slate-950 font-bold text-xs uppercase tracking-wider hover:scale-105 transition-all shadow-md cursor-pointer"
+          >
+            Book a Live Demo
+          </button>
+        </div>
+
+      </div>
+
+      <div className="max-w-7xl mx-auto mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-400">
+        <div>© 2026 Construct-O-Genie Technologies Inc. All rights reserved.</div>
+        <div className="flex gap-6">
+          <a href="#" className="hover:text-white">Security</a>
+          <a href="#" className="hover:text-white">Privacy Policy</a>
+          <a href="#" className="hover:text-white">Terms of Deployment</a>
+        </div>
       </div>
     </footer>
   );

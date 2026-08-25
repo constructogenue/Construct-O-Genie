@@ -1,98 +1,91 @@
-﻿@tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --bg-main: #06080B;
-    --bg-surface: #0B0F15;
-    --bg-card: #101620;
-    --bg-card-hover: #151D2A;
-    --border-subtle: rgba(255, 255, 255, 0.07);
-    --border-highlight: rgba(0, 240, 255, 0.3);
-    --cyan-glow: rgba(0, 240, 255, 0.15);
-    --amber-glow: rgba(245, 158, 11, 0.15);
-  }
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-  body {
-    background-color: #06080B;
-    color: #F3F4F6;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    overflow-x: hidden;
-    selection-background-color: rgba(0, 240, 255, 0.25);
-    selection-color: #00F0FF;
+:root {
+  --font-display: "Syne", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  --bg: #040609;
+}
+
+/* Hide default OS cursor on desktop so the luminous light-tail cursor is shown */
+@media (hover: hover) and (pointer: fine) {
+  html, body, * {
+    cursor: none !important;
   }
 }
 
-/* Luxury Grain & Noise Texture Simulation */
-.bg-mesh-dark {
-  background-image: 
-    radial-gradient(at 10% 20%, rgba(0, 240, 255, 0.07) 0px, transparent 50%),
-    radial-gradient(at 90% 10%, rgba(245, 158, 11, 0.05) 0px, transparent 50%),
-    radial-gradient(at 50% 80%, rgba(16, 185, 129, 0.04) 0px, transparent 50%);
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
-.cad-grid-pattern {
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 32px 32px;
+body {
+  background: #040609;
+  color: #f8fafc;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
-.cad-grid-dense {
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-  background-size: 16px 16px;
+::selection {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
 }
 
-/* Glass & Metallic Surface Effects */
-.luxury-glass {
-  background: rgba(12, 17, 24, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-}
-
-.luxury-card {
-  background: linear-gradient(180deg, rgba(16, 22, 32, 0.9) 0%, rgba(10, 14, 21, 0.95) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.luxury-card:hover {
-  border-color: rgba(0, 240, 255, 0.3);
-  transform: translateY(-2px);
-  box-shadow: 0 15px 40px rgba(0, 240, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-.amber-card:hover {
-  border-color: rgba(245, 158, 11, 0.4);
-  box-shadow: 0 15px 40px rgba(245, 158, 11, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-.glow-cyan {
-  box-shadow: 0 0 35px rgba(0, 240, 255, 0.25);
-}
-
-.glow-amber {
-  box-shadow: 0 0 35px rgba(245, 158, 11, 0.25);
-}
-
-/* Custom Scrollbars */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #06080B;
+  background: #040609;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1B2330;
-  border-radius: 4px;
+  background: #27272a;
+  border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2D394D;
+  background: #3f3f46;
+}
+
+/* Micro-atomic Architectural Glassmorphic Panels */
+.glass-panel {
+  background: rgba(10, 12, 16, 0.55);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-panel-hover:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Architectural CAD Grid */
+.cad-grid {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+/* Monolithic Typography */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
 }

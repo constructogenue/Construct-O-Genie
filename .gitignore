@@ -1,6 +1,8 @@
-﻿node_modules
+node_modules
 .next
 .env*.local
 .DS_Store
 dist
 build
+*.zip
+Brand_Assets_Extracted/

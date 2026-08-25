@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState } from 'react';
 import { 
@@ -24,25 +24,25 @@ export default function ProjectLifecycle() {
   const activeStage = LIFECYCLE_STAGES[activeStageIndex];
 
   return (
-    <section id="lifecycle" className="py-28 bg-[#06080B] border-b border-white/[0.08] relative overflow-hidden">
+    <section id="lifecycle" className="bg-transparent py-28  border-b border-white/[0.08] relative overflow-hidden">
       
       {/* CAD Grid Lines */}
       <div className="absolute inset-0 cad-grid-pattern opacity-25 pointer-events-none" />
 
       {/* Atmospheric Glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-cyan-500/10 blur-[160px] pointer-events-none rounded-full" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-white/[0.06] blur-[160px] pointer-events-none rounded-full" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-mono text-[11px] uppercase tracking-wider mb-4 shadow-lg shadow-cyan-950/30">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/20 text-white font-mono text-[11px] uppercase tracking-wider mb-4 shadow-lg shadow-slate-950/30">
             <Layers className="w-3.5 h-3.5" />
             END-TO-END PROJECT THREAD
           </div>
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
             From first conversation <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-200 to-white">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-teal-200 to-white">
               to final collection.
             </span>
           </h2>
@@ -64,15 +64,15 @@ export default function ProjectLifecycle() {
                   onClick={() => setActiveStageIndex(idx)}
                   className={`px-4.5 py-3 rounded-2xl font-mono text-xs whitespace-nowrap transition-all duration-200 flex items-center gap-3 shrink-0 ${
                     isActive
-                      ? 'bg-cyan-500/20 border border-cyan-400 text-white shadow-xl shadow-cyan-950/60'
+                      ? 'bg-white/[0.08] border border-white/30 text-white shadow-xl shadow-slate-950/60'
                       : isPast
-                      ? 'bg-[#0B1017] border border-white/[0.08] text-slate-300 hover:text-white hover:border-cyan-500/30'
+                      ? 'bg-[#0B1017] border border-white/[0.08] text-slate-300 hover:text-white hover:border-white/20'
                       : 'bg-[#080B10] border border-white/[0.04] text-slate-400 hover:text-slate-300'
                   }`}
                 >
                   <span className={`w-6 h-6 rounded-lg flex items-center justify-center font-black text-[11px] ${
                     isActive 
-                      ? 'bg-cyan-400 text-slate-950 shadow-[0_0_10px_#00F0FF]' 
+                      ? 'bg-white text-slate-950 shadow-[0_0_10px_#00F0FF]' 
                       : isPast 
                       ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' 
                       : 'bg-white/[0.06] text-slate-400'
@@ -93,7 +93,7 @@ export default function ProjectLifecycle() {
           <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
             <div>
               <div className="flex items-center gap-3.5 mb-4">
-                <span className="font-mono text-4xl font-black text-cyan-400">
+                <span className="font-mono text-4xl font-black text-white">
                   {activeStage.id}
                 </span>
                 <div>
@@ -106,7 +106,7 @@ export default function ProjectLifecycle() {
                 </div>
               </div>
 
-              <div className="inline-block px-3.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.08] text-xs font-mono text-cyan-300 mb-4 font-semibold">
+              <div className="inline-block px-3.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.08] text-xs font-mono text-slate-200 mb-4 font-semibold">
                 {activeStage.tagline}
               </div>
 
@@ -138,7 +138,7 @@ export default function ProjectLifecycle() {
               <button
                 onClick={() => setActiveStageIndex(Math.min(LIFECYCLE_STAGES.length - 1, activeStageIndex + 1))}
                 disabled={activeStageIndex === LIFECYCLE_STAGES.length - 1}
-                className="px-5 py-2.5 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/40 text-cyan-300 text-xs font-mono font-bold flex items-center gap-2 transition-all"
+                className="px-5 py-2.5 rounded-xl bg-white/[0.08] hover:bg-white/30 border border-white/20 text-slate-200 text-xs font-mono font-bold flex items-center gap-2 transition-all"
               >
                 Next Stage <ChevronRight className="w-4 h-4" />
               </button>
@@ -158,7 +158,7 @@ export default function ProjectLifecycle() {
                   PROJECT / COG-PRJ-26041 :: {activeStage.technicalRef}
                 </span>
               </div>
-              <span className="text-[10px] text-cyan-400 px-2.5 py-0.5 rounded bg-cyan-950/80 border border-cyan-500/40 font-bold">
+              <span className="text-[10px] text-white px-2.5 py-0.5 rounded bg-white/10 border border-white/20 font-bold">
                 STAGE ACTIVE
               </span>
             </div>
@@ -175,7 +175,7 @@ export default function ProjectLifecycle() {
                   <div className="grid grid-cols-2 gap-3">
                     <div className="p-3 rounded-xl bg-[#0F1522]">
                       <span className="text-[10px] text-slate-400 block">Footprint</span>
-                      <span className="text-cyan-400 font-bold">42,500 SQ.FT</span>
+                      <span className="text-white font-bold">42,500 SQ.FT</span>
                     </div>
                     <div className="p-3 rounded-xl bg-[#0F1522]">
                       <span className="text-[10px] text-slate-400 block">Probability</span>
@@ -202,7 +202,7 @@ export default function ProjectLifecycle() {
                     </div>
                     <div className="p-3 rounded-xl bg-[#0F1522]">
                       <div className="text-[10px] text-slate-400">Photos Geotagged</div>
-                      <div className="text-cyan-400 font-bold text-sm">340 Files</div>
+                      <div className="text-white font-bold text-sm">340 Files</div>
                     </div>
                   </div>
                 </div>
@@ -211,7 +211,7 @@ export default function ProjectLifecycle() {
               {activeStageIndex === 2 && (
                 <div className="space-y-3">
                   <div className="text-[10px] text-slate-400 uppercase font-bold">GFC Drawing Vault (Central Distribution)</div>
-                  <div className="p-3 rounded-xl bg-[#0F1522] border border-cyan-500/30 flex items-center justify-between">
+                  <div className="p-3 rounded-xl bg-[#0F1522] border border-white/20 flex items-center justify-between">
                     <span className="text-white font-bold">ARCH-GFC-LVL14-PARTITION-REV04.2.dwg</span>
                     <span className="text-emerald-400 font-bold text-[10px] bg-emerald-950 px-2 py-0.5 rounded">APPROVED</span>
                   </div>
@@ -226,7 +226,7 @@ export default function ProjectLifecycle() {
                 <div className="space-y-3">
                   <div className="p-3.5 rounded-xl bg-[#0F1522] border border-white/[0.06] flex items-center justify-between">
                     <span className="text-slate-300">Vector PDF Takeoff Calibration</span>
-                    <span className="text-cyan-400 font-bold">Scale 1:100</span>
+                    <span className="text-white font-bold">Scale 1:100</span>
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <div className="p-3 rounded-xl bg-[#0F1522]">
@@ -243,7 +243,7 @@ export default function ProjectLifecycle() {
 
               {activeStageIndex >= 4 && (
                 <div className="space-y-3">
-                  <div className="p-3.5 rounded-xl bg-[#0F1522] border border-cyan-500/30 flex items-center justify-between">
+                  <div className="p-3.5 rounded-xl bg-[#0F1522] border border-white/20 flex items-center justify-between">
                     <span className="text-white font-bold">Live Synchronized Stage Data</span>
                     <span className="text-emerald-400 font-bold">Lineage Active</span>
                   </div>
@@ -254,7 +254,7 @@ export default function ProjectLifecycle() {
                     </div>
                     <div className="p-3 rounded-xl bg-[#0F1522]">
                       <div className="text-[10px] text-slate-400">Billed to Client</div>
-                      <div className="text-cyan-400 font-bold text-sm">₹3.08 Cr</div>
+                      <div className="text-white font-bold text-sm">₹3.08 Cr</div>
                     </div>
                     <div className="p-3 rounded-xl bg-[#0F1522]">
                       <div className="text-[10px] text-slate-400">Realized Margin</div>
@@ -269,7 +269,7 @@ export default function ProjectLifecycle() {
             {/* Footer */}
             <div className="pt-3 border-t border-white/[0.08] flex items-center justify-between text-[11px] text-slate-400">
               <span>Automatic data preservation across all 10 project milestones</span>
-              <span className="text-cyan-400 font-bold">100% SYNCHRONIZED</span>
+              <span className="text-white font-bold">100% SYNCHRONIZED</span>
             </div>
 
           </div>

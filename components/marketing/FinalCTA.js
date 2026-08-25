@@ -1,71 +1,57 @@
-﻿'use client';
+'use client';
 
 import React from 'react';
-import { ArrowRight, Layers, Sparkles, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 export default function FinalCTA({ onOpenDemo }) {
   return (
-    <section className="py-32 bg-gradient-to-b from-[#06080B] via-[#0b121c] to-[#06080B] border-b border-white/[0.08] relative overflow-hidden text-center">
+    <section className="relative py-20 overflow-hidden text-center z-10 bg-transparent">
       
-      {/* Background CAD Grid */}
-      <div className="absolute inset-0 cad-grid-pattern opacity-30 pointer-events-none" />
-
-      {/* Center Radiant Lighting Halo */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-to-r from-cyan-500/20 via-teal-500/15 to-transparent blur-[180px] pointer-events-none rounded-full" />
-
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Technical Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-mono text-[11px] uppercase tracking-wider mb-6 shadow-lg shadow-cyan-950/40">
-          <Layers className="w-3.5 h-3.5" />
-          READY FOR ENTERPRISE DEPLOYMENT
-        </div>
-
-        {/* Master Closing Headline */}
-        <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.05] font-sans">
-          Your next project deserves <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-cyan-400">
-            a better operating system.
+        {/* Headline */}
+        <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-[1.05] mb-4 uppercase drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)] font-display">
+          FROM BARE SHELL <br />
+          TO FINAL HANDOVER. <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400">
+            TOTAL OPERATIONAL CONTROL.
           </span>
         </h2>
 
-        {/* Subtitle */}
-        <p className="mt-6 text-base sm:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-          Connect your design, BOQs, procurement, site execution, and money in one place. Schedule an architectural walkthrough for your leadership team today.
+        <p className="text-sm sm:text-lg text-slate-200 max-w-2xl mx-auto mb-8 leading-relaxed font-light drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
+          Eliminate site leakages, spreadsheet errors, and delayed contractor billing. Run your turnkey interior projects on a single system of record.
         </p>
 
-        {/* CTA Buttons */}
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+        {/* CTAs */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-10">
           <button
             onClick={onOpenDemo}
-            className="w-full sm:w-auto px-10 py-4.5 rounded-2xl bg-gradient-to-r from-cyan-400 via-teal-300 to-cyan-400 text-slate-950 font-black text-xs tracking-wider uppercase font-mono shadow-2xl shadow-cyan-400/40 hover:shadow-cyan-400/60 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 group"
+            className="group inline-flex items-center gap-2.5 px-8 py-3.5 rounded-2xl bg-white text-slate-950 font-bold text-xs uppercase tracking-wider transition-all duration-200 hover:bg-slate-200 hover:scale-105 shadow-[0_0_30px_rgba(255,255,255,0.25)] cursor-pointer"
           >
-            <span>Book a Personalized Demo</span>
+            <span>Schedule a Live Demo</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
-
+          
           <a
-            href="#lifecycle"
-            className="w-full sm:w-auto px-8 py-4.5 rounded-2xl bg-[#0F1522] hover:bg-[#151E2E] text-white text-xs font-mono tracking-wider uppercase border border-white/[0.1] hover:border-cyan-500/40 transition-all shadow-lg"
+            href="#boq-estimation"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl text-white font-semibold text-xs bg-white/[0.06] border border-white/20 hover:border-white/40 hover:bg-white/[0.12] backdrop-blur-xl transition-all"
           >
-            Explore Construct-O-Genie
+            <span>Explore All Features</span>
           </a>
         </div>
 
-        {/* Trust Badges */}
-        <div className="mt-14 flex flex-wrap items-center justify-center gap-8 text-xs font-mono text-slate-300">
-          <span className="flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-            Built exclusively for Interior & Fit-Out Contractors
-          </span>
-          <span className="flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-            Tally & 194C TDS Compliant
-          </span>
-          <span className="flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-amber-400" />
-            Zero Setup Fee
-          </span>
+        {/* Guarantees */}
+        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs text-slate-300">
+          {[
+            'Built for Commercial & Residential Contractors',
+            'Tally Prime & Tax Compliance Native',
+            'Dedicated Onboarding Support',
+            'No Long-Term Lock-in',
+          ].map((t) => (
+            <span key={t} className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-4 h-4 text-white" /> {t}
+            </span>
+          ))}
         </div>
 
       </div>

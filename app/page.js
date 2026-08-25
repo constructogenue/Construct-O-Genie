@@ -1,8 +1,7 @@
-﻿'use client';
+'use client';
 
-import React from 'react';
 import ConstructOGenieApp from '../components/marketing/ConstructOGenieApp';
 
-export default function Home() {
+export default function Page() {
   return <ConstructOGenieApp />;
 }

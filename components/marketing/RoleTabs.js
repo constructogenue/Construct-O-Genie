@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState } from 'react';
 import { 
@@ -35,7 +35,7 @@ export default function RoleTabs() {
       metrics: [
         { label: 'Portfolio Margin', value: '19.8%', color: 'text-emerald-400' },
         { label: 'Active Sites', value: '12 Projects', color: 'text-white' },
-        { label: 'Budget Variance', value: '0.4% (Healthy)', color: 'text-cyan-400' }
+        { label: 'Budget Variance', value: '0.4% (Healthy)', color: 'text-white' }
       ]
     },
     {
@@ -50,7 +50,7 @@ export default function RoleTabs() {
         'Direct takeoff measurement linking vector CAD/PDFs to the BOQ'
       ],
       metrics: [
-        { label: 'GFC Revisions', value: '100% Tracked', color: 'text-cyan-400' },
+        { label: 'GFC Revisions', value: '100% Tracked', color: 'text-white' },
         { label: 'Site Reworks', value: '0% Discrepancy', color: 'text-emerald-400' },
         { label: 'Disciplines', value: 'Arch, MEP, Struct', color: 'text-white' }
       ]
@@ -85,7 +85,7 @@ export default function RoleTabs() {
       ],
       metrics: [
         { label: 'Daily DPRs', value: '100% On Time', color: 'text-emerald-400' },
-        { label: 'Certified JMRs', value: '₹3.08 Cr', color: 'text-cyan-400' },
+        { label: 'Certified JMRs', value: '₹3.08 Cr', color: 'text-white' },
         { label: 'Site Progress', value: '67% Active', color: 'text-amber-400' }
       ]
     },
@@ -103,7 +103,7 @@ export default function RoleTabs() {
       metrics: [
         { label: 'TDS Reconciled', value: '₹3.76L', color: 'text-purple-400' },
         { label: 'Collections', value: '₹2.62 Cr', color: 'text-emerald-400' },
-        { label: 'Tally Sync', value: '1-Click XML', color: 'text-cyan-400' }
+        { label: 'Tally Sync', value: '1-Click XML', color: 'text-white' }
       ]
     }
   ];
@@ -111,19 +111,19 @@ export default function RoleTabs() {
   const currentRole = roles.find(r => r.id === activeTab) || roles[0];
 
   return (
-    <section id="roles" className="py-28 bg-[#06080B] border-b border-white/[0.08] relative overflow-hidden">
+    <section id="roles" className="bg-transparent py-28  border-b border-white/[0.08] relative overflow-hidden">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-mono text-[11px] uppercase tracking-wider mb-4 shadow-lg shadow-cyan-950/30">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/20 text-white font-mono text-[11px] uppercase tracking-wider mb-4 shadow-lg shadow-slate-950/30">
             <Layers className="w-3.5 h-3.5" />
             ROLE-BASED WORKSPACES
           </div>
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
             One system. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-200 to-white">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-teal-200 to-white">
               Every team.
             </span>
           </h2>
@@ -143,8 +143,8 @@ export default function RoleTabs() {
                 onClick={() => setActiveTab(r.id)}
                 className={`px-6 py-3.5 rounded-2xl font-mono text-xs uppercase tracking-wider transition-all duration-200 shrink-0 font-bold ${
                   isActive
-                    ? 'bg-gradient-to-r from-cyan-400 to-teal-300 text-slate-950 shadow-xl shadow-cyan-400/30'
-                    : 'bg-[#0B0F16] border border-white/[0.08] text-slate-400 hover:text-white hover:border-cyan-500/30'
+                    ? 'bg-gradient-to-r from-white to-slate-200 text-slate-950 shadow-xl shadow-slate-400/30'
+                    : 'bg-[#0B0F16] border border-white/[0.08] text-slate-400 hover:text-white hover:border-white/20'
                 }`}
               >
                 {r.name}
@@ -159,7 +159,7 @@ export default function RoleTabs() {
           {/* Left Description (7 Cols) */}
           <div className="lg:col-span-7 space-y-6">
             <div>
-              <span className="text-xs font-mono text-cyan-400 uppercase tracking-widest block mb-1 font-bold">
+              <span className="text-xs font-mono text-white uppercase tracking-widest block mb-1 font-bold">
                 {currentRole.title}
               </span>
               <h3 className="text-2xl sm:text-4xl font-bold text-white tracking-tight font-sans">
@@ -170,7 +170,7 @@ export default function RoleTabs() {
             <div className="space-y-3.5 pt-2">
               {currentRole.points.map((pt, i) => (
                 <div key={i} className="flex items-start gap-3.5 text-sm text-slate-200 font-sans">
-                  <div className="w-5 h-5 rounded-full bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 shrink-0 mt-0.5 font-bold text-xs">
+                  <div className="w-5 h-5 rounded-full bg-white/[0.08] border border-white/20 flex items-center justify-center text-white shrink-0 mt-0.5 font-bold text-xs">
                     ✓
                   </div>
                   <span>{pt}</span>
@@ -183,7 +183,7 @@ export default function RoleTabs() {
           <div className="lg:col-span-5 bg-[#070A0F] rounded-2xl border border-white/[0.08] p-6 sm:p-8 font-mono space-y-4 shadow-inner">
             <div className="text-xs font-bold text-white pb-3.5 border-b border-white/[0.08] flex items-center justify-between">
               <span>{currentRole.name} KPI BENCHMARKS</span>
-              <span className="text-cyan-400 text-[10px] bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-500/30">
+              <span className="text-white text-[10px] bg-white/10 px-2 py-0.5 rounded border border-white/20">
                 SYNCHRONIZED
               </span>
             </div>

@@ -18,19 +18,19 @@ export default function ApprovalStack() {
   const [payStatus, setPayStatus] = useState('pending');
 
   return (
-    <section className="py-24 bg-[#080A0C] border-b border-white/[0.06] relative overflow-hidden">
+    <section className="bg-transparent py-24  border-b border-white/[0.06] relative overflow-hidden">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 font-mono text-[11px] uppercase tracking-wider mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.06] border border-white/[0.12] text-white font-mono text-[11px] uppercase tracking-wider mb-4">
             <Lock className="w-3.5 h-3.5" />
             FINANCIAL GOVERNANCE & CONTROL
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight leading-tight">
             Nothing important moves <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-200 to-white">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-teal-200 to-white">
               without the right approval.
             </span>
           </h2>
@@ -46,7 +46,7 @@ export default function ApprovalStack() {
           <div className="p-6 sm:p-8 rounded-3xl bg-[#0c1015] border border-white/[0.08] shadow-2xl font-mono text-xs flex flex-col justify-between space-y-6">
             <div>
               <div className="flex items-center justify-between pb-4 border-b border-white/[0.06] mb-5">
-                <div className="flex items-center gap-2 text-cyan-400 font-bold">
+                <div className="flex items-center gap-2 text-white font-bold">
                   <FileText className="w-4 h-4" />
                   <span>PO AUTHORIZATION QUEUE</span>
                 </div>
@@ -97,7 +97,7 @@ export default function ApprovalStack() {
                   </button>
                   <button
                     onClick={() => setPoStatus('approved')}
-                    className="flex-1 py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold flex items-center justify-center gap-1.5 transition-all shadow-lg shadow-cyan-500/30"
+                    className="flex-1 py-3 rounded-xl bg-white hover:bg-white text-slate-950 font-bold flex items-center justify-center gap-1.5 transition-all shadow-lg shadow-slate-500/30"
                   >
                     <Check className="w-4 h-4" /> Approve PO
                   </button>
