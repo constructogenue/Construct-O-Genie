@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React from 'react';
 import { ArrowRight, ShieldCheck, Mail, Phone, MapPin } from 'lucide-react';

@@ -1,4 +1,4 @@
-﻿export const DEMO_PROJECT = {
+export const DEMO_PROJECT = {
   id: "COG-PRJ-26041",
   code: "HORIZON-04",
   name: "Horizon Workspace & Innovation Lab",

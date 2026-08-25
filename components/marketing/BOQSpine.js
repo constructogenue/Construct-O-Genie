@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState } from 'react';
 import { BOQ_SAMPLE_ITEMS } from './marketingData';
