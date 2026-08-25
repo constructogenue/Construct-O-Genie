@@ -170,7 +170,7 @@ export default function BookDemoModal({ isOpen, onClose }) {
               <div className="pt-3">
                 <button
                   type="submit"
-                  className="w-full py-3.5 rounded-xl bg-white text-slate-950 font-bold text-xs uppercase tracking-wider hover:bg-slate-200 active:scale-98 transition-all shadow-[0_0_25px_rgba(255,255,255,0.3)] cursor-pointer font-sans"
+                  className="w-full py-3.5 rounded-xl bg-white text-slate-950 font-bold text-xs uppercase tracking-wider hover:bg-slate-200 active:scale-[0.98] transition-all shadow-[0_0_25px_rgba(255,255,255,0.3)] cursor-pointer font-sans"
                 >
                   Confirm Executive Demo Booking
                 </button>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://construct-o-genie.vercel.app/sitemap.xml

@@ -11,6 +11,7 @@ import ApprovalStack from './ApprovalStack';
 import FinanceFlow from './FinanceFlow';
 import TradePackageMatrix from './TradePackageMatrix';
 import RoleTabs from './RoleTabs';
+import ProductPillars from './ProductPillars';
 import PortalsSection from './PortalsSection';
 import QualitativeOutcomes from './QualitativeOutcomes';
 import ImpactMetrics from './ImpactMetrics';
@@ -73,6 +74,9 @@ export default function ConstructOGenieApp() {
           onOpenDemo={() => setDemoOpen(true)} 
         />
         
+        {/* Act 1.5: Complete Platform Overview (4 Product Pillars) */}
+        <ProductPillars onOpenDemo={() => setDemoOpen(true)} />
+
         {/* Act 2: Executive Command Centre (Multi-Site Radar) */}
         <CommandCentre 
           onOpenDemo={() => setDemoOpen(true)} 
