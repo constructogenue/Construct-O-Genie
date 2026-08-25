@@ -1,11 +1,11 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { TrendingUp } from 'lucide-react';
 
 export default function ImpactMetrics() {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 relative bg-transparent text-center">
+    <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 relative bg-transparent text-center">
       
       <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.12] text-slate-200 font-mono text-[11px] uppercase tracking-wider mb-4 backdrop-blur-md">
         <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
@@ -45,7 +45,7 @@ export default function ImpactMetrics() {
         ].map((stat, idx) => (
           <div
             key={idx}
-            className="p-5 sm:p-6 rounded-2xl bg-[#0A0D12]/65 border border-white/10 backdrop-blur-xl shadow-xl space-y-2.5 hover:border-white/25 transition-all duration-300"
+            className="p-5 sm:p-6 rounded-2xl bg-[#0A0D14]/85 border border-white/10 backdrop-blur-xl shadow-xl space-y-2.5 hover:border-white/25 transition-all duration-300"
           >
             <div className="text-2xl sm:text-3xl font-bold text-white font-mono tracking-tight">
               {stat.number}

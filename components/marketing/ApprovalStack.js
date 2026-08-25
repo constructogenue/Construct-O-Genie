@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import { 
@@ -10,178 +10,136 @@ import {
   Receipt, 
   ArrowRight,
   Lock,
-  Sparkles
+  Sparkles,
+  CheckCircle2
 } from 'lucide-react';
 
-export default function ApprovalStack() {
+export default function ApprovalStack({ onOpenDemo }) {
   const [poStatus, setPoStatus] = useState('pending'); // 'pending' | 'approved' | 'rejected'
-  const [payStatus, setPayStatus] = useState('pending');
 
   return (
-    <section className="bg-transparent py-24  border-b border-white/[0.06] relative overflow-hidden">
+    <section id="approvals" className="scroll-mt-28 py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 relative bg-transparent">
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      {/* Section Header */}
+      <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.12] text-white font-mono text-[11px] uppercase tracking-wider mb-3 backdrop-blur-md">
+          <Lock className="w-3.5 h-3.5" />
+          FINANCIAL GOVERNANCE & CONTROL
+        </div>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight uppercase drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)] font-display">
+          Nothing Moves Without <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400">
+            The Right Authorization.
+          </span>
+        </h2>
+        <p className="mt-3 text-sm sm:text-base text-slate-300 font-light">
+          Multi-tiered Maker/Checker authorization with live budget validation. Every purchase order and payment voucher requires verifiable approval thresholds before commitment.
+        </p>
+      </div>
+
+      {/* Interactive Approval Simulator Console */}
+      <div className="p-6 sm:p-8 rounded-3xl bg-[#0A0D14]/90 border border-white/15 backdrop-blur-2xl shadow-2xl text-left max-w-4xl mx-auto space-y-6">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.06] border border-white/[0.12] text-white font-mono text-[11px] uppercase tracking-wider mb-4">
-            <Lock className="w-3.5 h-3.5" />
-            FINANCIAL GOVERNANCE & CONTROL
+        {/* Voucher Header */}
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-xl bg-white/10 text-white">
+              <FileText className="w-5 h-5" />
+            </div>
+            <div>
+              <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">
+                PURCHASE ORDER VOUCHER #PO-2604-089
+              </span>
+              <h3 className="text-base sm:text-lg font-bold text-white tracking-tight font-display">
+                WoodCraft Studios • Acoustic Oak Wall Paneling
+              </h3>
+            </div>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight leading-tight">
-            Nothing important moves <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-teal-200 to-white">
-              without the right approval.
-            </span>
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-400">
-            Multi-tiered Maker/Checker authorization with live budget validation. Every purchase order and payment voucher requires verifiable approval thresholds before commitment.
-          </p>
+
+          <div className="font-mono text-right">
+            <div className="text-[10px] text-slate-400 uppercase">PO VALUE</div>
+            <div className="text-lg font-bold text-white">₹19,80,000</div>
+          </div>
         </div>
 
-        {/* Dual Interactive Approval Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        {/* 3-Tier Multi-Level Approval Pipeline */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-xs">
           
-          {/* Card 1: PO Approval Stack */}
-          <div className="p-6 sm:p-8 rounded-3xl bg-[#0c1015] border border-white/[0.08] shadow-2xl font-mono text-xs flex flex-col justify-between space-y-6">
-            <div>
-              <div className="flex items-center justify-between pb-4 border-b border-white/[0.06] mb-5">
-                <div className="flex items-center gap-2 text-white font-bold">
-                  <FileText className="w-4 h-4" />
-                  <span>PO AUTHORIZATION QUEUE</span>
-                </div>
-                <span className={`px-2.5 py-0.5 rounded text-[10px] uppercase font-bold ${
-                  poStatus === 'approved' 
-                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' 
-                    : poStatus === 'rejected'
-                    ? 'bg-red-500/20 text-red-400 border border-red-500/30'
-                    : 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
-                }`}>
-                  {poStatus === 'approved' ? 'APPROVED & DISPATCHED' : poStatus === 'rejected' ? 'REJECTED' : 'AWAITING DIRECTOR'}
-                </span>
-              </div>
-
-              <div className="space-y-4">
-                <div>
-                  <div className="text-[10px] text-slate-400 uppercase">Purchase Order</div>
-                  <div className="text-base font-bold text-white mt-0.5">PO #COG-0241 (WoodCraft Studios)</div>
-                  <div className="text-[11px] text-slate-400">Bespoke Fluted Oak Wall Panelling (480 SQ.M)</div>
-                </div>
-
-                <div className="p-4 rounded-xl bg-slate-900/60 border border-white/[0.04] space-y-2">
-                  <div className="flex justify-between">
-                    <span className="text-slate-400">PO Requested Value</span>
-                    <span className="text-white font-bold text-sm">₹8,42,750</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-slate-400">Available Category Budget</span>
-                    <span className="text-teal-400">₹12,84,000</span>
-                  </div>
-                  <div className="flex justify-between pt-2 border-t border-white/[0.06]">
-                    <span className="text-slate-400">Remaining Budget Post-Approval</span>
-                    <span className="text-emerald-400 font-bold">₹4,41,250 (Safe)</span>
-                  </div>
-                </div>
-              </div>
+          {/* Level 1: Site Engineer (Verified) */}
+          <div className="p-3.5 rounded-2xl bg-black/40 border border-emerald-500/30 space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-slate-400 text-[10px]">TIER 1 : SITE QS</span>
+              <span className="px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">VERIFIED</span>
             </div>
-
-            {/* Action Buttons */}
-            <div className="pt-4 border-t border-white/[0.06] flex items-center gap-3">
-              {poStatus === 'pending' ? (
-                <>
-                  <button
-                    onClick={() => setPoStatus('rejected')}
-                    className="flex-1 py-3 rounded-xl bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-400 font-bold flex items-center justify-center gap-1.5 transition-all"
-                  >
-                    <X className="w-4 h-4" /> Reject
-                  </button>
-                  <button
-                    onClick={() => setPoStatus('approved')}
-                    className="flex-1 py-3 rounded-xl bg-white hover:bg-white text-slate-950 font-bold flex items-center justify-center gap-1.5 transition-all shadow-lg shadow-slate-500/30"
-                  >
-                    <Check className="w-4 h-4" /> Approve PO
-                  </button>
-                </>
-              ) : (
-                <button
-                  onClick={() => setPoStatus('pending')}
-                  className="w-full py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.08] text-slate-400 hover:text-white"
-                >
-                  Reset Demo State
-                </button>
-              )}
-            </div>
+            <div className="text-white font-bold">Quantity & GFC Check</div>
+            <div className="text-[10px] text-slate-400">Verified against drawing DWG-ARCH-JN-04.2</div>
           </div>
 
-          {/* Card 2: Vendor Payment Advice Stack */}
-          <div className="p-6 sm:p-8 rounded-3xl bg-[#0c1015] border border-white/[0.08] shadow-2xl font-mono text-xs flex flex-col justify-between space-y-6">
-            <div>
-              <div className="flex items-center justify-between pb-4 border-b border-white/[0.06] mb-5">
-                <div className="flex items-center gap-2 text-purple-400 font-bold">
-                  <Receipt className="w-4 h-4" />
-                  <span>VENDOR PAYMENT ADVICE (194C)</span>
-                </div>
-                <span className={`px-2.5 py-0.5 rounded text-[10px] uppercase font-bold ${
-                  payStatus === 'approved' 
-                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' 
-                    : 'bg-purple-500/20 text-purple-400 border border-purple-500/30'
-                }`}>
-                  {payStatus === 'approved' ? 'REMITTED (UTR SENT)' : 'PENDING FINANCE'}
-                </span>
-              </div>
-
-              <div className="space-y-4">
-                <div>
-                  <div className="text-[10px] text-slate-400 uppercase">Vendor Invoice</div>
-                  <div className="text-base font-bold text-white mt-0.5">INV-984 / Saint-Gobain Glass</div>
-                  <div className="text-[11px] text-slate-400">Linked to GRN-109 & PO #COG-0244</div>
-                </div>
-
-                <div className="p-4 rounded-xl bg-slate-900/60 border border-white/[0.04] space-y-2">
-                  <div className="flex justify-between">
-                    <span className="text-slate-400">Gross Invoice Amount</span>
-                    <span className="text-white font-bold text-sm">₹4,80,000</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-purple-400">TDS Deduction (2% Sec 194C)</span>
-                    <span className="text-purple-400 font-semibold">-₹9,600</span>
-                  </div>
-                  <div className="flex justify-between pt-2 border-t border-white/[0.06]">
-                    <span className="text-slate-400">Net Remittance Payable</span>
-                    <span className="text-emerald-400 font-bold text-base">₹4,70,400</span>
-                  </div>
-                </div>
-              </div>
+          {/* Level 2: Project Manager (Approved) */}
+          <div className="p-3.5 rounded-2xl bg-black/40 border border-emerald-500/30 space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-slate-400 text-[10px]">TIER 2 : PROJECT MGR</span>
+              <span className="px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">APPROVED</span>
             </div>
-
-            {/* Action Buttons */}
-            <div className="pt-4 border-t border-white/[0.06] flex items-center gap-3">
-              {payStatus === 'pending' ? (
-                <button
-                  onClick={() => setPayStatus('approved')}
-                  className="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold flex items-center justify-center gap-1.5 transition-all shadow-lg shadow-emerald-500/30"
-                >
-                  <Check className="w-4 h-4" /> Authorize Remittance & Send Advice
-                </button>
-              ) : (
-                <div className="w-full space-y-2">
-                  <div className="p-2 rounded bg-emerald-950/30 border border-emerald-500/30 text-center text-emerald-400 text-[11px]">
-                    UTR #AXIS26084920 Generated & Advice Dispatched
-                  </div>
-                  <button
-                    onClick={() => setPayStatus('pending')}
-                    className="w-full py-2 text-[10px] text-slate-400 hover:text-white"
-                  >
-                    Reset Demo State
-                  </button>
-                </div>
-              )}
-            </div>
+            <div className="text-white font-bold">BOQ Budget Validation</div>
+            <div className="text-[10px] text-slate-400">Under approved rate analysis threshold</div>
           </div>
 
+          {/* Level 3: Managing Director (Interactive) */}
+          <div className={`p-3.5 rounded-2xl bg-black/40 border space-y-2 transition-all ${
+            poStatus === 'approved' ? 'border-emerald-500/50 bg-emerald-950/20' : poStatus === 'rejected' ? 'border-rose-500/50 bg-rose-950/20' : 'border-amber-500/40'
+          }`}>
+            <div className="flex items-center justify-between">
+              <span className="text-slate-400 text-[10px]">TIER 3 : MANAGING DIR</span>
+              <span className={`px-2 py-0.5 rounded-md text-[10px] font-bold uppercase ${
+                poStatus === 'approved' ? 'bg-emerald-500/20 text-emerald-400' : poStatus === 'rejected' ? 'bg-rose-500/20 text-rose-400' : 'bg-amber-500/20 text-amber-400'
+              }`}>
+                {poStatus}
+              </span>
+            </div>
+            <div className="text-white font-bold">&gt; ₹10 Lakhs Threshold</div>
+            <div className="text-[10px] text-slate-400">Final commercial sign-off before dispatch</div>
+          </div>
+
+        </div>
+
+        {/* Interactive Action Control */}
+        <div className="p-4 rounded-2xl bg-black/50 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="text-xs text-slate-300 font-sans">
+            {poStatus === 'pending' && 'Simulate executive director decision for PO #089:'}
+            {poStatus === 'approved' && '✅ Purchase Order authorized and locked against BOQ item 04.01.A.'}
+            {poStatus === 'rejected' && '❌ PO returned to Quantity Surveyor with budget modification note.'}
+          </div>
+
+          <div className="flex items-center gap-2.5 shrink-0">
+            {poStatus === 'pending' ? (
+              <>
+                <button
+                  onClick={() => setPoStatus('rejected')}
+                  className="px-4 py-2 rounded-xl bg-rose-500/20 text-rose-300 border border-rose-500/30 text-xs font-semibold hover:bg-rose-500/30 transition-all cursor-pointer"
+                >
+                  Reject PO
+                </button>
+                <button
+                  onClick={() => setPoStatus('approved')}
+                  className="px-5 py-2 rounded-xl bg-white text-slate-950 text-xs font-bold hover:bg-slate-200 transition-all cursor-pointer shadow-md"
+                >
+                  Approve PO (₹19.8L)
+                </button>
+              </>
+            ) : (
+              <button
+                onClick={() => setPoStatus('pending')}
+                className="px-4 py-1.5 rounded-xl bg-white/10 text-white text-xs hover:bg-white/20 transition-all cursor-pointer"
+              >
+                Reset Simulation
+              </button>
+            )}
+          </div>
         </div>
 
       </div>
+
     </section>
   );
 }

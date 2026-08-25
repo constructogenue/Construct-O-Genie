@@ -1,73 +1,82 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
-import { ShieldCheck } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Mail, Phone, MapPin } from 'lucide-react';
 
 export default function Footer({ onOpenDemo, onOpenLogin }) {
   return (
-    <footer className="relative z-10 border-t border-white/10 bg-black/50 backdrop-blur-xl text-slate-400 text-xs py-14 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8">
+    <footer className="relative z-10 border-t border-white/15 bg-[#06080C]/95 backdrop-blur-2xl pt-16 pb-12 px-4 sm:px-6 lg:px-8 text-left">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
         
-        {/* Brand (4 Cols) */}
-        <div className="md:col-span-4 space-y-4 text-left">
+        {/* Col 1: Brand & Identity (2 Cols) */}
+        <div className="lg:col-span-2 space-y-4">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 flex items-center justify-center shrink-0">
               <img
                 src="/brand/logo-icon.png"
-                alt="Construct-O-Genie Logo"
-                className="w-full h-full object-contain filter drop-shadow-[0_0_12px_rgba(255,255,255,0.5)]"
+                alt="Construct-O-Genie"
+                className="w-full h-full object-contain filter drop-shadow-[0_0_12px_rgba(255,255,255,0.4)]"
               />
             </div>
             <div>
-              <span className="font-extrabold text-white text-base tracking-tight block font-display">
+              <span className="font-extrabold text-white text-base tracking-tight font-display block leading-none">
                 Construct-O-Genie
               </span>
-              <span className="text-[10px] text-slate-300 font-mono block">
-                Interior & Fit-Out Platform
+              <span className="text-[10px] text-slate-400 font-mono tracking-wider uppercase block mt-0.5">
+                Fit-Out Construction Operating System
               </span>
             </div>
           </div>
 
-          <p className="text-xs text-slate-300 leading-relaxed font-sans">
-            The complete estimation, site tracking, and billing operating system for interior contracting and commercial turnkey fit-out enterprises.
+          <p className="text-xs text-slate-400 max-w-sm font-sans font-light leading-relaxed">
+            The operating system engineered specifically for turnkey interior design and commercial fit-out contractors. Unified drawing revisions, locked BOQs, offline site DPRs, and Tally-native billing.
           </p>
 
-          <div className="flex items-center gap-2 pt-1 text-[11px] text-emerald-400 font-mono">
-            <ShieldCheck className="w-4 h-4" />
-            <span>ISO 9001:2015 & SOC2 Type II Certified</span>
+          <div className="flex items-center gap-2 text-xs text-slate-400 pt-2 font-mono">
+            <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+            <span>Enterprise Grade Security • 99.9% Uptime</span>
           </div>
         </div>
 
-        {/* Platform Links (2 Cols) */}
-        <div className="md:col-span-2 space-y-2 text-left">
-          <div className="text-white font-semibold uppercase tracking-wider mb-2 font-mono">Platform</div>
-          <div><a href="#overview" className="hover:text-slate-200">Overview</a></div>
-          <div><a href="#boq-estimation" className="hover:text-slate-200">BOQ & Estimation</a></div>
-          <div><a href="#project-controls" className="hover:text-slate-200">Project Controls</a></div>
-          <div><a href="#site-execution" className="hover:text-slate-200">Site Execution</a></div>
-          <div><a href="#finance-billing" className="hover:text-slate-200">Finance & Billing</a></div>
-          <div><a href="#portals" className="hover:text-slate-200">Portals</a></div>
+        {/* Col 2: Platform Modules */}
+        <div className="space-y-3 font-sans text-xs">
+          <div className="font-mono text-[11px] font-bold text-white uppercase tracking-wider">
+            Platform Modules
+          </div>
+          <ul className="space-y-2 text-slate-400">
+            <li><a href="#command-centre" className="hover:text-white transition-colors">Executive Command Centre</a></li>
+            <li><a href="#boq-spine" className="hover:text-white transition-colors">Living BOQ Spine & Locking</a></li>
+            <li><a href="#approvals" className="hover:text-white transition-colors">Maker/Checker PO Approvals</a></li>
+            <li><a href="#finance" className="hover:text-white transition-colors">RA Billing & Tally Prime Sync</a></li>
+            <li><a href="#trade-packages" className="hover:text-white transition-colors">Turnkey Trade Package Registers</a></li>
+          </ul>
         </div>
 
-        {/* Industry Features (3 Cols) */}
-        <div className="md:col-span-3 space-y-2 text-left">
-          <div className="text-white font-semibold uppercase tracking-wider mb-2 font-mono">Enterprise Controls</div>
-          <div><span className="text-slate-300">Automated Tax Withholding & Retention Holds</span></div>
-          <div><span className="text-slate-300">Two-Way Tally Prime Integration</span></div>
-          <div><span className="text-slate-300">Digital Joint Measurement Records (JMR)</span></div>
-          <div><span className="text-slate-300">GFC Drawing Revision Control</span></div>
-          <div><span className="text-slate-300">GST Invoicing & Delivery Challan Match</span></div>
+        {/* Col 3: Role Solutions */}
+        <div className="space-y-3 font-sans text-xs">
+          <div className="font-mono text-[11px] font-bold text-white uppercase tracking-wider">
+            Solutions By Role
+          </div>
+          <ul className="space-y-2 text-slate-400">
+            <li><a href="#roles" className="hover:text-white transition-colors">Managing Directors & Founders</a></li>
+            <li><a href="#roles" className="hover:text-white transition-colors">Quantity Surveyors & Estimators</a></li>
+            <li><a href="#roles" className="hover:text-white transition-colors">Fit-Out Project Managers</a></li>
+            <li><a href="#roles" className="hover:text-white transition-colors">Site Supervisors & DPR Field Logs</a></li>
+            <li><a href="#roles" className="hover:text-white transition-colors">Finance, Accounts & Taxation</a></li>
+          </ul>
         </div>
 
-        {/* CTA (3 Cols) */}
-        <div className="md:col-span-3 space-y-3 text-left">
-          <div className="text-white font-semibold uppercase tracking-wider font-mono">Deploy Construct-O-Genie</div>
-          <p className="text-xs text-slate-300 font-sans">
+        {/* Col 4: Executive Consultation */}
+        <div className="space-y-3 font-sans text-xs">
+          <div className="font-mono text-[11px] font-bold text-white uppercase tracking-wider">
+            Enterprise Engagement
+          </div>
+          <p className="text-xs text-slate-400 font-sans">
             Schedule a personalized walkthrough with our construction technology specialists.
           </p>
           <button
             onClick={onOpenDemo}
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-white to-slate-200 text-slate-950 font-bold text-xs uppercase tracking-wider hover:scale-105 transition-all shadow-md cursor-pointer"
+            className="w-full py-3 rounded-xl bg-white text-slate-950 font-bold text-xs uppercase tracking-wider hover:bg-slate-200 transition-all shadow-md cursor-pointer"
           >
             Book a Live Demo
           </button>
@@ -75,12 +84,12 @@ export default function Footer({ onOpenDemo, onOpenLogin }) {
 
       </div>
 
-      <div className="max-w-7xl mx-auto mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-400">
+      <div className="max-w-7xl mx-auto mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-400 font-mono">
         <div>© 2026 Construct-O-Genie Technologies Inc. All rights reserved.</div>
         <div className="flex gap-6">
-          <a href="#" className="hover:text-white">Security</a>
+          <a href="#" className="hover:text-white">Security & Compliance</a>
           <a href="#" className="hover:text-white">Privacy Policy</a>
-          <a href="#" className="hover:text-white">Terms of Deployment</a>
+          <a href="#" className="hover:text-white">Terms of Service</a>
         </div>
       </div>
     </footer>

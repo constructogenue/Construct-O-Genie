@@ -1,4 +1,4 @@
-export const DEMO_PROJECT = {
+﻿export const DEMO_PROJECT = {
   id: "COG-PRJ-26041",
   code: "HORIZON-04",
   name: "Horizon Workspace & Innovation Lab",
@@ -70,9 +70,9 @@ export const PORTFOLIO_PROJECTS = [
     progress: 91,
     margin: 24.5,
     health: "healthy",
-    status: "Snagging",
+    status: "Snagging & Handover",
     pendingApprovals: 0,
-    stage: "Final Retention"
+    stage: "Final Retention Release"
   }
 ];
 
@@ -80,189 +80,128 @@ export const BOQ_SAMPLE_ITEMS = [
   {
     id: "BOQ-01",
     code: "04.01.A",
-    item: "Bespoke Acoustic Wall Panelling & Fluted Oak Veneer",
-    category: "Joinery & Panelling",
-    qty: 480,
+    package: "Joinery & Millwork",
+    desc: "Bespoke Acoustic Wall Paneling in Natural Fluted White Oak Veneer on 18mm FR Grade HDHMR substrate",
     unit: "SQ.M",
-    sellingRate: 7200,
-    costRate: 5450,
-    marginPct: 24.3,
-    poNo: "PO-COG-0241",
-    vendor: "WoodCraft Studios",
-    grnStatus: "Received (420 SQ.M)",
-    installedPct: 85,
-    billedAmount: 2937600
+    tenderQty: 480,
+    clientRate: 7200,
+    budgetCostRate: 5450,
+    totalBudget: 2616000,
+    poCommitted: 1980000,
+    poBalance: 636000,
+    drawingRef: "DWG-ARCH-JN-04.2",
+    gfcRevision: "REV-04",
+    status: "PO Active (Locked)"
   },
   {
     id: "BOQ-02",
-    code: "02.04.C",
-    item: "Slim Profile Double Glazed Acoustic Glass Partition (DORMA)",
-    category: "Glazing & Aluminium",
-    qty: 320,
-    unit: "SQ.M",
-    sellingRate: 11800,
-    costRate: 9200,
-    marginPct: 22.0,
-    poNo: "PO-COG-0244",
-    vendor: "Saint-Gobain / Alumex Systems",
-    grnStatus: "Received (100%)",
-    installedPct: 92,
-    billedAmount: 3474400
+    code: "07.02.C",
+    package: "Electrical & Lighting",
+    desc: "DALI Dimming Architectural Linear Suspended Profile 3000K CRI 95+ with integrated Dali drivers",
+    unit: "R.MTR",
+    tenderQty: 620,
+    clientRate: 4800,
+    budgetCostRate: 3450,
+    totalBudget: 2139000,
+    poCommitted: 1725000,
+    poBalance: 414000,
+    drawingRef: "DWG-MEP-EL-07.1",
+    gfcRevision: "REV-03",
+    status: "PO Active (Locked)"
   },
   {
     id: "BOQ-03",
-    code: "06.02.B",
-    item: "Knauf Micro-perforated Gypsum Acoustic Baffle Ceiling",
-    category: "Ceilings & MEP",
-    qty: 1250,
+    code: "03.04.B",
+    package: "Glazing & Partitions",
+    desc: "12mm Toughened Clear Glass Acoustic Partition with Slimline Matte Black Anodized Aluminium Trims",
     unit: "SQ.M",
-    sellingRate: 3400,
-    costRate: 2680,
-    marginPct: 21.1,
-    poNo: "PO-COG-0248",
-    vendor: "Knauf Ceiling India",
-    grnStatus: "Received (1250 SQ.M)",
-    installedPct: 70,
-    billedAmount: 2975000
+    tenderQty: 340,
+    clientRate: 5900,
+    budgetCostRate: 4100,
+    totalBudget: 1394000,
+    poCommitted: 1394000,
+    poBalance: 0,
+    drawingRef: "DWG-ARCH-GL-03.4",
+    gfcRevision: "REV-02",
+    status: "100% Indented (Capped)"
   },
   {
     id: "BOQ-04",
-    code: "08.01.D",
-    item: "Modular System Workstations with Cable Backbone (Steelcase)",
-    category: "Loose Furniture",
-    qty: 240,
-    unit: "NOS",
-    sellingRate: 28500,
-    costRate: 23200,
-    marginPct: 18.6,
-    poNo: "PO-COG-0252",
-    vendor: "Workscape Solutions",
-    grnStatus: "In Transit",
-    installedPct: 15,
-    billedAmount: 0
-  },
-  {
-    id: "BOQ-05",
-    code: "03.05.A",
-    item: "Italian Statuario Marble Flooring with Brass Inlay Detailing",
-    category: "Flooring & Finishes",
-    qty: 620,
+    code: "09.01.F",
+    package: "Flooring & Carpeting",
+    desc: "Shaw Contract Tufted Nylon Modular Carpet Tiles with Ecoworx Backing including adhesive primer",
     unit: "SQ.M",
-    sellingRate: 9400,
-    costRate: 7100,
-    marginPct: 24.5,
-    poNo: "PO-COG-0239",
-    vendor: "Classic Marble Co.",
-    grnStatus: "Received (100%)",
-    installedPct: 100,
-    billedAmount: 5828000
+    tenderQty: 1850,
+    clientRate: 3200,
+    budgetCostRate: 2350,
+    totalBudget: 4347500,
+    poCommitted: 3525000,
+    poBalance: 822500,
+    drawingRef: "DWG-ARCH-FL-09.1",
+    gfcRevision: "REV-05",
+    status: "PO Active (Locked)"
   }
 ];
 
-export const LIFECYCLE_STAGES = [
+export const ROLE_EXPERIENCES = [
   {
-    id: "01",
-    name: "LEAD & CRM",
-    tagline: "Commercial Opportunity",
-    description: "Prospect captures scope, estimated footprint, target handover date and preliminary budget probability.",
-    metric: "₹4.82 Cr Value",
-    statusText: "85% Conversion Probability",
-    technicalRef: "CRM / OPP-26041"
+    id: "founder",
+    role: "Founder / Managing Director",
+    tagline: "Live Margin Command & Cash Flow Radar",
+    description: "Real-time visibility into company-wide project health, locked purchase margins, gross profit projections, and pending executive approvals.",
+    highlights: [
+      "Real-time company gross margin vs tender baseline",
+      "Executive 1-click approvals for POs > ₹5 Lakhs",
+      "Billing milestones and projected cash collections",
+      "Risk alerts for delayed milestones and scope deviations"
+    ]
   },
   {
-    id: "02",
-    name: "SITE RECCE",
-    tagline: "Site Condition & Scan",
-    description: "Mobile site survey records 340 geotagged photographs, 3D laser dimensions, beam clearances and MEP risers.",
-    metric: "42,500 SQ.FT",
-    statusText: "Laser Survey Calibrated",
-    technicalRef: "SURVEY / REC-01"
+    id: "qs",
+    role: "Quantity Surveyor & Estimator",
+    tagline: "Living BOQ Spine & Drawing Revision Sync",
+    description: "Upload client tender BOQs, map itemized rate analyses, track GFC drawing revision deltas, and lock purchase orders directly against budget line items.",
+    highlights: [
+      "Side-by-side GFC drawing revision takeoff comparison",
+      "Detailed rate analysis for materials, labor, and machinery",
+      "Hard caps preventing purchase orders exceeding BOQ limits",
+      "Instant client variation register with cost vs selling rates"
+    ]
   },
   {
-    id: "03",
-    name: "DESIGN & GFC",
-    tagline: "Drawing Vault & Revisions",
-    description: "Central GFC vault maintains architectural, structural and MEP revisions with instant site distribution.",
-    metric: "Rev 04.2 GFC",
-    statusText: "All Disciplines Approved",
-    technicalRef: "VAULT / ARCH-DWG"
+    id: "pm",
+    role: "Project Manager",
+    tagline: "Multi-Trade Execution & Procurement Engine",
+    description: "Manage multiple turnkey trade packages simultaneously. Track physical site progress, issue vendor purchase orders, and monitor critical delivery dates.",
+    highlights: [
+      "Trade package register from tender to handover",
+      "Subcontractor work order generation & tracking",
+      "Site Material Delivery Note (GRN) verification",
+      "Planned vs actual schedule milestone radar"
+    ]
   },
   {
-    id: "04",
-    name: "QUANTITY TAKEOFF",
-    tagline: "Vector PDF Measurement",
-    description: "Direct drawing takeoff measures areas, perimeters and item counts, pushing calibrated quantities to the BOQ.",
-    metric: "148 Quantities",
-    statusText: "100% Calibrated to Scale",
-    technicalRef: "QTO / DWG-CALIB"
+    id: "site",
+    role: "Site Supervisor / Field Engineer",
+    tagline: "Mobile Daily Progress Reports & Joint Measurements",
+    description: "Digital DPRs on mobile, photo-based snagging with plan pinning, worker headcounts, and tripartite Joint Measurement Record (JMR) sign-offs.",
+    highlights: [
+      "Offline-capable mobile Daily Progress Reports (DPR)",
+      "Photo snagging pinned directly to 2D floor plans",
+      "Subcontractor measurement sheet entry at site gate",
+      "Digital architect/client sign-off on completed stages"
+    ]
   },
   {
-    id: "05",
-    name: "BOQ & ESTIMATION",
-    tagline: "Live Commercial Spine",
-    description: "Itemized selling price, cost rate, material specification, labour budget and target gross margin.",
-    metric: "₹3.94 Cr Cost Budget",
-    statusText: "Target Margin 18.4%",
-    technicalRef: "BOQ / FINAL-VER"
-  },
-  {
-    id: "06",
-    name: "PROCUREMENT",
-    tagline: "BOQ-Linked Purchase Orders",
-    description: "Automatic PO creation linked to BOQ line items with budget validation and maker/checker approvals.",
-    metric: "14 POs Issued",
-    statusText: "₹2.14 Cr Committed",
-    technicalRef: "PROC / PO-SERIES"
-  },
-  {
-    id: "07",
-    name: "SITE EXECUTION",
-    tagline: "DPR, JMR & Material GRN",
-    description: "Site engineers log daily progress, joint measurement sheets, material receipts and site imprest expenses.",
-    metric: "67% Physical Progress",
-    statusText: "Daily DPR Submitted",
-    technicalRef: "SITE / DPR-DAILY"
-  },
-  {
-    id: "08",
-    name: "CLIENT BILLING",
-    tagline: "Milestones & GST Invoices",
-    description: "Automated progress billing based on certified JMR measurements with milestone GST invoicing.",
-    metric: "₹3.08 Cr Billed",
-    statusText: "Invoice #INV-03 Certified",
-    technicalRef: "FIN / GST-INV"
-  },
-  {
-    id: "09",
-    name: "COLLECTIONS & TDS",
-    tagline: "Cash Inflow & Retention",
-    description: "Real-time receivables tracking, client TDS certificate reconciliation and retention money schedules.",
-    metric: "₹2.62 Cr Collected",
-    statusText: "₹46.0L Outstanding",
-    technicalRef: "RECV / LEDGER"
-  },
-  {
-    id: "10",
-    name: "PROJECT P&L",
-    tagline: "Executive Financial Visibility",
-    description: "Live real-time project profitability, cashflow variances, committed cost burn and net margin control.",
-    metric: "₹88.7L Net Profit",
-    statusText: "18.4% Realized Margin",
-    technicalRef: "EXEC / PL-SUMMARY"
+    id: "finance",
+    role: "Head of Accounts & Billing",
+    tagline: "Automated RA Billing & Two-Way Tally Prime Sync",
+    description: "Generate client Running Account (RA) bills from verified JMRs, manage contractor tax withholdings (TDS/WCT), track retention money, and sync two-way with Tally Prime.",
+    highlights: [
+      "Automated RA billing with retention & advance recovery",
+      "Statutory compliance (GST, TDS u/s 194C, e-Way bills)",
+      "Vendor payment advice with UTR tracking",
+      "Direct two-way synchronization with Tally Prime"
+    ]
   }
-];
-
-export const INDIA_OPS_CHIPS = [
-  { code: "BOQ", label: "Bill of Quantities", desc: "Item-level cost, selling rate, material & labour rates" },
-  { code: "PO", label: "Purchase Orders", desc: "Maker/checker approval thresholds with custom series" },
-  { code: "GRN", label: "Goods Receipt Note", desc: "Site gate entry & physical delivery verification" },
-  { code: "RA Bills", label: "Running Account Bills", desc: "Subcontractor progressive measurement certification" },
-  { code: "JMR", label: "Joint Measurement Records", desc: "Tripartite signed site measurements for billing" },
-  { code: "DPR", label: "Daily Progress Reporting", desc: "Workforce count, progress logs & site photographs" },
-  { code: "TDS 194C / 194J", label: "Tax Deducted at Source", desc: "Automated 1%, 2% & 10% TDS deduction & challan mapping" },
-  { code: "GST Invoicing", label: "Compliant Tax Invoices", desc: "CGST, SGST & IGST breakdown with HSN/SAC codes" },
-  { code: "Retention", label: "Retention Money Vault", desc: "5-10% retention withholding until DLP handover" },
-  { code: "Site Imprest", label: "Petty Cash Management", desc: "Digital voucher upload & live balance reconciliation" },
-  { code: "GSTR-2B", label: "ITC Reconciliation", desc: "Vendor invoice matching against GST portal filings" },
-  { code: "Tally Bridge", label: "Tally XML & Prime Sync", desc: "Direct XML voucher export for master accounting" }
 ];

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import { 
@@ -34,101 +34,78 @@ const INTERIOR_PACKAGES = [
       { label: 'Core Material', val: '18mm FR Grade HDHMR' },
       { label: 'Surface Finish', val: 'Natural American White Oak Veneer' },
       { label: 'CNC Acoustic Slit', val: '3mm Pitch / 16mm Spacing' },
-      { label: 'Hardware Hardware', val: 'Concealed Hettich Sensys Hinges' },
+      { label: 'Hardware', val: 'Concealed Hettich Sensys Hinges' },
     ],
     sampleImg: '/building-stage2.jpg',
   },
   {
-    id: 'glazing',
-    name: 'Architectural Glazing',
-    tradeCode: 'PACKAGE 02 / GLAZING',
-    tagline: 'Slim Profile Double Glazed Acoustic Partitions',
-    drawingRef: 'GFC / DWG-GL-L12-08',
-    standard: 'STC 52 Acoustic Rating & EN 12150 Safety',
-    boqItemCode: '02.04.C',
-    quantity: '320 SQ.M',
-    costBudget: '₹29,44,000',
-    sellingValue: '₹37,76,000',
-    marginPct: '22.0%',
-    vendor: 'Saint-Gobain / Alumex Systems',
-    deliveryStatus: 'Delivered (Batch 02 Cleared)',
+    id: 'mep',
+    name: 'MEP & HVAC',
+    tradeCode: 'PACKAGE 02 / MEP',
+    tagline: 'VRF Air Conditioning, Fire Sprinklers & DALI Dimming',
+    drawingRef: 'GFC / DWG-MEP-HV-08.1',
+    standard: 'ASHRAE 90.1 & NBC Compliant',
+    boqItemCode: '07.02.C',
+    quantity: '620 R.MTR',
+    costBudget: '₹41,20,000',
+    sellingValue: '₹53,80,000',
+    marginPct: '23.4%',
+    vendor: 'Voltas Engineering Services',
+    deliveryStatus: 'Pressure Testing Passed @ 1.5x WP',
     installedPct: 92,
     specifications: [
-      { label: 'Glass Specification', val: '12.76mm Acoustic PVB Toughened DGU' },
-      { label: 'Extrusion Profile', val: '25mm Anodized Matt Black Slim Frame' },
-      { label: 'Acoustic Drop Seal', val: 'DORMA Automatic Threshold Drop Seal' },
-      { label: 'Deflection Tolerance', val: '< L/175 Structural Clearance' },
-    ],
-    sampleImg: '/hero-interior.jpg',
-  },
-  {
-    id: 'mep',
-    name: 'MEP & HVAC VRF',
-    tradeCode: 'PACKAGE 03 / MEP SERVICES',
-    tagline: 'VRF Air Distribution, Fire Sprinklers & Cable Trays',
-    drawingRef: 'GFC / DWG-MEP-HVAC-02.1',
-    standard: 'NFPA 13 & IS 659 GFC Approved',
-    boqItemCode: '07.02.A',
-    quantity: '1,450 R.M.',
-    costBudget: '₹48,20,000',
-    sellingValue: '₹59,80,000',
-    marginPct: '19.4%',
-    vendor: 'Voltas / Daikin Certified Vendor',
-    deliveryStatus: 'Pressure Tested @ 1.5x WP',
-    installedPct: 78,
-    specifications: [
-      { label: 'Duct Construction', val: '22-Gauge Class-0 Insulated GI' },
-      { label: 'Cable Raceway', val: '300x50mm Perforated Ladder Trays' },
-      { label: 'Sprinkler Piping', val: 'Class-C MS Heavy Duty with UL Sprinklers' },
-      { label: 'Air Balancing', val: 'CFM Verified with Tripartite Report' },
+      { label: 'Piping Spec', val: 'Hard Drawn Copper Pipe (Class-O)' },
+      { label: 'Ductwork', val: 'G.I Sheet 24 Gauge with Nitrile Rubber' },
+      { label: 'Control Protocol', val: 'BACnet / IP Gateway System' },
+      { label: 'Lighting Track', val: 'DALI-2 Protocol Magnetic Recessed' },
     ],
     sampleImg: '/building-mep.jpg',
   },
   {
-    id: 'marble',
-    name: 'Stone & Italian Marble',
-    tradeCode: 'PACKAGE 04 / FLOORING',
-    tagline: 'Bookmatched Italian Statuario with Brass Inlay',
-    drawingRef: 'GFC / DWG-FL-ST-03.4',
-    standard: 'IS 1122 & Mitred Edge Tolerance',
-    boqItemCode: '03.05.A',
-    quantity: '620 SQ.M',
-    costBudget: '₹44,02,000',
-    sellingValue: '₹58,28,000',
-    marginPct: '24.5%',
-    vendor: 'Classic Marble Company',
-    deliveryStatus: 'Dry-Lay Approved & Sealed',
-    installedPct: 100,
+    id: 'glazing',
+    name: 'Glazing & Partitions',
+    tradeCode: 'PACKAGE 03 / GLASS',
+    tagline: 'Slimline Acoustic Double Glazing & Fluted Sliders',
+    drawingRef: 'GFC / DWG-ARCH-GL-03.4',
+    standard: 'Acoustic Rating Rw 42 dB',
+    boqItemCode: '03.04.B',
+    quantity: '340 SQ.M',
+    costBudget: '₹13,94,000',
+    sellingValue: '₹19,60,000',
+    marginPct: '28.8%',
+    vendor: 'Saint-Gobain Glass Solutions',
+    deliveryStatus: 'Fabricated & Staged at Local Factory',
+    installedPct: 60,
     specifications: [
-      { label: 'Stone Grade', val: '20mm First-Choice Italian Statuario' },
-      { label: 'Laying Bed', val: 'Polymer-Modified Adhesive Screed' },
-      { label: 'Accent Detailing', val: '8mm Solid Brushed Brass Inlay Strips' },
-      { label: 'Polishing Method', val: '8-Stage Diamond Resin Polish (95 Gloss)' },
+      { label: 'Glass Specification', val: '12mm Clear Acoustic Laminated' },
+      { label: 'Frame Finish', val: 'Matte Anodized Architectural Black' },
+      { label: 'Door Hardware', val: 'Dorma Floor Springs & Patch Fittings' },
+      { label: 'Gasket System', val: 'Continuous EPDM Acoustic Seals' },
     ],
     sampleImg: '/hero-interior.jpg',
   },
   {
-    id: 'ceilings',
-    name: 'Ceilings & Lighting',
-    tradeCode: 'PACKAGE 05 / CEILINGS',
-    tagline: 'Micro-Perforated Acoustic Baffles & DALI Magnetic Tracks',
-    drawingRef: 'GFC / DWG-CL-LT-06.2',
-    standard: 'ASTM C423 NRC 0.85 & DALI 2.0',
-    boqItemCode: '06.02.B',
-    quantity: '1,250 SQ.M',
-    costBudget: '₹33,50,000',
-    sellingValue: '₹42,50,000',
-    marginPct: '21.2%',
-    vendor: 'Knauf Ceiling Systems',
-    deliveryStatus: 'Suspension Grid Laser Aligned',
-    installedPct: 70,
+    id: 'flooring',
+    name: 'Flooring & Carpeting',
+    tradeCode: 'PACKAGE 04 / FLOOR',
+    tagline: 'Italian Statuario Marble & Modular Acoustic Carpet',
+    drawingRef: 'GFC / DWG-ARCH-FL-09.1',
+    standard: 'CRI Green Label Plus Certified',
+    boqItemCode: '09.01.F',
+    quantity: '1,850 SQ.M',
+    costBudget: '₹43,47,500',
+    sellingValue: '₹59,20,000',
+    marginPct: '26.5%',
+    vendor: 'Shaw Contract India',
+    deliveryStatus: '100% Lots Landed in Warehouse',
+    installedPct: 40,
     specifications: [
-      { label: 'Baffle Dimensions', val: '150mm Depth x 50mm Width Linear' },
-      { label: 'Acoustic Infill', val: 'NRC 0.85 Bio-Soluble Mineral Core' },
-      { label: 'Lighting Track', val: '48V Low-Voltage Magnetic Channel' },
-      { label: 'Light Quality', val: 'CRI 95+ Tunable White (2700K–5000K)' },
+      { label: 'Primary Tile', val: '500mm x 500mm Nylon Solution Dyed' },
+      { label: 'Backing Layer', val: 'Ecoworx Closed-Loop Recyclable' },
+      { label: 'Wet Area Stone', val: 'Book-Matched Statuario Italian Slab' },
+      { label: 'Skirting Profile', val: 'Concealed Shadowline Aluminium' },
     ],
-    sampleImg: '/design-studio.jpg',
+    sampleImg: '/building-stage3.jpg',
   },
 ];
 
@@ -137,7 +114,7 @@ export default function TradePackageMatrix({ onOpenDemo }) {
   const pkg = INTERIOR_PACKAGES[activeTab];
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 relative bg-transparent">
+    <section id="trade-packages" className="scroll-mt-28 py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 relative bg-transparent">
       
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-12">
@@ -145,7 +122,7 @@ export default function TradePackageMatrix({ onOpenDemo }) {
           <Layers className="w-3.5 h-3.5 text-white" />
           INTERIOR TRADE PACKAGE REGISTERS
         </div>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight uppercase drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)] font-display">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight uppercase drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)] font-display">
           Turnkey Trade Packages. <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400">
             Locked from BOQ to Site Gate.
@@ -167,7 +144,7 @@ export default function TradePackageMatrix({ onOpenDemo }) {
               className={`px-4 py-2.5 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer flex items-center gap-2 ${
                 isActive
                   ? 'bg-white text-slate-950 shadow-lg font-bold scale-105'
-                  : 'bg-[#0A0D12]/70 text-slate-400 hover:text-white border border-white/10 hover:border-white/20'
+                  : 'bg-[#0A0D14]/75 text-slate-300 hover:text-white border border-white/10 hover:border-white/20'
               }`}
             >
               <span className={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-black' : 'bg-white/40'}`} />
@@ -178,7 +155,7 @@ export default function TradePackageMatrix({ onOpenDemo }) {
       </div>
 
       {/* Active Package Specification Card */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-[#0A0D12]/70 border border-white/15 backdrop-blur-2xl shadow-2xl text-left">
+      <div className="p-6 sm:p-8 rounded-3xl bg-[#0A0D14]/90 border border-white/15 backdrop-blur-2xl shadow-2xl text-left">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
           {/* Left Details (7 Cols) */}
@@ -244,7 +221,7 @@ export default function TradePackageMatrix({ onOpenDemo }) {
             </div>
           </div>
 
-          {/* Right Visual Image & Takeoff Snapshot (5 Cols) */}
+          {/* Right Visual Image & Commercial Numbers (5 Cols) */}
           <div className="lg:col-span-5 space-y-4">
             <div className="rounded-2xl border border-white/20 overflow-hidden relative shadow-2xl">
               <img

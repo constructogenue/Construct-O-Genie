@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
@@ -33,23 +33,23 @@ export default function FinalCTA({ onOpenDemo }) {
           </button>
           
           <a
-            href="#boq-estimation"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl text-white font-semibold text-xs bg-white/[0.06] border border-white/20 hover:border-white/40 hover:bg-white/[0.12] backdrop-blur-xl transition-all"
+            href="#command-centre"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl text-white font-semibold text-xs bg-[#0A0D14]/80 border border-white/20 hover:border-white/40 hover:bg-[#0A0D14] backdrop-blur-xl transition-all"
           >
-            <span>Explore All Features</span>
+            <span>Explore All Capabilities</span>
           </a>
         </div>
 
         {/* Guarantees */}
         <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs text-slate-300">
           {[
-            'Built for Commercial & Residential Contractors',
+            'Built for Commercial & Residential Fit-Outs',
             'Tally Prime & Tax Compliance Native',
             'Dedicated Onboarding Support',
             'No Long-Term Lock-in',
           ].map((t) => (
-            <span key={t} className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-white" /> {t}
+            <span key={t} className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 border border-white/10">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400" /> {t}
             </span>
           ))}
         </div>

@@ -1,30 +1,53 @@
-'use client';
+﻿'use client';
 
-import React, { useState } from 'react';
-import { X, ShieldCheck } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { X, ShieldCheck, CheckCircle2, Loader2 } from 'lucide-react';
 
 export default function SignInModal({ isOpen, onClose }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [status, setStatus] = useState('idle'); // 'idle' | 'loading' | 'success'
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
   const handleLogin = (e) => {
     e.preventDefault();
-    alert(`Signing in as ${email}... Connecting to workspace instance.`);
-    onClose();
+    setStatus('loading');
+    setTimeout(() => {
+      setStatus('success');
+      setTimeout(() => {
+        setStatus('idle');
+        onClose();
+      }, 1500);
+    }, 1000);
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-2xl animate-fade-in select-none">
-      
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-2xl animate-fade-in"
+      onClick={onClose}
+    >
       <div 
-        className="relative w-full max-w-md rounded-3xl border border-white/20 bg-[#0A0D12] text-white p-6 sm:p-8 shadow-[0_25px_80px_rgba(0,0,0,0.9)] text-left"
+        className="relative w-full max-w-md rounded-3xl border border-white/20 bg-[#0A0D14] text-white p-6 sm:p-8 shadow-[0_25px_80px_rgba(0,0,0,0.9)] text-left"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
           className="absolute top-5 right-5 p-2 rounded-full bg-white/10 text-slate-300 hover:text-white hover:bg-white/20 transition-all cursor-pointer"
+          aria-label="Close modal"
         >
           <X className="w-5 h-5" />
         </button>
@@ -46,56 +69,71 @@ export default function SignInModal({ isOpen, onClose }) {
         <h3 className="text-xl font-bold text-white tracking-tight font-display">Sign In to Your Workspace</h3>
         <p className="text-xs text-slate-300 mt-1 font-light">Access your active fit-out projects and BOQ registers.</p>
 
-        <form onSubmit={handleLogin} className="mt-5 space-y-3.5 font-sans text-xs">
-          <div>
-            <label className="block text-slate-300 font-mono text-[11px] mb-1">Work Email</label>
-            <input
-              required
-              type="email"
-              placeholder="name@company.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-white/40"
-            />
+        {status === 'success' ? (
+          <div className="py-8 text-center space-y-3">
+            <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" />
+            <div className="text-sm font-bold text-white">Authenticated Successfully</div>
+            <p className="text-xs text-slate-400">Connecting to {email} workspace instance...</p>
           </div>
+        ) : (
+          <form onSubmit={handleLogin} className="mt-5 space-y-3.5 font-sans text-xs">
+            <div>
+              <label className="block text-slate-300 font-mono text-[11px] mb-1">Work Email</label>
+              <input
+                required
+                type="email"
+                placeholder="name@company.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-white/40 font-sans"
+              />
+            </div>
 
-          <div>
-            <label className="block text-slate-300 font-mono text-[11px] mb-1">Password</label>
-            <input
-              required
-              type="password"
-              placeholder="••••••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-white/40"
-            />
-          </div>
+            <div>
+              <label className="block text-slate-300 font-mono text-[11px] mb-1">Password</label>
+              <input
+                required
+                type="password"
+                placeholder="••••••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-white/40 font-sans"
+              />
+            </div>
 
-          <div className="flex justify-between items-center text-[11px] font-mono pt-1 text-slate-400">
-            <label className="flex items-center gap-1.5 cursor-pointer">
-              <input type="checkbox" className="rounded bg-black border-white/20 text-white" />
-              <span>Remember device</span>
-            </label>
-            <a href="#" className="text-white hover:underline">Forgot password?</a>
-          </div>
+            <div className="flex justify-between items-center text-[11px] font-mono pt-1 text-slate-400">
+              <label className="flex items-center gap-1.5 cursor-pointer">
+                <input type="checkbox" defaultChecked className="rounded bg-black border-white/20 text-white" />
+                <span>Remember device</span>
+              </label>
+              <a href="#" className="text-white hover:underline">Forgot password?</a>
+            </div>
 
-          <div className="pt-2">
-            <button
-              type="submit"
-              className="w-full py-3.5 rounded-xl bg-white text-slate-950 font-bold text-xs uppercase tracking-wider hover:bg-slate-200 transition-all shadow-lg cursor-pointer"
-            >
-              Sign In to Workspace
-            </button>
-          </div>
+            <div className="pt-2">
+              <button
+                type="submit"
+                disabled={status === 'loading'}
+                className="w-full py-3.5 rounded-xl bg-white text-slate-950 font-bold text-xs uppercase tracking-wider hover:bg-slate-200 transition-all shadow-lg cursor-pointer flex items-center justify-center gap-2"
+              >
+                {status === 'loading' ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin text-slate-950" />
+                    <span>Connecting Instance...</span>
+                  </>
+                ) : (
+                  <span>Sign In to Workspace</span>
+                )}
+              </button>
+            </div>
 
-          <div className="flex items-center justify-center gap-2 text-[10px] font-mono text-slate-400 pt-2">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Encrypted Single Sign-On (SSO / SAML)</span>
-          </div>
-        </form>
+            <div className="flex items-center justify-center gap-2 text-[10px] font-mono text-slate-400 pt-2">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Encrypted Single Sign-On (SSO / SAML)</span>
+            </div>
+          </form>
+        )}
 
       </div>
-
     </div>
   );
 }
