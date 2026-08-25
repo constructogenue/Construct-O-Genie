@@ -3,30 +3,30 @@
 import React, { useState } from 'react';
 import { HelpCircle, ChevronDown, ChevronUp, ArrowRight } from 'lucide-react';
 
-const FAQS = [
+const FOUNDER_FAQS = [
   {
-    q: "Can we import our existing tender BOQs directly from Microsoft Excel?",
-    a: "Yes. Construct-O-Genie includes an intelligent BOQ Excel Ingestion Engine. You can upload standard client tender sheets (.xlsx / .csv) and the system automatically maps item codes, units (Sqm, Rmt, Nos), quantities, and client selling rates into locked budget lines.",
+    q: "Will my site engineers actually use this, or is it too complicated for them?",
+    a: "We engineered the site supervisor app to be as simple as WhatsApp. They don't need laptops or complex training. In just 2 minutes at the end of the day, they log worker count, snap 3-4 site photos, and record client measurements. Even supervisors with zero tech background use it easily.",
   },
   {
-    q: "How does the two-way integration with Tally Prime, SAP, and other ERPs work?",
-    a: "When an RA bill or vendor purchase order is approved in Construct-O-Genie, our API bridge generates formatted accounting vouchers directly in Tally Prime, SAP ECC/S4, Zoho Books, or Oracle NetSuite without double data entry. Contractor TDS (u/s 194C) and GST withholdings are automatically posted.",
+    q: "Can I monitor my company's profits and approve purchase orders from my phone?",
+    a: "Yes. As a founder, you get an executive mobile view. You can check the live profit margin of every active site, see which clients have pending payments, and approve or reject vendor purchase orders in 1 click while traveling.",
   },
   {
-    q: "Does the mobile site supervisor app work offline in basement and poor network sites?",
-    a: "Yes. The field app features local SQLite offline persistence. Site supervisors can record worker headcounts, log daily material receipts (GRNs), and take snag photos offline. All records sync automatically as soon as mobile data or site Wi-Fi is detected.",
+    q: "Does my accountant need to change how they use Tally, SAP, or our ERP?",
+    a: "No. Construct-O-Genie integrates directly with your accountant's existing Tally Prime, SAP ECC/S4, Zoho Books, or custom ERP. When you approve an RA bill or vendor payment, the accounting voucher is automatically posted with GST and TDS calculated. Your accountant does not need to learn a new accounting system.",
   },
   {
-    q: "How does Construct-O-Genie prevent unauthorized material ordering on site?",
-    a: "Every Purchase Order is locked directly to an approved BOQ line item and rate analysis ceiling. If a site supervisor or project manager attempts to raise a PO exceeding the tender quantity or cost budget, the system triggers a Maker/Checker executive approval threshold.",
+    q: "How does this prevent my team from over-ordering materials on site?",
+    a: "When your quotation is finalized, the material and labor budgets are hard-locked. If a project manager tries to raise a purchase order exceeding the agreed quantity or price, the system immediately blocks it and sends an approval notification straight to your phone.",
   },
   {
-    q: "How long does team onboarding and data migration take?",
-    a: "Standard rollout takes 5 to 7 days. Our dedicated implementation specialists set up your cost master rates, import active project BOQs, configure user access roles, and conduct hands-on training for your site engineers and commercial managers.",
+    q: "How fast can we set this up for our active ongoing projects?",
+    a: "Our implementation team gets you live within 5 to 7 days. We import your existing Excel quotations, configure your cost rates, connect your Tally/SAP, and train your site engineers with hands-on support.",
   },
   {
-    q: "Can we provide restricted portal access to our clients and subcontractors?",
-    a: "Yes. Clients get a branded portal to view certified physical progress, approve variation requests, and verify RA bills. Subcontractors get a vendor portal to view work orders, submit measurement sheets, and track payment UTRs.",
+    q: "Are our company's internal cost rates and profit margins visible to clients or subcontractors?",
+    a: "Never. Your profit margins, cost breakdowns, and vendor purchase rates are 100% private to your executive team. If you grant client portal access, they only see certified work completion and final billing amounts.",
   },
 ];
 
@@ -37,23 +37,23 @@ export default function FAQSection({ onOpenDemo }) {
     <section id="faq" className="scroll-mt-28 py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto z-10 relative bg-transparent space-y-10">
       
       <div className="text-center space-y-3">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.12] text-slate-200 font-mono text-[11px] uppercase tracking-wider backdrop-blur-md">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.12] text-slate-200 font-mono text-[11px] uppercase tracking-wider backdrop-blur-md">
           <HelpCircle className="w-3.5 h-3.5" />
-          FREQUENTLY ASKED QUESTIONS
+          FOUNDER QUESTIONS & ANSWERS
         </div>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight font-display">
-          Got Questions? <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400">
-            We Have Answers.
+          Everything You Need to Know. <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-100 to-white">
+            Zero Jargon, Simple Answers.
           </span>
         </h2>
         <p className="text-sm text-slate-300 font-light font-sans max-w-xl mx-auto">
-          Everything you need to know about deployment, ERP integrations, and site execution.
+          Clear answers on how Construct-O-Genie helps you scale your contracting business smoothly.
         </p>
       </div>
 
       <div className="space-y-3 text-left">
-        {FAQS.map((faq, idx) => {
+        {FOUNDER_FAQS.map((faq, idx) => {
           const isOpen = openIndex === idx;
           return (
             <div 
@@ -83,16 +83,16 @@ export default function FAQSection({ onOpenDemo }) {
         })}
       </div>
 
-      <div className="p-6 rounded-2xl bg-black/50 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <div className="p-6 rounded-2xl bg-black/60 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
         <div>
-          <div className="text-sm font-bold text-white">Have custom enterprise ERP requirements?</div>
-          <div className="text-xs text-slate-400 font-sans mt-0.5">We provide dedicated API webhooks for bespoke internal databases.</div>
+          <div className="text-sm font-bold text-white">Have specific workflow or team requirements?</div>
+          <div className="text-xs text-slate-400 font-sans mt-0.5">Speak directly with our fit-out technology advisors.</div>
         </div>
         <button
           onClick={onOpenDemo}
           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-slate-950 font-bold text-xs uppercase tracking-wider hover:bg-slate-200 transition-all cursor-pointer shrink-0 shadow-md"
         >
-          <span>Ask Our Engineers</span>
+          <span>Schedule 15-Min Call</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </button>
       </div>

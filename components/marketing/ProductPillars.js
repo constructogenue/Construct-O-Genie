@@ -1,76 +1,76 @@
 'use client';
 
 import React from 'react';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, TrendingUp, ShieldCheck, Clock, Wallet } from 'lucide-react';
 
 export default function ProductPillars({ onOpenDemo }) {
   const pillars = [
     {
       id: 'pre-construction',
       number: '01',
-      tag: 'PRE-CONSTRUCTION & ESTIMATION',
-      title: 'Lock BOQ Lines & Drawings Before Site Mobilization.',
-      desc: 'Import tender estimates, compare GFC drawing revision deltas side-by-side, and lock purchase orders directly against itemized material, labor, and plant rates.',
+      tag: 'PROFIT & SCOPE PROTECTION',
+      title: 'Never Do Free Extra Work for Clients Again.',
+      desc: 'When clients request drawing changes or extra woodwork on site, your site team often executes without recording it. Construct-O-Genie captures every design change instantly, calculates the extra cost, and gets client approval before work starts.',
       src: '/design-studio.jpg',
       metrics: [
-        { label: 'DRAWING SYNC', val: 'GFC Revision Diffs' },
-        { label: 'PO CONTROL', val: 'Budget Line Locking' },
+        { label: 'EXTRA WORK CAPTURED', val: '+4.2% Margin Saved' },
+        { label: 'BUDGET DISCIPLINE', val: '100% Locked Quotations' },
       ],
       highlights: [
-        'Automatic tracking of GFC drawing revisions and scope changes',
-        'Detailed itemized rate analysis for materials, labor, and machinery',
-        'Purchase orders locked against approved BOQ quantities',
+        'Every drawing change is automatically highlighted with cost impact',
+        'Your team cannot over-spend because material budgets are locked',
+        'Instant digital variation orders sent directly to client for sign-off',
       ],
     },
     {
       id: 'project-controls',
       number: '02',
-      tag: 'PROJECT CONTROLS & OVERSIGHT',
-      title: 'Real-Time Progress & Cost Tracking Across All Sites.',
-      desc: 'Designed for founders, project directors, and commercial managers. Monitor actual site progress against planned timelines, review gross profit margins, and identify project risks before they impact completion dates.',
+      tag: 'FOUNDER EXECUTIVE VISIBILITY',
+      title: 'Know Your Exact Profit Today, Not 6 Months Later.',
+      desc: 'Most fit-out founders only discover their true profit or loss after the project is handed over. Construct-O-Genie gives you a live dashboard showing actual expenses vs budget across all your active sites in real time.',
       src: '/dashboard-screen.jpg',
       metrics: [
-        { label: 'PORTFOLIO VIEW', val: 'Multi-Site Tracking' },
-        { label: 'MARGIN VISIBILITY', val: 'Budget vs Actuals' },
+        { label: 'LIVE COMPANY MARGIN', val: 'Real-Time Radar' },
+        { label: 'EARLY WARNINGS', val: 'Budget Leak Alerts' },
       ],
       highlights: [
-        'Live tracking of project margins, costs, and cash flow',
-        'Planned vs actual schedule tracking with milestone alerts',
-        'Role-based access for project managers, quantity surveyors, and directors',
+        'See which sites are making healthy profits and which have cost overruns',
+        'Real-time cash flow radar: see money collected vs pending client dues',
+        'Check company health on your phone anytime without calling site PMs',
       ],
     },
     {
       id: 'site-execution',
       number: '03',
-      tag: 'SITE EXECUTION & FIELD LOGS',
-      title: 'Digital Daily Progress Reports & Joint Measurements.',
-      desc: 'Give your site supervisors a dedicated mobile app. Log daily labor strength, track material consumption, pin photos of site snags to floor plans, and record client-verified Joint Measurement Records (JMR) directly from the field.',
+      tag: 'FAST BILLING & CASH FLOW',
+      title: 'Collect Client Payments in 4 Days, Not 45 Days.',
+      desc: 'Delayed client billing is the #1 cash flow killer for turnkey contractors. Your site supervisor logs work on mobile, the client architect signs the measurement digitally on tablet, and your professional invoice is generated instantly.',
       src: '/site-sync.jpg',
       metrics: [
-        { label: 'MOBILE LOGS', val: 'Offline Site Ready' },
-        { label: 'MEASUREMENTS', val: 'Digital JMR Sign-Off' },
+        { label: 'INVOICING SPEED', val: '4 Days vs 40 Days' },
+        { label: 'DISPUTE RATE', val: '0% Measurement Conflicts' },
       ],
       highlights: [
-        'Quick daily progress reports (DPR) with labor and machinery logs',
-        'Photo-based snag tracking pinned directly to 2D floor plans',
-        'Material delivery verification at site gate to avoid duplicate billing',
+        'Daily progress logs & photos submitted directly from site via mobile',
+        'Client architect signs digital Joint Measurements on site with zero disputes',
+        'Professional Running Account (RA) bills sent out within 24 hours of work',
       ],
     },
     {
       id: 'finance-billing',
       number: '04',
-      tag: 'PROJECT CASH FLOW & BILLING',
-      title: 'Automated Client Invoicing, Contractor Payouts & Tally/SAP Sync.',
-      desc: 'Generate client and contractor Running Account bills directly from certified site measurements. The system automatically calculates statutory tax withholdings and security retentions, with seamless two-way synchronization into Tally, SAP & other ERPs.',
+      tag: 'DELEGATION WITHOUT RISK',
+      title: 'Approve Big Purchases in 1 Click From Your Phone.',
+      desc: 'Empower your project managers to run daily site operations while keeping total control over your company bank account. Set custom approval rules: small items clear automatically, while purchase orders above ₹1 Lakh come straight to your phone.',
       src: '/finance-team.jpg',
       metrics: [
-        { label: 'BILLING SPEED', val: '4 Days vs 35 Days' },
-        { label: 'ACCOUNTING', val: 'Tally / SAP & ERPs' },
+        { label: 'EXECUTIVE CONTROL', val: '1-Click Mobile Sign-Off' },
+        { label: 'ACCOUNTING SYNC', val: 'Tally / SAP & ERPs' },
       ],
       highlights: [
-        'Automated Running Account (RA) billing from verified site measurements',
-        'Automatic contractor tax deductions and security retention tracking',
-        'Two-way sync with Tally, SAP & other ERPs for accounting and vendor disbursements',
+        'No vendor gets paid without your verified mobile approval',
+        'Prevents duplicate contractor billing and unauthorized material orders',
+        'Direct 2-way sync into Tally, SAP & other ERPs keeps your accounts clean',
       ],
     },
   ];
@@ -80,21 +80,21 @@ export default function ProductPillars({ onOpenDemo }) {
       
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto space-y-3">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.12] text-slate-200 font-mono text-[11px] uppercase tracking-wider backdrop-blur-md">
-          COMPLETE PROJECT PLATFORM
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.12] text-slate-200 font-mono text-[11px] uppercase tracking-wider backdrop-blur-md">
+          BUILT FOR FIT-OUT FOUNDERS & BUSINESS OWNERS
         </div>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight font-display">
-          Built For Turnkey Fit-Outs. <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400">
-            From Tender to Handover.
+          How Construct-O-Genie Protects <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-100 to-white">
+            Your Time, Cash Flow & Profit.
           </span>
         </h2>
         <p className="text-sm sm:text-base text-slate-300 font-light leading-relaxed font-sans">
-          Replace disconnected spreadsheets and chaotic WhatsApp groups with a structured operating system built for fit-out contractors.
+          Eliminate site leakages, stop endless WhatsApp calls, and run multiple commercial fit-out projects with institutional confidence.
         </p>
       </div>
 
-      {/* 4 Product Spreads */}
+      {/* 4 Founder Spreads */}
       {pillars.map((pillar, idx) => {
         const isEven = idx % 2 === 0;
         return (
@@ -108,7 +108,7 @@ export default function ProductPillars({ onOpenDemo }) {
             {/* Content (5 Cols) */}
             <div className={`lg:col-span-5 space-y-4 text-left ${isEven ? '' : 'lg:order-2'}`}>
               <div className="flex items-center gap-3">
-                <span className="font-mono text-2xl font-black text-white">
+                <span className="font-mono text-2xl font-black text-emerald-400">
                   {pillar.number}
                 </span>
                 <div className="h-4 w-px bg-white/20" />
@@ -128,9 +128,9 @@ export default function ProductPillars({ onOpenDemo }) {
               {/* Metrics Grid */}
               <div className="grid grid-cols-2 gap-2.5 pt-1 font-mono">
                 {pillar.metrics.map((m, i) => (
-                  <div key={i} className="p-3 rounded-2xl bg-[#0A0D12]/70 border border-white/10 backdrop-blur-xl">
+                  <div key={i} className="p-3 rounded-2xl bg-[#0A0D12]/75 border border-white/10 backdrop-blur-xl">
                     <div className="text-[10px] text-slate-400 uppercase truncate">{m.label}</div>
-                    <div className="text-xs sm:text-sm font-bold text-white mt-0.5 truncate">{m.val}</div>
+                    <div className="text-xs sm:text-sm font-bold text-emerald-300 mt-0.5 truncate">{m.val}</div>
                   </div>
                 ))}
               </div>
@@ -150,7 +150,7 @@ export default function ProductPillars({ onOpenDemo }) {
                   onClick={onOpenDemo}
                   className="inline-flex items-center gap-2 text-xs font-semibold text-white hover:text-slate-300 transition-colors cursor-pointer group font-sans"
                 >
-                  <span>REQUEST A PRODUCT WALKTHROUGH</span>
+                  <span>SEE THIS IN ACTION</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>

@@ -2,203 +2,164 @@
 
 import React, { useState } from 'react';
 import { 
+  Building2, 
   Layers, 
-  FileSpreadsheet, 
-  CheckCircle2, 
   ArrowRight, 
-  Eye, 
-  ShieldCheck,
-  Compass,
-  Boxes,
-  FileCheck,
-  Building
+  CheckCircle2, 
+  FileText, 
+  ShieldCheck, 
+  TrendingUp,
+  Sparkles,
+  DollarSign
 } from 'lucide-react';
 
-const INTERIOR_PACKAGES = [
+const TURNKEY_PACKAGES = [
   {
     id: 'joinery',
-    name: 'Joinery & Millwork',
-    tradeCode: 'PACKAGE 01 / JOINERY',
-    tagline: 'Bespoke Acoustic Wall Paneling & Fluted Oak Veneer',
-    drawingRef: 'GFC / DWG-ARCH-JN-04.2',
-    standard: 'FSC Certified & Class-1 Fire Rated',
-    boqItemCode: '04.01.A',
-    quantity: '480 SQ.M',
-    costBudget: '₹26,16,000',
-    sellingValue: '₹34,56,000',
-    marginPct: '24.3%',
-    vendor: 'WoodCraft Studios',
-    deliveryStatus: 'Received on Site (100% GRN Verified)',
-    installedPct: 85,
-    specifications: [
-      { label: 'Core Material', val: '18mm FR Grade HDHMR' },
-      { label: 'Surface Finish', val: 'Natural American White Oak Veneer' },
-      { label: 'CNC Acoustic Slit', val: '3mm Pitch / 16mm Spacing' },
-      { label: 'Hardware', val: 'Concealed Hettich Sensys Hinges' },
-    ],
+    name: 'Joinery & Custom Millwork',
+    scope: 'Bespoke Oak Veneer Wall Paneling, Executive Desks & Storage Units',
+    vendor: 'Approved Joinery & Millwork Partner',
+    costBudget: '₹19.80 Lakhs',
+    sellingValue: '₹26.16 Lakhs',
+    marginPct: '24.3% Realized Profit',
+    installedPct: 78,
+    deliveryStatus: 'On Track for Handover',
     sampleImg: '/building-stage2.jpg',
-  },
-  {
-    id: 'mep',
-    name: 'MEP & HVAC',
-    tradeCode: 'PACKAGE 02 / MEP',
-    tagline: 'VRF Air Conditioning, Fire Sprinklers & DALI Dimming',
-    drawingRef: 'GFC / DWG-MEP-HV-08.1',
-    standard: 'ASHRAE 90.1 & NBC Compliant',
-    boqItemCode: '07.02.C',
-    quantity: '620 R.MTR',
-    costBudget: '₹41,20,000',
-    sellingValue: '₹53,80,000',
-    marginPct: '23.4%',
-    vendor: 'Voltas Engineering Services',
-    deliveryStatus: 'Pressure Testing Passed @ 1.5x WP',
-    installedPct: 92,
     specifications: [
-      { label: 'Piping Spec', val: 'Hard Drawn Copper Pipe (Class-O)' },
-      { label: 'Ductwork', val: 'G.I Sheet 24 Gauge with Nitrile Rubber' },
-      { label: 'Control Protocol', val: 'BACnet / IP Gateway System' },
-      { label: 'Lighting Track', val: 'DALI-2 Protocol Magnetic Recessed' },
+      { label: 'Substrate', val: '18mm FR Grade HDHMR' },
+      { label: 'Surface Finish', val: 'Natural Fluted White Oak Veneer' },
+      { label: 'Execution Stage', val: 'Final Polish & Ironmongery' },
+      { label: 'Quality Check', val: 'Client Architect Approved' },
     ],
-    sampleImg: '/building-mep.jpg',
   },
   {
     id: 'glazing',
-    name: 'Glazing & Partitions',
-    tradeCode: 'PACKAGE 03 / GLASS',
-    tagline: 'Slimline Acoustic Double Glazing & Fluted Sliders',
-    drawingRef: 'GFC / DWG-ARCH-GL-03.4',
-    standard: 'Acoustic Rating Rw 42 dB',
-    boqItemCode: '03.04.B',
-    quantity: '340 SQ.M',
-    costBudget: '₹13,94,000',
-    sellingValue: '₹19,60,000',
-    marginPct: '28.8%',
-    vendor: 'Saint-Gobain Glass Solutions',
-    deliveryStatus: 'Fabricated & Staged at Local Factory',
-    installedPct: 60,
-    specifications: [
-      { label: 'Glass Specification', val: '12mm Clear Acoustic Laminated' },
-      { label: 'Frame Finish', val: 'Matte Anodized Architectural Black' },
-      { label: 'Door Hardware', val: 'Dorma Floor Springs & Patch Fittings' },
-      { label: 'Gasket System', val: 'Continuous EPDM Acoustic Seals' },
-    ],
+    name: 'Architectural Glazing & Partitions',
+    scope: 'Acoustic Glass Partitions for Boardrooms, Cabins & Meeting Suites',
+    vendor: 'Approved Architectural Glazing Vendor',
+    costBudget: '₹13.94 Lakhs',
+    sellingValue: '₹20.06 Lakhs',
+    marginPct: '30.5% Realized Profit',
+    installedPct: 100,
+    deliveryStatus: 'Completed & Certified',
     sampleImg: '/hero-interior.jpg',
+    specifications: [
+      { label: 'Glass Type', val: '12mm Toughened Acoustic Glass' },
+      { label: 'Frame Profile', val: 'Slimline Matte Black Anodized' },
+      { label: 'Acoustic Rating', val: 'STC 42 dB Certified' },
+      { label: 'Handover Status', val: '100% Signed Off by Client' },
+    ],
+  },
+  {
+    id: 'lighting',
+    name: 'Electrical & Architectural Lighting',
+    scope: 'DALI Dimming Linear Suspended Profiles, Downlights & Smart Drivers',
+    vendor: 'Approved Electrical & Lighting Integrator',
+    costBudget: '₹17.25 Lakhs',
+    sellingValue: '₹23.99 Lakhs',
+    marginPct: '28.1% Realized Profit',
+    installedPct: 65,
+    deliveryStatus: 'Cable First-Fix Completed',
+    sampleImg: '/building-mep.jpg',
+    specifications: [
+      { label: 'Lighting Tech', val: 'DALI Smart Dimming System' },
+      { label: 'Color Rendering', val: '3000K Warm White • CRI 95+' },
+      { label: 'Load Test', val: '100% Phase Balance Verified' },
+      { label: 'Site Delivery', val: 'Fixtures Received at Gate (GRN #031)' },
+    ],
   },
   {
     id: 'flooring',
-    name: 'Flooring & Carpeting',
-    tradeCode: 'PACKAGE 04 / FLOOR',
-    tagline: 'Italian Statuario Marble & Modular Acoustic Carpet',
-    drawingRef: 'GFC / DWG-ARCH-FL-09.1',
-    standard: 'CRI Green Label Plus Certified',
-    boqItemCode: '09.01.F',
-    quantity: '1,850 SQ.M',
-    costBudget: '₹43,47,500',
-    sellingValue: '₹59,20,000',
-    marginPct: '26.5%',
-    vendor: 'Shaw Contract India',
-    deliveryStatus: '100% Lots Landed in Warehouse',
-    installedPct: 40,
-    specifications: [
-      { label: 'Primary Tile', val: '500mm x 500mm Nylon Solution Dyed' },
-      { label: 'Backing Layer', val: 'Ecoworx Closed-Loop Recyclable' },
-      { label: 'Wet Area Stone', val: 'Book-Matched Statuario Italian Slab' },
-      { label: 'Skirting Profile', val: 'Concealed Shadowline Aluminium' },
-    ],
+    name: 'Flooring & Modular Carpeting',
+    scope: 'High-Traffic Modular Carpet Tiles and Polish-Finished Marble',
+    vendor: 'Approved Commercial Flooring Contractor',
+    costBudget: '₹35.25 Lakhs',
+    sellingValue: '₹47.96 Lakhs',
+    marginPct: '26.5% Realized Profit',
+    installedPct: 82,
+    deliveryStatus: 'Final Layer Under Laying',
     sampleImg: '/building-stage3.jpg',
+    specifications: [
+      { label: 'Carpet Material', val: 'Tufted Nylon with Eco Backing' },
+      { label: 'Sub-base Prep', val: 'Self-Leveling Screed Completed' },
+      { label: 'Area Covered', val: '1,850 Sq. Meters' },
+      { label: 'Protection', val: 'Corrugated Floor Guard Applied' },
+    ],
   },
 ];
 
 export default function TradePackageMatrix({ onOpenDemo }) {
-  const [activeTab, setActiveTab] = useState(0);
-  const pkg = INTERIOR_PACKAGES[activeTab];
+  const [selectedPkgId, setSelectedPkgId] = useState('joinery');
+  const pkg = TURNKEY_PACKAGES.find((p) => p.id === selectedPkgId) || TURNKEY_PACKAGES[0];
 
   return (
-    <section id="trade-packages" className="scroll-mt-28 py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 relative bg-transparent">
+    <section id="trade-packages" className="scroll-mt-28 py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 relative bg-transparent space-y-12">
       
       {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto mb-12">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.12] text-slate-200 font-mono text-[11px] uppercase tracking-wider mb-3 backdrop-blur-md">
-          <Layers className="w-3.5 h-3.5 text-white" />
-          INTERIOR TRADE PACKAGE REGISTERS
+      <div className="text-center max-w-3xl mx-auto space-y-3">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.12] text-slate-200 font-mono text-[11px] uppercase tracking-wider backdrop-blur-md">
+          <Layers className="w-3.5 h-3.5 text-emerald-400" />
+          TURNKEY PACKAGE CONTROL
         </div>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight uppercase drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)] font-display">
-          Turnkey Trade Packages. <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400">
-            Locked from BOQ to Site Gate.
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight font-display">
+          Track Every Subcontractor. <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-100 to-white">
+            Know Your Profit on Every Trade.
           </span>
         </h2>
-        <p className="mt-3 text-sm sm:text-base text-slate-300 font-light">
-          Every interior package is tied to approved GFC drawings, purchase order quantities, physical site GRN delivery, and subcontractor measurement sheets.
+        <p className="text-sm sm:text-base text-slate-300 font-light font-sans">
+          Whether it is custom joinery, architectural glazing, lighting or flooring — see your committed vendor purchase cost vs client certified billing for each trade package.
         </p>
       </div>
 
-      {/* Package Tabs */}
-      <div className="flex flex-wrap justify-center gap-2 mb-8">
-        {INTERIOR_PACKAGES.map((item, idx) => {
-          const isActive = idx === activeTab;
+      {/* Package Navigation Buttons */}
+      <div className="flex flex-wrap justify-center gap-2.5">
+        {TURNKEY_PACKAGES.map((p) => {
+          const isActive = p.id === selectedPkgId;
           return (
             <button
-              key={item.id}
-              onClick={() => setActiveTab(idx)}
-              className={`px-4 py-2.5 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+              key={p.id}
+              onClick={() => setSelectedPkgId(p.id)}
+              className={`px-4 sm:px-5 py-2.5 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer ${
                 isActive
-                  ? 'bg-white text-slate-950 shadow-lg font-bold scale-105'
-                  : 'bg-[#0A0D14]/75 text-slate-300 hover:text-white border border-white/10 hover:border-white/20'
+                  ? 'bg-white text-slate-950 shadow-xl font-bold scale-105'
+                  : 'bg-[#0A0D14]/80 text-slate-300 hover:text-white border border-white/10 hover:border-white/25'
               }`}
             >
-              <span className={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-black' : 'bg-white/40'}`} />
-              <span>{item.name}</span>
+              <span>{p.name.split('&')[0].trim()}</span>
             </button>
           );
         })}
       </div>
 
-      {/* Active Package Specification Card */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-[#0A0D14]/90 border border-white/15 backdrop-blur-2xl shadow-2xl text-left">
+      {/* Package Specification Glass Card */}
+      <div className="p-6 sm:p-8 rounded-3xl bg-[#0A0D14]/90 border border-white/15 backdrop-blur-2xl shadow-2xl text-left max-w-5xl mx-auto space-y-6">
+        
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
           {/* Left Details (7 Cols) */}
           <div className="lg:col-span-7 space-y-5">
-            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
-              <div>
-                <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest block">
-                  {pkg.tradeCode}
-                </span>
-                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight font-display mt-0.5">
-                  {pkg.tagline}
-                </h3>
-              </div>
-              <div className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono text-[11px] font-bold">
-                MARGIN: {pkg.marginPct}
-              </div>
+            <div className="border-b border-white/10 pb-4">
+              <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest block">
+                TURNKEY TRADE SCOPE
+              </span>
+              <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight font-display mt-0.5">
+                {pkg.name}
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 font-sans mt-1 font-light leading-relaxed">
+                {pkg.scope}
+              </p>
             </div>
 
-            {/* Reference Bar */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 font-mono text-xs">
-              <div className="p-3 rounded-xl bg-black/40 border border-white/10">
-                <div className="text-[10px] text-slate-400 uppercase truncate">GFC Drawing Ref</div>
-                <div className="text-white font-bold truncate mt-0.5">{pkg.drawingRef}</div>
-              </div>
-              <div className="p-3 rounded-xl bg-black/40 border border-white/10">
-                <div className="text-[10px] text-slate-400 uppercase truncate">BOQ Line Item</div>
-                <div className="text-white font-bold truncate mt-0.5">{pkg.boqItemCode} ({pkg.quantity})</div>
-              </div>
-              <div className="p-3 rounded-xl bg-black/40 border border-white/10 col-span-2 sm:col-span-1">
-                <div className="text-[10px] text-slate-400 uppercase truncate">Quality Standard</div>
-                <div className="text-white font-bold truncate mt-0.5">{pkg.standard}</div>
-              </div>
-            </div>
-
-            {/* Technical Specifications Grid */}
-            <div className="space-y-2">
-              <div className="text-xs font-mono text-slate-400 uppercase font-semibold">
-                Material & Installation Specifications
+            {/* Specifications Matrix */}
+            <div className="space-y-2.5">
+              <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">
+                EXECUTION & QUALITY CHECKPOINTS
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
                 {pkg.specifications.map((spec, i) => (
-                  <div key={i} className="p-2.5 rounded-xl bg-black/30 border border-white/5 flex items-start gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-white shrink-0 mt-0.5" />
+                  <div key={i} className="p-2.5 rounded-xl bg-black/40 border border-white/10 flex items-start gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
                     <div>
                       <span className="text-slate-400 block text-[10px] font-mono">{spec.label}</span>
                       <span className="text-slate-200 font-medium">{spec.val}</span>
@@ -211,39 +172,39 @@ export default function TradePackageMatrix({ onOpenDemo }) {
             {/* Vendor & Site Status */}
             <div className="p-3.5 rounded-2xl bg-black/50 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono">
               <div>
-                <span className="text-slate-400 block text-[10px]">APPROVED VENDOR / SUBCONTRACTOR:</span>
+                <span className="text-slate-400 block text-[10px]">APPROVED SUBCONTRACTOR:</span>
                 <span className="text-white font-bold">{pkg.vendor}</span>
               </div>
-              <div className="text-right sm:text-right">
-                <span className="text-slate-400 block text-[10px]">PHYSICAL SITE PROGRESS:</span>
+              <div>
+                <span className="text-slate-400 block text-[10px]">PHYSICAL PROGRESS:</span>
                 <span className="text-emerald-400 font-bold">{pkg.installedPct}% INSTALLED</span>
               </div>
             </div>
           </div>
 
-          {/* Right Visual Image & Commercial Numbers (5 Cols) */}
+          {/* Right Visual Image & Commercial Margin Box (5 Cols) */}
           <div className="lg:col-span-5 space-y-4">
-            <div className="rounded-2xl border border-white/20 overflow-hidden relative shadow-2xl">
+            <div className="rounded-2xl border border-white/15 overflow-hidden relative shadow-2xl">
               <img
                 src={pkg.sampleImg}
                 alt={pkg.name}
-                className="w-full h-56 sm:h-64 object-cover filter brightness-[0.95] contrast-[1.05]"
+                className="w-full h-52 sm:h-60 object-cover filter brightness-[0.95] contrast-[1.06]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-mono text-white">
                 <span className="px-2.5 py-1 rounded-md bg-black/70 backdrop-blur-md border border-white/20">
-                  {pkg.name}
+                  {pkg.name.split('&')[0]}
                 </span>
-                <span className="px-2.5 py-1 rounded-md bg-emerald-500/80 text-black font-bold">
+                <span className="px-2.5 py-1 rounded-md bg-emerald-500/90 text-slate-950 font-bold">
                   {pkg.deliveryStatus}
                 </span>
               </div>
             </div>
 
             {/* Commercial Numbers */}
-            <div className="p-4 rounded-2xl bg-black/60 border border-white/10 font-mono text-xs space-y-2">
+            <div className="p-4 rounded-2xl bg-black/70 border border-white/10 font-mono text-xs space-y-2">
               <div className="flex justify-between text-slate-300">
-                <span>Committed Purchase Order Cost:</span>
+                <span>Committed Vendor Purchase Cost:</span>
                 <span className="text-white font-bold">{pkg.costBudget}</span>
               </div>
               <div className="flex justify-between text-slate-300">
@@ -251,7 +212,7 @@ export default function TradePackageMatrix({ onOpenDemo }) {
                 <span className="text-white font-bold">{pkg.sellingValue}</span>
               </div>
               <div className="pt-2 border-t border-white/10 flex justify-between font-bold text-sm">
-                <span className="text-slate-300">Realized Gross Margin:</span>
+                <span className="text-slate-200">Your Realized Profit:</span>
                 <span className="text-emerald-400">{pkg.marginPct}</span>
               </div>
             </div>

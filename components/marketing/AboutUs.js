@@ -4,39 +4,38 @@ import React from 'react';
 import { 
   Building, 
   Target, 
-  Users2, 
   MapPin, 
-  Sparkles, 
   ShieldCheck, 
   CheckCircle2,
   HardHat,
-  ArrowRight
+  ArrowRight,
+  HeartHandshake
 } from 'lucide-react';
 
 export default function AboutUs({ onOpenDemo }) {
   const leadershipHighlights = [
     {
-      title: "Built on Real Job Sites",
-      desc: "Founded by commercial fit-out engineers and tech architects who experienced firsthand the 7% margin erosion caused by unbilled drawing revisions and delayed contractor measurements.",
+      title: "Born on Real Fit-Out Job Sites",
+      desc: "Founded by interior project engineers who experienced firsthand the 7% margin leakage caused by unbilled client drawing changes and chaotic paper measurements.",
       icon: HardHat,
     },
     {
       title: "Zero Spreadsheets, Zero Chaos",
-      desc: "Our mission is simple: eliminate the disconnected WhatsApp groups, fragile Excel BOQs, and 40-day billing cycles across India's turnkey interior construction ecosystem.",
+      desc: "Our mission is simple: replace disconnected WhatsApp groups, fragile Excel sheets, and 45-day billing delays with a clean, stress-free operating system.",
       icon: Target,
     },
     {
-      title: "Native ERP Interoperability",
-      desc: "We don't replace your accounts team — we empower them with automated 2-way data handshakes into Tally Prime, SAP S/4HANA, Zoho Books, and enterprise ERPs.",
+      title: "Native Accounting Harmony",
+      desc: "We don't disrupt your accounts team — we empower them with automated, error-free handshakes into Tally Prime, SAP, Zoho Books, and your existing ERP.",
       icon: ShieldCheck,
     },
   ];
 
   const operationalHubs = [
-    { city: "Gurugram (HQ)", scope: "R&D & North India Project Operations" },
+    { city: "Gurugram (HQ)", scope: "North India Fit-Out Operations" },
     { city: "BKC, Mumbai", scope: "Commercial Enterprise Deployments" },
     { city: "Indiranagar, Bengaluru", scope: "Engineering & Mobile Field Systems" },
-    { city: "Business Bay, Dubai", scope: "Middle East Turnkey Fit-Out Advisory" },
+    { city: "Business Bay, Dubai", scope: "Middle East Turnkey Projects" },
   ];
 
   return (
@@ -44,18 +43,18 @@ export default function AboutUs({ onOpenDemo }) {
       
       {/* Section Tag & Headline */}
       <div className="text-center max-w-3xl mx-auto space-y-3">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.12] text-slate-200 font-mono text-[11px] uppercase tracking-wider backdrop-blur-md">
-          <Building className="w-3.5 h-3.5 text-slate-300" />
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.12] text-slate-200 font-mono text-[11px] uppercase tracking-wider backdrop-blur-md">
+          <Building className="w-3.5 h-3.5 text-emerald-400" />
           OUR STORY & MISSION
         </div>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight font-display">
-          Engineered by Builders. <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400">
-            Dedicated to Fit-Out Contractors.
+          Built by Fit-Out Builders. <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-100 to-white">
+            For Fit-Out Business Owners.
           </span>
         </h2>
         <p className="text-sm sm:text-base text-slate-300 font-light leading-relaxed font-sans">
-          Construct-O-Genie was founded with one obsession: giving interior general contractors the same institutional financial control and digital precision that large EPC infrastructure giants have.
+          Construct-O-Genie was created to solve the exact headaches that keep interior contracting founders awake at night: untracked site expenses, unbilled extra work, and delayed client payments.
         </p>
       </div>
 
@@ -82,7 +81,7 @@ export default function AboutUs({ onOpenDemo }) {
 
               <div className="pt-2 flex items-center gap-1.5 text-[11px] font-mono text-emerald-400">
                 <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
-                <span>Built for Commercial & Turnkey Fit-Outs</span>
+                <span>Engineered for Turnkey Execution</span>
               </div>
             </div>
           );
@@ -95,13 +94,13 @@ export default function AboutUs({ onOpenDemo }) {
           
           <div className="lg:col-span-7 space-y-4 text-left">
             <span className="text-[11px] font-mono text-slate-400 uppercase tracking-widest block">
-              REGIONAL PRESENCE & FIELD TEAMS
+              SUPPORT ACROSS MAJOR METRO HUBS
             </span>
             <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight font-display">
-              Supporting Commercial Fit-Out Contractors Across Major Metro Hubs
+              We Stand Shoulder-to-Shoulder with Your Team
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 font-sans font-light leading-relaxed">
-              Our on-ground implementation specialists train your site supervisors, map your historic BOQ master databases, and configure your accounting sync within 7 days.
+              Our implementation specialists set up your existing quotations, configure your team's access, and conduct hands-on site engineer training within 7 days so you see immediate value.
             </p>
 
             <div className="pt-2">
@@ -109,7 +108,7 @@ export default function AboutUs({ onOpenDemo }) {
                 onClick={onOpenDemo}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-slate-950 font-bold text-xs uppercase tracking-wider hover:bg-slate-200 transition-all cursor-pointer shadow-md"
               >
-                <span>Speak with an Implementation Specialist</span>
+                <span>Talk to a Solutions Specialist</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
@@ -119,7 +118,7 @@ export default function AboutUs({ onOpenDemo }) {
             {operationalHubs.map((hub, i) => (
               <div key={i} className="p-3.5 rounded-2xl bg-black/50 border border-white/10 space-y-1">
                 <div className="flex items-center gap-1.5 text-white font-bold">
-                  <MapPin className="w-3.5 h-3.5 text-slate-400" />
+                  <MapPin className="w-3.5 h-3.5 text-emerald-400" />
                   <span>{hub.city}</span>
                 </div>
                 <div className="text-[10px] text-slate-400">{hub.scope}</div>
