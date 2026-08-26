@@ -1,37 +1,35 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 export const ARCHITECTURAL_STAGES = [
   {
     id: 1,
-    title: 'STAGE 01 : COMPLETED COMMERCIAL FIT-OUT',
-    subtitle: 'High-end boardroom joinery, acoustic ceilings, architectural lighting, verified handover',
+    title: 'STAGE 01 : FINISHED INTERIOR',
+    subtitle: 'High-end commercial office, acoustic wood slat ceiling, linear LED lighting, terrazzo flooring',
     src: '/hero-interior.jpg',
   },
   {
     id: 2,
-    title: 'STAGE 02 : FRAMING & SUBSTRATES',
-    subtitle: 'Partition framing, HDHMR substrate paneling, glazing tracks, millwork substructure',
+    title: 'STAGE 02 : FINISHES REMOVED',
+    subtitle: 'Furniture stripped, ceiling suspension grid exposed, layout chalk lines on concrete floor',
     src: '/building-stage2.jpg',
   },
   {
     id: 3,
-    title: 'STAGE 03 : MEP FIRST-FIX & CEILING GRIDS',
-    subtitle: 'Ductwork, fire protection sprinklers, cable trays, linear lighting conduits',
+    title: 'STAGE 03 : MEP / FIRST-FIX',
+    subtitle: 'HVAC galvanized ductwork, cable trays, red fire sprinklers, light gauge steel stud framing',
     src: '/building-mep.jpg',
   },
   {
     id: 4,
     title: 'STAGE 04 : BARE CONCRETE SHELL',
-    subtitle: 'Base building handover slab, structural columns, perimeter glazing baseline',
+    subtitle: 'Bare monolithic concrete floor & ceiling slab, structural columns, perimeter glass curtain wall',
     src: '/building-stage3.jpg',
   },
 ];
 
 export default function ArchitecturalCanvas({ scrollProgress = 0, manualStage = null }) {
-  const [internalProgress, setInternalProgress] = useState(0);
-
   // Preload background images for smooth zero-lag transitions
   useEffect(() => {
     ARCHITECTURAL_STAGES.forEach((stage) => {
@@ -49,7 +47,6 @@ export default function ArchitecturalCanvas({ scrollProgress = 0, manualStage = 
     activeIndex = manualStage === totalStages - 1 ? totalStages - 2 : manualStage;
     blendFactor = manualStage === totalStages - 1 ? 1 : 0;
   } else {
-    // Scroll-linked interpolation
     const scaledProgress = scrollProgress * (totalStages - 1);
     activeIndex = Math.min(Math.floor(scaledProgress), totalStages - 2);
     blendFactor = Math.min(Math.max(scaledProgress - activeIndex, 0), 1);
@@ -78,7 +75,7 @@ export default function ArchitecturalCanvas({ scrollProgress = 0, manualStage = 
         return (
           <div
             key={stage.id}
-            className="absolute inset-0 w-full h-full transition-opacity duration-500 ease-out"
+            className="absolute inset-0 w-full h-full transition-opacity duration-700 ease-out"
             style={{
               opacity: opacity,
               zIndex: idx,
@@ -88,9 +85,9 @@ export default function ArchitecturalCanvas({ scrollProgress = 0, manualStage = 
               src={stage.src}
               alt={stage.title}
               loading="eager"
-              className="w-full h-full object-cover object-center filter brightness-[0.75] contrast-[1.12] saturate-[1.05]"
+              className="w-full h-full object-cover object-center filter brightness-[0.72] contrast-[1.08] saturate-[1.02]"
               style={{
-                transform: `scale(${1.01 + scrollProgress * 0.03})`,
+                transform: `scale(${1.01 + scrollProgress * 0.02})`,
                 transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
               }}
             />
@@ -98,17 +95,17 @@ export default function ArchitecturalCanvas({ scrollProgress = 0, manualStage = 
         );
       })}
 
-      {/* Atmospheric Contrast Layers for pristine text legibility */}
-      <div className="absolute inset-0 bg-[#030508]/65 pointer-events-none z-10" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#030508]/85 via-[#030508]/40 to-[#030508]/95 pointer-events-none z-10" />
+      {/* Subtle enterprise contrast gradients for high text legibility */}
+      <div className="absolute inset-0 bg-[#030508]/70 pointer-events-none z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#030508]/90 via-[#030508]/50 to-[#030508]/95 pointer-events-none z-10" />
 
-      {/* Architectural Blueprint CAD Grid & Coordinate Lines */}
+      {/* Restrained Architectural CAD Grid */}
       <div
-        className="absolute inset-0 opacity-[0.04] pointer-events-none z-10"
+        className="absolute inset-0 opacity-[0.03] pointer-events-none z-10"
         style={{
           backgroundImage:
-            'linear-gradient(to right, rgba(255, 255, 255, 0.4) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.4) 1px, transparent 1px)',
-          backgroundSize: '96px 96px',
+            'linear-gradient(to right, rgba(255, 255, 255, 0.3) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 1px, transparent 1px)',
+          backgroundSize: '80px 80px',
         }}
       />
     </div>

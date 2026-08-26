@@ -2,58 +2,51 @@
 
 import React, { useState } from 'react';
 import { FAQS } from './marketingData';
-import { HelpCircle, ChevronDown } from 'lucide-react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 export default function FAQSection({ onOpenDemo }) {
-  const [openIndex, setOpenIndex] = useState(0);
+  const [openIdx, setOpenIdx] = useState(0);
 
   const toggle = (idx) => {
-    setOpenIndex(openIndex === idx ? null : idx);
+    setOpenIdx(openIdx === idx ? null : idx);
   };
 
   return (
-    <section id="faq" className="scroll-mt-28 py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto z-10 relative">
+    <section className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto z-10">
       
       {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto space-y-3 mb-12">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/15 text-slate-200 font-mono text-[11px] uppercase tracking-wider backdrop-blur-md">
-          <HelpCircle className="w-3.5 h-3.5 text-emerald-400" />
-          FREQUENTLY ASKED QUESTIONS
-        </div>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight font-display">
-          Operational & Technical Answers.
+      <div className="text-center space-y-3 mb-10 sm:mb-12">
+        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+          Frequently Asked Questions
         </h2>
-        <p className="text-sm sm:text-base text-slate-300 font-sans font-light">
-          Everything you need to know about implementing Construct-O-Genie across your fit-out operations.
+        <p className="text-slate-400 text-sm leading-relaxed">
+          Key questions about implementing Construct-O-Genie across fit-out commercial, site, and accounts operations.
         </p>
       </div>
 
-      {/* Accordion List */}
-      <div className="space-y-3 text-left">
+      {/* Accordion FAQ Items */}
+      <div className="space-y-3">
         {FAQS.map((faq, idx) => {
-          const isOpen = openIndex === idx;
+          const isOpen = openIdx === idx;
           return (
             <div
               key={idx}
-              className="rounded-2xl bg-[#080B10]/90 border border-white/15 backdrop-blur-2xl shadow-md overflow-hidden transition-colors"
+              className="rounded-xl bg-black/50 border border-white/10 backdrop-blur-md overflow-hidden transition-all"
             >
               <button
                 onClick={() => toggle(idx)}
-                className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer"
-                aria-expanded={isOpen}
+                className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 hover:bg-white/[0.02]"
               >
-                <span className="font-bold text-sm sm:text-base text-white font-display">
+                <span className="text-xs sm:text-sm font-bold text-white">
                   {faq.q}
                 </span>
-                <ChevronDown
-                  className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-200 ${
-                    isOpen ? 'rotate-180 text-emerald-400' : ''
-                  }`}
-                />
+                <div className="w-6 h-6 rounded-lg bg-white/[0.04] flex items-center justify-center text-slate-400 flex-shrink-0">
+                  {isOpen ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                </div>
               </button>
 
               {isOpen && (
-                <div className="px-5 sm:px-6 pb-6 text-xs sm:text-sm text-slate-300 font-sans leading-relaxed border-t border-white/10 pt-4">
+                <div className="px-4 sm:px-5 pb-5 pt-1 text-xs text-slate-300 leading-relaxed border-t border-white/5">
                   {faq.a}
                 </div>
               )}

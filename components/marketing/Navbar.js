@@ -1,163 +1,132 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { ArrowRight, Menu, X } from 'lucide-react';
 
 export default function Navbar({ onOpenDemo, onOpenLogin }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('overview');
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
-
-      const sections = ['overview', 'outcomes', 'product', 'workflow', 'roles', 'integrations', 'roi', 'faq'];
-      const scrollPos = window.scrollY + 180;
-
-      for (const s of sections) {
-        const el = document.getElementById(s);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPos >= top && scrollPos < top + height) {
-            setActiveSection(s);
-            break;
-          }
-        }
-      }
     };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: 'Overview', href: '#overview', id: 'overview' },
-    { name: 'Outcomes', href: '#outcomes', id: 'outcomes' },
-    { name: 'Platform', href: '#product', id: 'product' },
-    { name: 'Workflow', href: '#workflow', id: 'workflow' },
-    { name: 'Roles', href: '#roles', id: 'roles' },
-    { name: 'Integrations', href: '#integrations', id: 'integrations' },
-    { name: 'ROI', href: '#roi', id: 'roi' },
-    { name: 'FAQ', href: '#faq', id: 'faq' },
-  ];
-
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-3 sm:px-6 py-3 sm:py-4 pointer-events-none">
-      <nav
-        className={`pointer-events-auto w-full max-w-7xl flex items-center justify-between px-4 sm:px-6 py-2.5 rounded-2xl transition-all duration-300 ${
-          scrolled
-            ? 'apple-glass shadow-[0_12px_40px_rgba(0,0,0,0.85)]'
-            : 'bg-[#080B10]/75 border border-white/10 backdrop-blur-md'
-        }`}
-        aria-label="Main Navigation"
-      >
-        {/* Brand Logo */}
-        <div className="flex items-center gap-3">
-          <a href="#" className="flex items-center gap-2.5 group">
-            <div className="relative w-8 h-8 flex items-center justify-center shrink-0">
-              <img
-                src="/brand/logo-icon.png"
-                alt="Construct-O-Genie"
-                className="w-full h-full object-contain filter drop-shadow-[0_0_12px_rgba(255,255,255,0.25)] group-hover:scale-105 transition-transform"
-              />
-            </div>
-            <div className="text-left">
-              <span className="font-bold text-white text-sm sm:text-base tracking-tight leading-none block font-display">
-                Construct-O-Genie
-              </span>
-              <span className="text-[9px] sm:text-[10px] text-slate-400 font-mono tracking-wider uppercase block mt-0.5">
-                Fit-Out Construction OS
-              </span>
-            </div>
-          </a>
-        </div>
-
-        {/* Desktop Navigation Links */}
-        <div className="hidden xl:flex items-center gap-5 text-xs font-medium text-slate-300">
-          {navLinks.map((link) => {
-            const isActive = activeSection === link.id;
-            return (
-              <a
-                key={link.name}
-                href={link.href}
-                className={`transition-colors py-1 relative ${
-                  isActive ? 'text-white font-semibold' : 'text-slate-300 hover:text-white'
-                }`}
-              >
-                {link.name}
-                {isActive && (
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-white shadow-[0_0_8px_rgba(255,255,255,0.7)] rounded-full" />
-                )}
-              </a>
-            );
-          })}
-        </div>
-
-        {/* Action Buttons */}
-        <div className="flex items-center gap-2 sm:gap-3 font-medium text-xs">
-          <button
-            onClick={onOpenLogin}
-            className="hidden sm:block px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/10 transition-all cursor-pointer font-sans"
-          >
-            Sign In
-          </button>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
+        scrolled
+          ? 'bg-black/80 border-b border-white/10 backdrop-blur-xl py-3.5 shadow-lg'
+          : 'bg-transparent py-5'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between">
           
-          <button
-            onClick={onOpenDemo}
-            className="group inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-white text-slate-950 font-bold text-xs hover:bg-slate-200 active:scale-95 transition-all duration-200 shadow-md cursor-pointer tracking-wide"
-          >
-            <span>Book a 15-Min Demo</span>
-            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-          </button>
+          {/* Brand Identity */}
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <img
+              src="/brand/logo-icon-white.png"
+              alt="Construct-O-Genie"
+              className="w-7 h-7 object-contain group-hover:scale-105 transition-transform"
+            />
+            <span className="font-bold text-sm sm:text-base tracking-tight text-white">
+              Construct-O-Genie
+            </span>
+          </Link>
 
-          {/* Mobile Menu Hamburger */}
+          {/* Desktop Navigation Links */}
+          <nav className="hidden md:flex items-center gap-7 text-xs font-medium text-slate-300">
+            <a href="/#product-tour" className="hover:text-white transition-colors">Product Tour</a>
+            <a href="/#roi-calculator" className="hover:text-white transition-colors">ROI Calculator</a>
+            <Link href="/security" className="hover:text-white transition-colors">Security</Link>
+            <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
+          </nav>
+
+          {/* Desktop CTAs */}
+          <div className="hidden md:flex items-center gap-3">
+            <button
+              onClick={onOpenLogin}
+              className="px-3.5 py-2 text-xs font-medium text-slate-300 hover:text-white transition-colors"
+            >
+              Sign In
+            </button>
+            <button
+              onClick={onOpenDemo}
+              className="px-4 py-2 rounded-xl bg-white text-slate-950 font-semibold text-xs hover:bg-slate-100 transition-all shadow-sm active:scale-[0.98] flex items-center gap-1.5"
+            >
+              <span>Book a 15-Min Demo</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="xl:hidden p-2 text-slate-300 hover:text-white cursor-pointer ml-1"
+            className="md:hidden p-2 rounded-lg bg-white/[0.05] text-slate-300 border border-white/10"
             aria-label="Toggle Navigation Menu"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
-        </div>
-      </nav>
 
-      {/* Mobile Navigation Drawer */}
-      {mobileMenuOpen && (
-        <>
-          <div 
-            className="pointer-events-auto fixed inset-0 bg-black/75 backdrop-blur-sm z-40 xl:hidden"
-            onClick={() => setMobileMenuOpen(false)}
-          />
-          <div className="pointer-events-auto fixed inset-x-4 top-20 max-h-[85vh] overflow-y-auto p-6 rounded-3xl apple-glass shadow-2xl flex flex-col gap-2.5 text-sm font-medium z-50 xl:hidden">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
+        </div>
+
+        {/* Mobile Dropdown Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden pt-4 pb-6 border-t border-white/10 mt-3 space-y-4 bg-black/95 rounded-2xl p-4 border">
+            <nav className="flex flex-col gap-3 text-sm font-medium text-slate-200">
+              <a 
+                href="/#product-tour" 
                 onClick={() => setMobileMenuOpen(false)}
-                className="py-2.5 text-slate-200 hover:text-white border-b border-white/10 font-sans"
+                className="py-1 hover:text-white"
               >
-                {link.name}
+                Product Tour
               </a>
-            ))}
-            <div className="pt-3 flex flex-col gap-2.5">
-              <button
-                onClick={() => { setMobileMenuOpen(false); onOpenLogin(); }}
-                className="w-full py-2.5 rounded-xl bg-white/10 text-white text-xs font-semibold"
+              <a 
+                href="/#roi-calculator" 
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-1 hover:text-white"
               >
-                Sign In to Enterprise Portal
-              </button>
+                ROI Calculator
+              </a>
+              <Link 
+                href="/security" 
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-1 hover:text-white"
+              >
+                Security
+              </Link>
+              <Link 
+                href="/contact" 
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-1 hover:text-white"
+              >
+                Contact &amp; Sales
+              </Link>
+            </nav>
+
+            <div className="pt-3 border-t border-white/10 flex flex-col gap-2.5">
               <button
                 onClick={() => { setMobileMenuOpen(false); onOpenDemo(); }}
-                className="w-full py-3 rounded-xl bg-white text-slate-950 font-bold text-xs tracking-wide"
+                className="w-full py-2.5 rounded-xl bg-white text-slate-950 font-semibold text-xs text-center"
               >
                 Book a 15-Min Demo
               </button>
+              <button
+                onClick={() => { setMobileMenuOpen(false); onOpenLogin(); }}
+                className="w-full py-2.5 rounded-xl bg-white/[0.05] text-slate-200 font-medium text-xs text-center border border-white/10"
+              >
+                Sign In
+              </button>
             </div>
           </div>
-        </>
-      )}
+        )}
+
+      </div>
     </header>
   );
 }

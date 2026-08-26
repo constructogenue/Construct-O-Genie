@@ -1,5 +1,5 @@
-// Central Domain Data & Formatting Helpers for Construct-O-Genie OS
-// Currency and Metric Formatting Standards (INR - Lakhs & Crores)
+// Central Domain Data & Financial Formatting Helpers for Construct-O-Genie OS
+// Defensible, unified figures across the entire website
 
 export const formatINR = (val, compact = false) => {
   if (val === null || val === undefined || isNaN(val)) return '₹0';
@@ -7,37 +7,43 @@ export const formatINR = (val, compact = false) => {
   
   if (compact) {
     if (Math.abs(num) >= 10000000) {
-      return '₹' + (num / 10000000).toFixed(2) + ' Cr';
+      const cr = (num / 10000000).toFixed(2);
+      return `₹${cr.endsWith('.00') ? cr.slice(0, -3) : cr} Cr`;
     }
     if (Math.abs(num) >= 100000) {
-      return '₹' + (num / 100000).toFixed(2) + 'L';
+      const l = (num / 100000).toFixed(2);
+      return `₹${l.endsWith('.00') ? l.slice(0, -3) : l} L`;
     }
     if (Math.abs(num) >= 1000) {
-      return '₹' + (num / 1000).toFixed(1) + 'k';
+      return `₹${(num / 1000).toFixed(1)}k`;
     }
   }
   
   return '₹' + num.toLocaleString('en-IN');
 };
 
+// Single canonical demo project referenced across Hero, Product Tour, Case Breakdown & ROI
 export const DEMO_PROJECT = {
   id: 'COG-PRJ-26041',
   code: 'HORIZON-04',
-  name: 'Commercial Office — Gurugram',
-  client: 'Horizon Technologies Ltd.',
-  siteAddress: 'Tower B, Level 14-16, DLF Cyber City, Phase 2, Gurugram, Haryana',
-  type: 'Commercial Fit-Out & Turnkey Interiors',
+  name: 'Commercial Corporate Fit-Out — DLF Cyber City',
+  client: 'Horizon Enterprise Technologies',
+  siteAddress: 'Tower B, Level 14–16, DLF Cyber City, Phase 2, Gurugram, Haryana',
+  type: 'Turnkey Commercial Interior Fit-Out',
   areaSqFt: 42500,
-  contractValue: 48250000, // ₹4.825 Cr
-  bcsBudget: 39400000,    // ₹3.94 Cr
-  poIssued: 21420000,     // ₹2.142 Cr
-  billedToClient: 30800000, // ₹3.08 Cr
-  collectedFromClient: 26200000, // ₹2.62 Cr
-  vendorPayables: 18800000, // ₹1.88 Cr
-  vendorPaid: 15400000,   // ₹1.54 Cr
-  tdsDeducted: 376000,    // ₹3.76L
-  projectedMargin: 18.4,  // %
-  siteProgress: 67,       // %
+  contractValue: 48250000,     // ₹4.83 Cr (₹4,82,50,000)
+  bcsBudget: 39400000,         // ₹3.94 Cr baseline target cost (₹3,94,00,000)
+  committedCost: 39400000,     // ₹3.94 Cr total committed POs & subcontracts
+  projectedMargin: 18.34,      // 18.34% ((4.825 - 3.94) / 4.825 * 100)
+  projectedGrossProfit: 8850000, // ₹88.50 L
+  poIssuedCount: 48,
+  billedToClient: 30800000,    // ₹3.08 Cr certified RA billings
+  collectedFromClient: 26200000, // ₹2.62 Cr client cash collected
+  vendorPayables: 18800000,    // ₹1.88 Cr vendor liabilities
+  vendorPaid: 15400000,        // ₹1.54 Cr disbursed via bank UTR
+  retentionHeld: 2412500,      // ₹24.12 L (5% client retention)
+  tdsDeducted: 376000,         // ₹3.76 L (TDS u/s 194C)
+  siteProgress: 67,            // 67% certified physical completion
   daysRemaining: 42,
   status: 'In Execution',
   gfcVersion: 'REV-04.2'
@@ -46,14 +52,14 @@ export const DEMO_PROJECT = {
 export const PORTFOLIO_PROJECTS = [
   {
     id: 'COG-26041',
-    name: 'Commercial Office — Gurugram',
-    client: 'Sample Corporate Client Alpha',
+    name: 'Commercial Corporate Fit-Out — DLF Cyber City',
+    client: 'Horizon Enterprise Technologies',
     location: 'Cyber City, Gurugram',
     area: '42,500 sq.ft',
     value: 48250000,
     committedCost: 39400000,
     progress: 67,
-    margin: 18.4,
+    margin: 18.3,
     health: 'healthy',
     status: 'In Execution',
     pendingApprovals: 2,
@@ -61,8 +67,8 @@ export const PORTFOLIO_PROJECTS = [
   },
   {
     id: 'COG-26042',
-    name: 'Fintech HQ — Mumbai',
-    client: 'Sample Financial Enterprise',
+    name: 'Fintech Executive HQ — BKC',
+    client: 'Axis Financial Services',
     location: 'BKC, Mumbai',
     area: '78,000 sq.ft',
     value: 125000000,
@@ -76,197 +82,238 @@ export const PORTFOLIO_PROJECTS = [
   },
   {
     id: 'COG-26043',
-    name: 'R&D Center — Bengaluru',
-    client: 'Sample Technology Enterprise',
-    location: 'Whitefield, Bengaluru',
-    area: '56,000 sq.ft',
-    value: 89000000,
-    committedCost: 74000000,
-    progress: 42,
-    margin: 16.8,
-    health: 'warning',
-    status: 'MEP & Partitions',
+    name: 'Global Tech R&D Facility — Outer Ring Road',
+    client: 'Apex Software Labs',
+    location: 'Outer Ring Road, Bengaluru',
+    area: '110,000 sq.ft',
+    value: 198000000,
+    committedCost: 159000000,
+    progress: 38,
+    margin: 19.7,
+    health: 'review',
+    status: 'HVAC & MEP First-Fix',
     pendingApprovals: 4,
-    stage: 'Tier-2 PO Approvals'
-  },
-  {
-    id: 'COG-26044',
-    name: 'Corporate Penthouse — Mumbai',
-    client: 'Sample Luxury Asset',
-    location: 'Worli, Mumbai',
-    area: '18,500 sq.ft',
-    value: 62000000,
-    committedCost: 46800000,
-    progress: 91,
-    margin: 24.5,
-    health: 'healthy',
-    status: 'Snagging & Handover',
-    pendingApprovals: 0,
-    stage: 'Final Retention Release'
+    stage: 'Subcontractor Indents'
   }
 ];
 
 export const BOQ_SAMPLE_ITEMS = [
   {
-    id: 'BOQ-01',
-    code: '04.01.A',
-    package: 'Joinery & Millwork',
-    desc: 'Bespoke Acoustic Wall Paneling in Natural Fluted White Oak Veneer on 18mm FR Grade HDHMR substrate',
-    unit: 'SQ.M',
-    tenderQty: 480,
-    clientRate: 7200,
-    budgetCostRate: 5450,
-    totalBudget: 2616000,
-    poCommitted: 1980000,
-    poBalance: 636000,
-    marginPct: 24.3,
-    drawingRef: 'DWG-ARCH-JN-04.2',
-    gfcRevision: 'REV-04',
-    status: 'PO Active (Budget Locked)'
+    code: 'BOQ-JOIN-014',
+    trade: 'Joinery & Woodwork',
+    description: 'Bespoke Executive Boardroom Table (24-Seater) in natural smoked oak veneer with integrated pop-up motorized AV cable cubby and acoustic backing paneling.',
+    unit: 'RMT',
+    tenderQty: 28.5,
+    tenderRate: 48500,
+    clientTotal: 1382250,
+    bccRate: 38000,
+    budgetCeiling: 1083000,
+    committedRate: 37200,
+    committedTotal: 1060200,
+    actualExecutedQty: 18.0,
+    certifiedJMRQty: 18.0,
+    varianceQty: 0.0,
+    marginAmount: 322050,
+    marginPercent: 23.3,
+    status: 'Locked & In Budget'
   },
   {
-    id: 'BOQ-02',
-    code: '07.02.C',
-    package: 'Electrical & Lighting',
-    desc: 'DALI Dimming Architectural Linear Suspended Profile 3000K CRI 95+ with integrated Dali drivers',
-    unit: 'R.MTR',
-    tenderQty: 620,
-    clientRate: 4800,
-    budgetCostRate: 3450,
-    totalBudget: 2139000,
-    poCommitted: 1725000,
-    poBalance: 414000,
-    marginPct: 28.1,
-    drawingRef: 'DWG-MEP-EL-07.1',
-    gfcRevision: 'REV-03',
-    status: 'PO Active (Budget Locked)'
+    code: 'BOQ-GLAZ-008',
+    trade: 'Acoustic Glazing',
+    description: 'Double-glazed acoustic glass partitions (Rw 48dB) with slimline matte black anodized aluminum profile, acoustic drop seals, and 12mm toughened laminate glass.',
+    unit: 'SQFT',
+    tenderQty: 3450,
+    tenderRate: 980,
+    clientTotal: 3381000,
+    bccRate: 790,
+    budgetCeiling: 2725500,
+    committedRate: 765,
+    committedTotal: 2639250,
+    actualExecutedQty: 2400,
+    certifiedJMRQty: 2350,
+    varianceQty: 50,
+    marginAmount: 741750,
+    marginPercent: 21.9,
+    status: 'Locked & In Budget'
   },
   {
-    id: 'BOQ-03',
-    code: '03.04.B',
-    package: 'Glazing & Partitions',
-    desc: '12mm Toughened Clear Glass Acoustic Partition with Slimline Matte Black Anodized Aluminium Trims',
-    unit: 'SQ.M',
-    tenderQty: 340,
-    clientRate: 5900,
-    budgetCostRate: 4100,
-    totalBudget: 1394000,
-    poCommitted: 1394000,
-    poBalance: 0,
-    marginPct: 30.5,
-    drawingRef: 'DWG-ARCH-GL-03.4',
-    gfcRevision: 'REV-02',
-    status: '100% Indented (Cost Ceiling Capped)'
-  },
-  {
-    id: 'BOQ-04',
-    code: '09.01.F',
-    package: 'Flooring & Carpeting',
-    desc: 'Modular High-Traffic Tufted Carpet Tiles with Moisture-Barrier Backing and adhesive primer',
-    unit: 'SQ.M',
+    code: 'BOQ-MEP-022',
+    trade: 'HVAC & Ducting',
+    description: 'Factory-fabricated GI rectangular ductwork (class 24G) complete with closed-cell nitrile rubber thermal insulation, volume control dampers, and linear diffusers.',
+    unit: 'SQM',
     tenderQty: 1850,
-    clientRate: 3200,
-    budgetCostRate: 2350,
-    totalBudget: 4347500,
-    poCommitted: 3525000,
-    poBalance: 822500,
-    marginPct: 26.5,
-    drawingRef: 'DWG-ARCH-FL-09.1',
-    gfcRevision: 'REV-05',
-    status: 'PO Active (Budget Locked)'
+    tenderRate: 1650,
+    clientTotal: 3052500,
+    bccRate: 1320,
+    budgetCeiling: 2442000,
+    committedRate: 1290,
+    committedTotal: 2386500,
+    actualExecutedQty: 1620,
+    certifiedJMRQty: 1620,
+    varianceQty: 0.0,
+    marginAmount: 666000,
+    marginPercent: 21.8,
+    status: 'Locked & In Budget'
+  },
+  {
+    code: 'BOQ-ELEC-031',
+    trade: 'Electrical & Lighting',
+    description: 'Recessed trimless architectural linear LED lighting profile (4000K, CRI 90+) including digital DALI dimming drivers, suspension kits, and feed cabling.',
+    unit: 'RMT',
+    tenderQty: 620,
+    tenderRate: 3400,
+    clientTotal: 2108000,
+    bccRate: 2750,
+    budgetCeiling: 1705000,
+    committedRate: 2680,
+    committedTotal: 1661600,
+    actualExecutedQty: 410,
+    certifiedJMRQty: 400,
+    varianceQty: 10,
+    marginAmount: 446400,
+    marginPercent: 21.2,
+    status: 'Locked & In Budget'
   }
 ];
 
 export const WORKFLOW_STAGES = [
   {
-    id: 'won',
+    id: 'boq',
     step: '01',
-    title: 'Quotation Won',
-    role: 'Commercial Lead',
-    action: 'Signed tender baseline locked directly into the system repository.',
-    impactRole: 'Baseline Margin',
-    impactVal: 'Target locked at 22.8%'
+    group: 'Commercial',
+    title: 'Living BOQ & Cost Baseline',
+    role: 'Commercial Team & QS',
+    action: 'Tender BOQ lines are locked with itemized internal budget cost ceilings (BCC) before site mobilization.',
+    impactRole: 'Budget Control',
+    impactVal: 'Line item cost caps active'
   },
   {
-    id: 'budget',
+    id: 'drawings',
     step: '02',
-    title: 'Budget Locked',
-    role: 'Quantity Surveyor',
-    action: 'Itemized rate analysis mapped with internal cost ceilings per package.',
-    impactRole: 'Cost Ceiling',
-    impactVal: '₹3.94 Cr maximum expense cap'
+    group: 'Commercial',
+    title: 'GFC Drawing Revisions',
+    role: 'Design Coordinator & QS',
+    action: 'Architectural drawing revisions (REV-03 vs REV-04) trigger automated quantity delta takeoffs.',
+    impactRole: 'Variation Register',
+    impactVal: 'Unbilled extra scope caught early'
   },
   {
-    id: 'po_request',
+    id: 'indent',
     step: '03',
-    title: 'PO Requested',
-    role: 'Project Manager',
-    action: 'Requisition raised against verified GFC drawing revision and BOQ item.',
-    impactRole: 'Item Validation',
-    impactVal: '480 m² Oak Veneer Paneling'
+    group: 'Procurement',
+    title: 'Material Site Indents',
+    role: 'Site Engineer',
+    action: 'Site supervisors generate digital material indents mapped strictly to approved BOQ item codes.',
+    impactRole: 'Requisition Gate',
+    impactVal: 'Zero off-BOQ site ordering'
+  },
+  {
+    id: 'po',
+    step: '04',
+    group: 'Procurement',
+    title: 'PO Generation & Caps',
+    role: 'Purchase Manager',
+    action: 'System validates quantity and rate against remaining line budget headroom before generating PO.',
+    impactRole: 'Cost Protection',
+    impactVal: 'Hard ceiling stops overspend'
   },
   {
     id: 'approval',
-    step: '04',
-    title: 'Tiered Approval',
-    role: 'Founder / Director',
-    action: 'Multi-tier Maker-Checker approval with live budget headroom check.',
-    impactRole: 'Commitment Added',
-    impactVal: '₹19.80L PO committed (24.3% margin)'
-  },
-  {
-    id: 'dispatch',
     step: '05',
-    title: 'Vendor Dispatch',
-    role: 'Procurement Lead',
-    action: 'PO dispatched to approved vendor with digital delivery note (GRN) tracking.',
-    impactRole: 'Delivery Window',
-    impactVal: 'On-site ETA within 6 days'
+    group: 'Procurement',
+    title: 'Maker-Checker Approvals',
+    role: 'Managing Director / Commercial Lead',
+    action: 'High-value POs and rate deviations route through one-click mobile executive approval tiers.',
+    impactRole: 'Delegation of Authority',
+    impactVal: 'Multi-tier financial governance'
   },
   {
-    id: 'execution',
+    id: 'grn',
     step: '06',
-    title: 'Site Execution & DPR',
-    role: 'Site Supervisor',
-    action: 'Material inspected at site gate, daily labor headcount and photos logged.',
-    impactRole: 'DPR Verified',
-    impactVal: '67% physical milestone reached'
+    group: 'Execution',
+    title: 'Gate Entry & GRN Inspection',
+    role: 'Storekeeper / Site Supervisor',
+    action: 'Material deliveries checked against PO specs with photo-tagged delivery challans at the site gate.',
+    impactRole: 'Material Receiving',
+    impactVal: 'Defective batches rejected at gate'
+  },
+  {
+    id: 'dpr',
+    step: '07',
+    group: 'Execution',
+    title: 'Mobile DPR & Snagging',
+    role: 'Site Engineer',
+    action: 'Daily progress percentages, subcontractor headcount, and snag items logged on mobile with offline sync.',
+    impactRole: 'Daily Site Log',
+    impactVal: 'Submitted daily before 8 PM'
   },
   {
     id: 'jmr',
-    step: '07',
-    title: 'Joint Measurement (JMR)',
+    step: '08',
+    group: 'Billing',
+    title: 'Tripartite JMR Certification',
     role: 'QS & Client PMC',
-    action: 'Tripartite measurement sheet verified on-site against architectural grid.',
+    action: 'Joint Measurement Records verified on drawing grids with digital sign-offs from client, PMC, and contractor.',
     impactRole: 'Measurement Sign-Off',
-    impactVal: '320 m² work approved by Client PMC'
+    impactVal: 'Eliminates billing disputes'
   },
   {
     id: 'ra_bill',
-    step: '08',
-    title: 'RA Bill Generated',
-    role: 'Billing Head',
-    action: 'Client Running Account bill compiled automatically from certified JMRs.',
-    impactRole: 'Invoice Raised',
-    impactVal: 'RA-04: ₹64.50L (5% retention held)'
-  },
-  {
-    id: 'tally_sync',
     step: '09',
-    title: 'Tally & ERP Sync',
-    role: 'Finance & Accounts',
-    action: 'Two-way XML/API ledger sync: sales invoice, vendor liability & TDS 194C.',
-    impactRole: 'Ledger Updated',
-    impactVal: 'Synchronized in Tally Prime'
+    group: 'Billing',
+    title: 'Automated Client RA Bill',
+    role: 'Billing Lead & Accounts',
+    action: 'One-click Running Account bill generated directly from certified JMR with advance recovery & retention.',
+    impactRole: 'Billing Turnaround',
+    impactVal: 'Reduced to ~4 days'
   },
   {
-    id: 'collection',
+    id: 'accounting',
     step: '10',
-    title: 'Cash Collection',
-    role: 'Managing Director',
-    action: 'Payment received via RTGS with UTR reconciliation and retention record.',
+    group: 'Finance',
+    title: 'Two-Way ERP Sync & Collection',
+    role: 'Finance Director',
+    action: 'Sales bills and approved vendor liabilities sync directly with Tally Prime / SAP with TDS and retention ledger.',
     impactRole: 'Cash Realized',
-    impactVal: '₹61.27L cleared into bank'
+    impactVal: 'Real-time ledger reconciliation'
+  }
+];
+
+export const WORKFLOW_GROUPS = [
+  {
+    id: 'commercial',
+    title: '1. Commercial & Baseline',
+    desc: 'Quotation, living BOQ, internal budget cost ceilings, and GFC drawing revision deltas.',
+    stages: ['01', '02'],
+    roles: ['Commercial Director', 'Lead Estimator / QS']
+  },
+  {
+    id: 'procurement',
+    title: '2. Procurement & Approval',
+    desc: 'Material indents, budget headroom validation, vendor PO creation, and maker-checker approval tiers.',
+    stages: ['03', '04', '05'],
+    roles: ['Purchase Manager', 'Managing Director']
+  },
+  {
+    id: 'execution',
+    title: '3. Site Execution & Quality',
+    desc: 'Site gate GRN receipt, mobile daily progress reports (DPR), labor tracking, and photo snagging.',
+    stages: ['06', '07'],
+    roles: ['Site Engineer', 'Project Manager']
+  },
+  {
+    id: 'billing',
+    title: '4. Joint Measurement & RA Billing',
+    desc: 'Tripartite digital JMR sign-offs with PMC, automated Running Account (RA) billing, and retention deductions.',
+    stages: ['08', '09'],
+    roles: ['Lead QS', 'Client PMC', 'Billing Lead']
+  },
+  {
+    id: 'finance',
+    title: '5. Finance & ERP Reconciliation',
+    desc: 'Statutory TDS u/s 194C, bank UTR reconciliation, and two-way synchronization with Tally Prime and SAP.',
+    stages: ['10'],
+    roles: ['Head of Accounts', 'Chief Financial Officer']
   }
 ];
 
@@ -274,123 +321,128 @@ export const ROLE_EXPERIENCES = [
   {
     id: 'founder',
     role: 'Founder & Managing Director',
-    tagline: 'Multi-Project Margin Command & Cash Visibility',
-    description: 'Total financial visibility across active projects. Track real-time gross margin, committed purchase liabilities against tender budgets, and pending director approvals.',
+    tagline: 'Multi-Site Financial Control & Cash Visibility',
+    description: 'Executive visibility across active projects. Monitor projected gross margins, committed liabilities against tender baselines, and pending high-value purchase approvals.',
     highlights: [
-      'Live portfolio gross margin vs tender baseline across all active sites',
-      'One-tap executive approvals for purchase orders exceeding ₹5 Lakhs',
-      'Accurate milestone billing forecast and pending client receivables',
-      'Automated early warnings on scope variations and site delay risks'
+      'Portfolio gross margin vs tender baseline across all active projects',
+      'One-tap executive approvals for purchase orders exceeding specified thresholds',
+      'Milestone billing forecast and real-time client receivable ageing',
+      'Early warning triggers on scope variations and site delay risks'
     ],
-    sampleMetric: { label: 'Protected Portfolio Margin', value: '21.4%', sub: 'Across 4 active sites' }
+    sampleMetric: { label: 'Protected Portfolio Margin', value: '18.3%', sub: 'DLF Cyber City & active portfolio' }
   },
   {
     id: 'qs',
     role: 'Quantity Surveyor & Estimator',
-    tagline: 'Living BOQ Spine & Drawing Revision Sync',
-    description: 'Map tender BOQs into itemized internal cost ceilings, track GFC drawing revision deltas, and lock purchase orders directly against approved line items.',
+    tagline: 'Living BOQ & Drawing Revision Delta Control',
+    description: 'Map tender BOQs into itemized internal cost ceilings, track GFC drawing revision deltas, and validate purchase orders directly against approved line items.',
     highlights: [
-      'Drawing revision takeoff comparison (REV-03 vs REV-04.2 deltas)',
+      'Automated drawing revision takeoff comparisons (REV-03 vs REV-04 deltas)',
       'Itemized rate analysis breakdown (Material, Labor, Plant & Machinery)',
-      'Hard budget cost caps preventing purchase orders from exceeding ceilings',
-      'Real-time variation register tracking cost impact vs approved client rates'
+      'Budget cost ceilings preventing purchase orders from exceeding line caps',
+      'Variation register tracking cost impact against approved client rates'
     ],
-    sampleMetric: { label: 'BOQ Lines Budget-Locked', value: '100%', sub: 'Zero unmapped expenses' }
+    sampleMetric: { label: 'BOQ Lines Budget-Mapped', value: '100%', sub: 'Full line-item cost visibility' }
   },
   {
     id: 'pm',
     role: 'Project Manager',
-    tagline: 'Turnkey Trade Packages & Procurement Engine',
-    description: 'Manage multiple specialized trades simultaneously. Track physical milestone progress, coordinate vendor delivery schedules, and monitor material GRNs at site.',
+    tagline: 'Trade Package Coordination & Site Milestones',
+    description: 'Coordinate multiple specialized trades simultaneously. Track physical milestone completion, manage vendor delivery schedules, and monitor gate GRN receipts.',
     highlights: [
       'Trade package registers covering Joinery, MEP, Glazing, and Finishes',
       'Subcontractor work order creation and measurement verification',
-      'Site Material Delivery Note (GRN) verification at entry gate',
+      'Site Material Delivery Note (GRN) inspection at the site gate',
       'Critical path milestone tracking with planned vs actual progress curves'
     ],
-    sampleMetric: { label: 'Trade Packages Active', value: '14 Trades', sub: 'On-schedule delivery' }
+    sampleMetric: { label: 'Trade Packages Active', value: '14 Trades', sub: 'On-schedule execution' }
   },
   {
     id: 'site',
     role: 'Site Supervisor & Field Engineer',
-    tagline: 'Mobile Daily Progress Reports & Joint Measurements',
-    description: 'Digital DPR entry on mobile devices, photo-tagged snag lists, daily labor headcounts, and tripartite Joint Measurement Record (JMR) sign-offs with PMC.',
+    tagline: 'Mobile DPRs & Joint Measurement Records',
+    description: 'Digital DPR entry on mobile with offline sync, photo-tagged snag lists, daily labor headcounts, and digital Joint Measurement Record (JMR) sign-offs with PMC.',
     highlights: [
       'Fast mobile Daily Progress Reports (DPR) with offline caching',
       'Photo snagging tagged directly to architectural floor plans',
       'Subcontractor measurement logging at site with digital sign-off',
       'Material delivery verification against approved purchase order specs'
     ],
-    sampleMetric: { label: 'Daily DPR Submission Rate', value: '99.2%', sub: 'Submitted daily before 8 PM' }
+    sampleMetric: { label: 'Daily DPR Submission', value: 'Daily 8 PM', sub: 'Site-to-office sync' }
   },
   {
     id: 'finance',
     role: 'Head of Accounts & Billing',
-    tagline: 'Automated RA Billing & Two-Way ERP Sync',
-    description: 'Generate client Running Account (RA) bills directly from verified JMRs, manage contractor tax withholdings (TDS u/s 194C), track retention, and sync two-way with Tally Prime and SAP.',
+    tagline: 'Automated RA Billing & ERP Bridge',
+    description: 'Generate client Running Account (RA) bills directly from verified JMRs, manage contractor tax withholdings (TDS u/s 194C), track retention, and sync with Tally Prime and SAP.',
     highlights: [
-      'Automated RA billing with milestone advance recovery and retention',
+      'Automated RA billing with advance recovery and retention schedules',
       'Statutory compliance handling (GST, TDS u/s 194C, e-Way bills)',
       'Vendor payment advice generation with bank UTR reconciliation',
-      'Direct two-way synchronization with Tally Prime, SAP, and Zoho Books'
+      'Integration options for Tally Prime, SAP ECC/S4, and Zoho Books'
     ],
-    sampleMetric: { label: 'Billing Cycle Turnaround', value: '4 Days', sub: 'From JMR sign-off to RA bill' }
+    sampleMetric: { label: 'Billing Turnaround', value: '~4 Days', sub: 'From JMR sign-off to RA bill' }
   }
 ];
 
 export const INTEGRATIONS_LIST = [
   {
     name: 'Tally Prime',
-    type: 'Direct XML & ODBC Connector',
+    type: 'Native XML / ODBC Connector',
     category: 'Accounting & Statutory',
-    desc: 'Two-way synchronization for purchase vouchers, vendor ledgers, TDS u/s 194C deduction, and client sales bills.',
-    badge: 'Native XML/ODBC'
+    desc: 'Sync purchase vouchers, vendor ledgers, TDS u/s 194C deductions, and client sales bills directly into your Tally company books.',
+    badge: 'Native XML/ODBC',
+    status: 'Production Ready'
   },
   {
     name: 'SAP ECC / S/4HANA',
-    type: 'API & RFC Enterprise Connector',
+    type: 'Enterprise API & RFC Connector',
     category: 'Enterprise ERP',
-    desc: 'Consolidate multi-entity fit-out project financials, enterprise procurement approval chains, and master vendor data.',
-    badge: 'Enterprise RFC/API'
+    desc: 'Consolidate project procurement orders, material ledger entries, and vendor payment clearances into enterprise SAP modules.',
+    badge: 'Enterprise RFC/API',
+    status: 'Enterprise Custom'
   },
   {
     name: 'Zoho Books',
-    type: 'REST API Cloud Sync',
+    type: 'REST Cloud API Sync',
     category: 'Cloud Accounting',
-    desc: 'Real-time sync for client invoices, vendor payments, expense tracking, and GST e-invoicing compliance.',
-    badge: 'REST API'
+    desc: 'Automated sync for client sales invoices, vendor bills, expense tracking, and GST e-invoicing compliance.',
+    badge: 'REST Cloud API',
+    status: 'Production Ready'
   },
   {
     name: 'Microsoft Excel & CSV',
-    type: 'Bidirectional Multi-Sheet Engine',
+    type: 'Structured Multi-Sheet Engine',
     category: 'Data Import & Export',
-    desc: 'Seamless import of complex tender BOQs with formulas and export of rate analysis and financial summaries.',
-    badge: 'Instant Multi-Sheet'
+    desc: 'Import complex multi-trade tender BOQs with rate formulas; export JMR measurement sheets and cost reconciliation reports.',
+    badge: 'Instant Import/Export',
+    status: 'Standard'
   },
   {
-    name: 'Custom ERP Connectors',
+    name: 'Custom ERP & Webhooks',
     type: 'Secure REST Webhooks',
     category: 'Custom Architecture',
-    desc: 'Developer-friendly webhooks and REST endpoints to integrate with proprietary contractor ERPs and internal tools.',
-    badge: 'Custom Webhooks'
+    desc: 'Configurable webhook endpoints and REST APIs to connect with internal data lakes and proprietary contractor ERPs.',
+    badge: 'Custom Webhooks',
+    status: 'Developer API'
   }
 ];
 
 export const FAQS = [
   {
-    q: 'How does Construct-O-Genie prevent site teams from exceeding the approved project budget?',
-    a: 'Every tender BOQ item is mapped to an internal Budget Cost Ceiling (BCC). When a site engineer or project manager creates a Purchase Order or Subcontractor Work Order, the system checks available budget headroom in real time. If a PO exceeds the budget or baseline margin threshold, it is automatically blocked and escalated to the Founder or Commercial Director for multi-tier approval.'
+    q: 'How does Construct-O-Genie protect project gross margins against cost overruns?',
+    a: 'Every tender BOQ item is mapped to an internal Budget Cost Ceiling (BCC). When a project engineer or purchase manager creates a Purchase Order or Subcontractor Work Order, the system checks remaining budget headroom in real time. If a PO exceeds the budget or margin threshold, it cannot be issued without tiered executive approval.'
   },
   {
-    q: 'Does Construct-O-Genie sync bi-directionally with Tally Prime and SAP?',
-    a: 'Yes. Construct-O-Genie offers verified two-way synchronization with Tally Prime via direct XML/ODBC connectors, as well as SAP ECC / S/4HANA via secure API and RFC protocols. Approved vendor purchase bills, TDS u/s 194C deductions, payment advices, and client sales invoices sync automatically without manual double data entry.'
+    q: 'How does Construct-O-Genie connect with our existing Tally Prime or SAP setup?',
+    a: 'Construct-O-Genie provides direct XML/ODBC integration for Tally Prime and REST API/RFC protocols for SAP. Approved vendor purchase bills, TDS deductions under section 194C, and client sales invoices sync directly into your chart of accounts, eliminating double data entry.'
   },
   {
     q: 'How does the Joint Measurement Record (JMR) to RA Billing workflow work?',
-    a: 'Site supervisors and quantity surveyors record verified site measurements against the architectural drawing grid on mobile. Once the client PMC approves the digital JMR sign-off, the finance team can generate a client Running Account (RA) bill with a single click. The system automatically computes advance mobilization deductions, retention money, and GST.'
+    a: 'Site engineers and quantity surveyors record verified site measurements against the architectural drawing grid on mobile. Once the client PMC approves the digital JMR sign-off, the billing team generates a client Running Account (RA) bill with one click. The system automatically computes advance mobilization deductions, retention money, and GST.'
   },
   {
-    q: 'Can site supervisors log Daily Progress Reports (DPRs) with poor network connectivity?',
+    q: 'Can site teams submit Daily Progress Reports (DPRs) with poor mobile connectivity?',
     a: 'Yes. The mobile site interface features local offline caching. Field supervisors can log labor headcounts, progress percentages, material deliveries (GRNs), and photo-tagged snags on site. Data automatically synchronizes securely as soon as an internet connection is re-established.'
   },
   {
@@ -398,7 +450,7 @@ export const FAQS = [
     a: 'When an architect issues a new Good For Construction (GFC) revision (e.g. REV-04 vs REV-03), Construct-O-Genie runs an automated delta takeoff. Any added quantities or new trade specifications are recorded into a formal Variation Register, ensuring unbilled extra work is flagged before material procurement begins.'
   },
   {
-    q: 'How long does onboarding and data migration take for an active contracting firm?',
+    q: 'What is the typical onboarding and data migration timeline?',
     a: 'Most turnkey fit-out and interior general contractors onboard within 7 to 14 days. Our engineering team assists with importing active tender BOQs from Excel, configuring vendor master lists, mapping cost codes to your Tally/SAP chart of accounts, and setting up role-based approval thresholds.'
   }
 ];

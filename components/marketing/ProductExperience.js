@@ -3,473 +3,395 @@
 import React, { useState } from 'react';
 import { 
   Building2, 
-  Layers, 
+  FileSpreadsheet, 
   ShoppingCart, 
   Smartphone, 
-  FileText, 
-  RefreshCw, 
-  Lock,
-  CheckCircle2,
-  AlertTriangle,
-  Clock,
-  ShieldCheck,
-  TrendingUp,
-  FileCheck,
-  HardHat,
-  Receipt,
-  Download,
-  ArrowRight,
-  Eye
+  FileCheck2, 
+  ArrowRight, 
+  Lock, 
+  Receipt
 } from 'lucide-react';
-import { PORTFOLIO_PROJECTS, BOQ_SAMPLE_ITEMS, DEMO_PROJECT, formatINR } from './marketingData';
+import { DEMO_PROJECT, BOQ_SAMPLE_ITEMS, formatINR, PORTFOLIO_PROJECTS } from './marketingData';
 
 export default function ProductExperience({ onOpenDemo }) {
-  const [activeTab, setActiveTab] = useState('founder');
-  const [selectedBOQItem, setSelectedBOQItem] = useState(BOQ_SAMPLE_ITEMS[0]);
-  const [selectedProject, setSelectedProject] = useState(PORTFOLIO_PROJECTS[0]);
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState('portfolio');
 
   const tabs = [
-    { id: 'founder', name: 'Executive Radar', icon: Building2, desc: 'Multi-site margins, cashflow & director approvals' },
-    { id: 'boq', name: 'Living BOQ Spine', icon: Layers, desc: 'Rate analysis, drawing deltas & cost ceilings' },
-    { id: 'procurement', name: 'Procurement & POs', icon: ShoppingCart, desc: 'Maker-checker approvals & budget headroom locks' },
-    { id: 'site', name: 'Site DPR & Snagging', icon: Smartphone, desc: 'Mobile daily reports, headcounts & photo snags' },
-    { id: 'billing', name: 'JMR & RA Billing', icon: FileText, desc: 'Tripartite measurements & client RA invoices' },
-    { id: 'finance', name: 'Tally & Statutory Sync', icon: RefreshCw, desc: 'Two-way XML/API ledger & TDS u/s 194C sync' },
+    { id: 'portfolio', label: 'Executive Portfolio', icon: Building2 },
+    { id: 'boq', label: 'Living BOQ & Cost Caps', icon: FileSpreadsheet },
+    { id: 'procurement', label: 'Procurement & Approvals', icon: ShoppingCart },
+    { id: 'site', label: 'Mobile Site DPR & GRN', icon: Smartphone },
+    { id: 'jmr', label: 'JMR & RA Billing', icon: FileCheck2 },
+    { id: 'accounting', label: 'Tally & SAP Accounting', icon: Receipt },
   ];
 
   return (
-    <section id="product" className="scroll-mt-28 py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 relative">
+    <section id="product-tour" className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 scroll-mt-24">
       
       {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto space-y-3 mb-10">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/15 text-slate-200 font-mono text-[11px] uppercase tracking-wider backdrop-blur-md">
-          <Layers className="w-3.5 h-3.5 text-emerald-400" />
-          GENUINE PRODUCT INTERFACE
+      <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 sm:mb-12">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-medium text-slate-300">
+          <span>PRODUCT TOUR</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight apple-headline">
-          The Operating System in Action.
+        <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white">
+          See Construct-O-Genie in action.
         </h2>
-        <p className="apple-lead font-light">
-          An authentic interactive preview of Construct-O-Genie ERP modules with sanitized reference project data.
+        <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+          Explore how commercial, procurement, site, and finance workflows connect across an active 42,500 sq.ft fit-out project.
         </p>
       </div>
 
-      {/* Tab Navigation */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-3 mb-6 scrollbar-none">
+      {/* Module Selector Tabs */}
+      <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-4 mb-6 scrollbar-none">
         {tabs.map((tab) => {
           const Icon = tab.icon;
-          const isActive = activeTab === tab.id;
+          const isSelected = activeTab === tab.id;
           return (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2.5 px-4 py-3 rounded-2xl text-xs font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer border shrink-0 apple-interactive ${
-                isActive
-                  ? 'bg-white text-slate-950 border-white shadow-xl scale-[1.02]'
-                  : 'bg-[#080B10]/80 border-white/10 text-slate-300 hover:border-white/30 hover:text-white'
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap transition-all duration-200 ${
+                isSelected
+                  ? 'bg-white text-slate-950 shadow-lg shadow-white/10 font-semibold'
+                  : 'bg-black/40 text-slate-400 hover:text-white hover:bg-white/[0.05] border border-white/5'
               }`}
             >
-              <Icon className={`w-4 h-4 ${isActive ? 'text-slate-950' : 'text-emerald-400'}`} />
-              <span>{tab.name}</span>
+              <Icon className="w-4 h-4" />
+              <span>{tab.label}</span>
             </button>
           );
         })}
       </div>
 
-      {/* Main Glass Workspace Console */}
-      <div className="p-5 sm:p-8 rounded-3xl apple-glass shadow-2xl text-left relative overflow-hidden">
+      {/* Interactive App Screen Mockup */}
+      <div className="rounded-2xl bg-black/70 border border-white/10 backdrop-blur-xl p-4 sm:p-7 shadow-2xl">
         
-        {/* Environment Watermark */}
-        <div className="absolute top-4 right-6 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.05] border border-white/10 text-[10px] font-mono text-slate-400">
-          <ShieldCheck className="w-3 h-3 text-emerald-400" />
-          <span>DEMO WORKSPACE • SANITIZED DATA</span>
+        {/* TOP STATUS BAR: Clear 3-Second Financial Hierarchy */}
+        <div className="pb-6 mb-6 border-b border-white/10">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+            
+            {/* Project Title & Status */}
+            <div>
+              <div className="flex items-center gap-2.5">
+                <span className="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-mono font-medium">
+                  {DEMO_PROJECT.code}
+                </span>
+                <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                  {DEMO_PROJECT.name}
+                </h3>
+              </div>
+              <p className="text-xs text-slate-400 mt-1">
+                {DEMO_PROJECT.areaSqFt.toLocaleString('en-IN')} sq.ft • {DEMO_PROJECT.client} • GFC Version {DEMO_PROJECT.gfcVersion}
+              </p>
+            </div>
+
+            {/* Core 3 High-Impact Metrics */}
+            <div className="grid grid-cols-3 gap-3 sm:gap-6 bg-white/[0.02] p-3 rounded-xl border border-white/5 w-full lg:w-auto">
+              <div>
+                <div className="text-[10px] sm:text-[11px] text-slate-400 font-medium">Contract Value</div>
+                <div className="text-sm sm:text-base font-bold text-white font-mono mt-0.5">
+                  {formatINR(DEMO_PROJECT.contractValue, true)}
+                </div>
+              </div>
+              <div>
+                <div className="text-[10px] sm:text-[11px] text-slate-400 font-medium">Committed Cost</div>
+                <div className="text-sm sm:text-base font-bold text-slate-200 font-mono mt-0.5">
+                  {formatINR(DEMO_PROJECT.committedCost, true)}
+                </div>
+              </div>
+              <div>
+                <div className="text-[10px] sm:text-[11px] text-emerald-400 font-medium">Projected Margin</div>
+                <div className="text-sm sm:text-base font-bold text-emerald-400 font-mono mt-0.5">
+                  {DEMO_PROJECT.projectedMargin}%
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
 
-        {/* ========================================================
-            TAB 1: EXECUTIVE FOUNDER RADAR
-            ======================================================== */}
-        {activeTab === 'founder' && (
-          <div className="space-y-6 pt-2">
-            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
-              <div>
-                <span className="apple-eyebrow text-slate-400 block">
-                  CONSTRUCT-O-GENIE OS • EXECUTIVE PORTFOLIO DASHBOARD
-                </span>
-                <h3 className="text-xl sm:text-2xl font-bold text-white font-display mt-0.5">
-                  Multi-Site Margin Health & Cashflow Radar
-                </h3>
+        {/* TAB 1: EXECUTIVE PORTFOLIO */}
+        {activeTab === 'portfolio' && (
+          <div className="space-y-6">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                <div className="text-xs text-slate-400">Total Billed to Client</div>
+                <div className="text-lg font-bold text-white font-mono mt-1">
+                  {formatINR(DEMO_PROJECT.billedToClient, true)}
+                </div>
+                <div className="text-[11px] text-emerald-400 mt-0.5">63.8% of contract</div>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-bold font-mono">
-                  ALL 4 SITES BUDGET-LOCKED
-                </span>
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                <div className="text-xs text-slate-400">Cash Collected</div>
+                <div className="text-lg font-bold text-white font-mono mt-1">
+                  {formatINR(DEMO_PROJECT.collectedFromClient, true)}
+                </div>
+                <div className="text-[11px] text-slate-400 mt-0.5">85.1% collection rate</div>
               </div>
-            </div>
-
-            {/* Active Portfolio Projects Selector */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {PORTFOLIO_PROJECTS.map((proj) => {
-                const isSelected = proj.id === selectedProject.id;
-                return (
-                  <button
-                    key={proj.id}
-                    onClick={() => setSelectedProject(proj)}
-                    className={`p-3.5 rounded-2xl text-left transition-all border cursor-pointer apple-interactive ${
-                      isSelected
-                        ? 'bg-white text-slate-950 border-white shadow-lg'
-                        : 'bg-black/40 border-white/10 text-slate-300 hover:border-white/20 hover:text-white'
-                    }`}
-                  >
-                    <div className={`text-[10px] font-mono uppercase truncate ${isSelected ? 'text-slate-600 font-bold' : 'text-slate-400'}`}>
-                      {proj.location}
-                    </div>
-                    <div className="font-bold text-xs sm:text-sm truncate mt-0.5 font-display">
-                      {proj.name}
-                    </div>
-                    <div className="flex items-center justify-between mt-2 pt-1 border-t border-current/15 text-[11px] font-mono tabular-nums">
-                      <span>{formatINR(proj.value, true)}</span>
-                      <span className={`font-bold ${isSelected ? 'text-emerald-800' : 'text-emerald-400'}`}>
-                        {proj.margin}% Margin
-                      </span>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Live Financial Metrics for Selected Project */}
-            <div className="p-5 rounded-2xl bg-black/60 border border-white/10 space-y-4">
-              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-3">
-                <div>
-                  <span className="text-[10px] font-mono text-slate-400 uppercase">Selected Active Site</span>
-                  <div className="text-lg font-bold text-white font-display">{selectedProject.name} ({selectedProject.area})</div>
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                <div className="text-xs text-slate-400">Vendor Liabilities Paid</div>
+                <div className="text-lg font-bold text-white font-mono mt-1">
+                  {formatINR(DEMO_PROJECT.vendorPaid, true)}
                 </div>
-                <div className="text-right font-mono text-xs tabular-nums">
-                  <span className="text-slate-400 block uppercase text-[10px]">Physical Milestone</span>
-                  <span className="text-emerald-400 font-bold text-base">{selectedProject.progress}% Verified</span>
-                </div>
+                <div className="text-[11px] text-slate-400 mt-0.5">{formatINR(DEMO_PROJECT.vendorPayables - DEMO_PROJECT.vendorPaid, true)} pending</div>
               </div>
-
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 font-mono text-xs tabular-nums">
-                <div className="p-3 rounded-xl bg-white/[0.04] border border-white/10">
-                  <span className="text-[10px] text-slate-400 block uppercase">Contract Value</span>
-                  <span className="text-base font-bold text-white block mt-0.5">{formatINR(selectedProject.value, true)}</span>
-                  <span className="text-[10px] text-slate-400 block mt-0.5">Approved Scope</span>
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                <div className="text-xs text-slate-400">Client Retention Held</div>
+                <div className="text-lg font-bold text-white font-mono mt-1">
+                  {formatINR(DEMO_PROJECT.retentionHeld, true)}
                 </div>
-                <div className="p-3 rounded-xl bg-white/[0.04] border border-white/10">
-                  <span className="text-[10px] text-slate-400 block uppercase">Committed Expenses</span>
-                  <span className="text-base font-bold text-white block mt-0.5">{formatINR(selectedProject.committedCost, true)}</span>
-                  <span className="text-[10px] text-emerald-400 block mt-0.5">Within Cost Ceiling</span>
-                </div>
-                <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
-                  <span className="text-[10px] text-emerald-400 font-bold block uppercase">Protected Margin</span>
-                  <span className="text-base font-black text-emerald-400 block mt-0.5">{selectedProject.margin}% Realized</span>
-                  <span className="text-[10px] text-emerald-300 block mt-0.5">Zero Scope Leakage</span>
-                </div>
-                <div className="p-3 rounded-xl bg-white/[0.04] border border-white/10">
-                  <span className="text-[10px] text-slate-400 block uppercase">Pending Director Approvals</span>
-                  <span className="text-base font-bold text-amber-400 block mt-0.5">{selectedProject.pendingApprovals} High-Value POs</span>
-                  <span className="text-[10px] text-slate-400 block mt-0.5">&gt; ₹5.00L Tier</span>
-                </div>
+                <div className="text-[11px] text-slate-400 mt-0.5">5.0% contract retention</div>
               </div>
             </div>
-          </div>
-        )}
 
-        {/* ========================================================
-            TAB 2: LIVING BOQ SPINE
-            ======================================================== */}
-        {activeTab === 'boq' && (
-          <div className="space-y-6 pt-2">
-            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
-              <div>
-                <span className="apple-eyebrow text-slate-400 block">
-                  CONSTRUCT-O-GENIE OS • LIVING BOQ & ITEM RATE ANALYSIS
-                </span>
-                <h3 className="text-xl sm:text-2xl font-bold text-white font-display mt-0.5">
-                  Itemized Rate Breakdown & Budget Cost Ceilings
-                </h3>
-              </div>
-              <span className="px-3 py-1 rounded-md bg-white/[0.06] border border-white/10 text-xs font-mono text-slate-300">
-                GFC Takeoff: REV-04.2
-              </span>
-            </div>
-
-            {/* BOQ Items Table */}
-            <div className="overflow-x-auto">
-              <table className="w-full text-left font-sans text-xs border-collapse">
-                <thead>
-                  <tr className="border-b border-white/15 text-[10px] font-mono text-slate-400 uppercase">
-                    <th className="py-2.5 px-3">Item Code</th>
-                    <th className="py-2.5 px-3">Trade Package & Description</th>
-                    <th className="py-2.5 px-3">Qty / Unit</th>
-                    <th className="py-2.5 px-3">Client Rate</th>
-                    <th className="py-2.5 px-3">Cost Ceiling</th>
-                    <th className="py-2.5 px-3">Committed PO</th>
-                    <th className="py-2.5 px-3">Margin</th>
-                    <th className="py-2.5 px-3">Status</th>
+            {/* Active Projects Table */}
+            <div className="overflow-x-auto rounded-xl border border-white/5 bg-black/40">
+              <table className="w-full text-left text-xs">
+                <thead className="bg-white/[0.03] text-slate-400 border-b border-white/5 uppercase tracking-wider font-mono text-[10px]">
+                  <tr>
+                    <th className="py-3 px-4">Project Name &amp; Client</th>
+                    <th className="py-3 px-4">Area</th>
+                    <th className="py-3 px-4">Contract Value</th>
+                    <th className="py-3 px-4">Committed Cost</th>
+                    <th className="py-3 px-4">Progress</th>
+                    <th className="py-3 px-4">Projected Margin</th>
+                    <th className="py-3 px-4 text-right">Status</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/10 font-mono tabular-nums">
-                  {BOQ_SAMPLE_ITEMS.map((item) => {
-                    const isSelected = item.id === selectedBOQItem.id;
-                    return (
-                      <tr
-                        key={item.id}
-                        onClick={() => { setSelectedBOQItem(item); setDrawerOpen(true); }}
-                        className={`cursor-pointer transition-colors ${
-                          isSelected ? 'bg-white/10' : 'hover:bg-white/[0.04]'
-                        }`}
-                      >
-                        <td className="py-3 px-3 font-bold text-emerald-400">{item.code}</td>
-                        <td className="py-3 px-3 font-sans font-medium text-white max-w-xs">
-                          <span className="font-bold text-slate-300 block text-[11px]">{item.package}</span>
-                          <span className="text-slate-400 text-[10px] truncate block">{item.desc}</span>
-                        </td>
-                        <td className="py-3 px-3 text-slate-300">{item.tenderQty} {item.unit}</td>
-                        <td className="py-3 px-3 text-white font-bold">{formatINR(item.clientRate)}</td>
-                        <td className="py-3 px-3 text-slate-300">{formatINR(item.budgetCostRate)}</td>
-                        <td className="py-3 px-3 text-emerald-400">{formatINR(item.poCommitted)}</td>
-                        <td className="py-3 px-3 font-bold text-emerald-400">{item.marginPct}%</td>
-                        <td className="py-3 px-3">
-                          <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[9px] font-bold">
-                            LOCKED
-                          </span>
-                        </td>
-                      </tr>
-                    );
-                  })}
+                <tbody className="divide-y divide-white/5 text-slate-300">
+                  {PORTFOLIO_PROJECTS.map((prj) => (
+                    <tr key={prj.id} className="hover:bg-white/[0.02] transition-colors">
+                      <td className="py-3 px-4">
+                        <div className="font-semibold text-white">{prj.name}</div>
+                        <div className="text-slate-400 text-[11px]">{prj.client}</div>
+                      </td>
+                      <td className="py-3 px-4 font-mono">{prj.area}</td>
+                      <td className="py-3 px-4 font-mono font-medium text-white">{formatINR(prj.value, true)}</td>
+                      <td className="py-3 px-4 font-mono text-slate-300">{formatINR(prj.committedCost, true)}</td>
+                      <td className="py-3 px-4">
+                        <div className="flex items-center gap-2">
+                          <div className="w-16 bg-white/10 rounded-full h-1.5 overflow-hidden">
+                            <div className="bg-emerald-400 h-full rounded-full" style={{ width: `${prj.progress}%` }}></div>
+                          </div>
+                          <span className="font-mono text-[11px]">{prj.progress}%</span>
+                        </div>
+                      </td>
+                      <td className="py-3 px-4 font-mono font-bold text-emerald-400">
+                        {prj.margin}%
+                      </td>
+                      <td className="py-3 px-4 text-right">
+                        <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-[10px] font-medium border border-emerald-500/20">
+                          {prj.status}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
+          </div>
+        )}
 
-            {/* Line Item Rate Breakdown Drawer */}
-            <div className="p-4 rounded-2xl bg-black/60 border border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-sans">
-              <div>
-                <span className="text-[10px] font-mono text-slate-400 uppercase">Selected Line Item Rate Analysis</span>
-                <div className="text-sm font-bold text-white">{selectedBOQItem.code} • {selectedBOQItem.package}</div>
-                <div className="text-xs text-slate-300 mt-0.5">GFC Drawing Delta: {selectedBOQItem.drawingRef} ({selectedBOQItem.gfcRevision})</div>
-              </div>
-              <div className="flex items-center gap-4 font-mono text-xs tabular-nums">
-                <div>
-                  <span className="text-[10px] text-slate-400 block">Total Budget Cap</span>
-                  <span className="font-bold text-white">{formatINR(selectedBOQItem.totalBudget)}</span>
-                </div>
-                <div>
-                  <span className="text-[10px] text-slate-400 block">Available Headroom</span>
-                  <span className="font-bold text-emerald-400">{formatINR(selectedBOQItem.poBalance)}</span>
-                </div>
-              </div>
+        {/* TAB 2: LIVING BOQ */}
+        {activeTab === 'boq' && (
+          <div className="space-y-4">
+            <div className="flex items-center justify-between text-xs text-slate-400 pb-2">
+              <span>Tender BOQ lines with Budget Cost Ceilings (BCC) &amp; live committed PO values:</span>
+              <span className="font-mono text-emerald-400">48 Lines Locked</span>
+            </div>
+
+            <div className="overflow-x-auto rounded-xl border border-white/5 bg-black/40">
+              <table className="w-full text-left text-xs">
+                <thead className="bg-white/[0.03] text-slate-400 border-b border-white/5 uppercase tracking-wider font-mono text-[10px]">
+                  <tr>
+                    <th className="py-3 px-4">Item Code &amp; Specification</th>
+                    <th className="py-3 px-4">Unit</th>
+                    <th className="py-3 px-4">Tender Qty / Rate</th>
+                    <th className="py-3 px-4">Client Total</th>
+                    <th className="py-3 px-4">Budget Ceiling (BCC)</th>
+                    <th className="py-3 px-4">Committed Cost</th>
+                    <th className="py-3 px-4 text-right">Margin %</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/5 text-slate-300">
+                  {BOQ_SAMPLE_ITEMS.map((item) => (
+                    <tr key={item.code} className="hover:bg-white/[0.02]">
+                      <td className="py-3 px-4 max-w-xs">
+                        <div className="font-mono font-medium text-white text-[11px]">{item.code} • {item.trade}</div>
+                        <div className="text-slate-400 text-[11px] truncate mt-0.5">{item.description}</div>
+                      </td>
+                      <td className="py-3 px-4 font-mono">{item.unit}</td>
+                      <td className="py-3 px-4 font-mono text-[11px]">
+                        {item.tenderQty} @ {formatINR(item.tenderRate)}
+                      </td>
+                      <td className="py-3 px-4 font-mono font-medium text-white">
+                        {formatINR(item.clientTotal)}
+                      </td>
+                      <td className="py-3 px-4 font-mono text-slate-300">
+                        {formatINR(item.budgetCeiling)}
+                      </td>
+                      <td className="py-3 px-4 font-mono text-slate-300">
+                        {formatINR(item.committedTotal)}
+                      </td>
+                      <td className="py-3 px-4 text-right font-mono font-bold text-emerald-400">
+                        {item.marginPercent}%
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         )}
 
-        {/* ========================================================
-            TAB 3: PROCUREMENT & PO ENGINE
-            ======================================================== */}
+        {/* TAB 3: PROCUREMENT & APPROVALS */}
         {activeTab === 'procurement' && (
-          <div className="space-y-6 pt-2">
-            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
-              <div>
-                <span className="apple-eyebrow text-slate-400 block">
-                  CONSTRUCT-O-GENIE OS • MAKER-CHECKER PROCUREMENT ENGINE
-                </span>
-                <h3 className="text-xl sm:text-2xl font-bold text-white font-display mt-0.5">
-                  Itemized Purchase Orders with Hard Budget Caps
-                </h3>
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                <div className="text-xs text-slate-400">POs Issued</div>
+                <div className="text-lg font-bold text-white font-mono mt-1">48 Purchase Orders</div>
+                <div className="text-[11px] text-slate-400 mt-0.5">Total: {formatINR(21420000, true)}</div>
               </div>
-              <span className="px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold">
-                BUDGET HEADROOM CHECKED
-              </span>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-sans">
-              <div className="p-5 rounded-2xl bg-black/60 border border-white/10 space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono text-slate-400 uppercase">PO #26041-042 • Joinery Package</span>
-                  <span className="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 font-mono font-bold text-[10px]">APPROVED</span>
-                </div>
-                <div className="text-base font-bold text-white font-display">WoodCraft Studio & Atelier</div>
-                <p className="text-slate-300 text-xs">Bespoke Fluted Oak Veneer Paneling (480 m²) for Executive Boardroom</p>
-                <div className="grid grid-cols-3 gap-2 pt-2 border-t border-white/10 font-mono text-[11px] tabular-nums">
-                  <div>
-                    <span className="text-slate-400 block text-[9px]">PO VALUE</span>
-                    <span className="font-bold text-white">₹19.80L</span>
-                  </div>
-                  <div>
-                    <span className="text-slate-400 block text-[9px]">BUDGET CEILING</span>
-                    <span className="font-bold text-slate-300">₹26.16L</span>
-                  </div>
-                  <div>
-                    <span className="text-slate-400 block text-[9px]">MARGIN AFTER PO</span>
-                    <span className="font-bold text-emerald-400">24.3%</span>
-                  </div>
-                </div>
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                <div className="text-xs text-slate-400">Budget Headroom Remaining</div>
+                <div className="text-lg font-bold text-emerald-400 font-mono mt-1">{formatINR(17980000, true)}</div>
+                <div className="text-[11px] text-slate-400 mt-0.5">Within approved baseline</div>
               </div>
-
-              <div className="p-5 rounded-2xl bg-black/60 border border-white/10 space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono text-slate-400 uppercase">PO #26041-043 • Electrical Package</span>
-                  <span className="px-2 py-0.5 rounded bg-amber-500/15 text-amber-400 font-mono font-bold text-[10px]">DIRECTOR APPROVAL PENDING</span>
-                </div>
-                <div className="text-base font-bold text-white font-display">Lumina Tech Systems</div>
-                <p className="text-slate-300 text-xs">DALI Dimming Linear Profiles & Drivers (620 R.Mtr) for Open Workspace</p>
-                <div className="grid grid-cols-3 gap-2 pt-2 border-t border-white/10 font-mono text-[11px] tabular-nums">
-                  <div>
-                    <span className="text-slate-400 block text-[9px]">PO VALUE</span>
-                    <span className="font-bold text-white">₹17.25L</span>
-                  </div>
-                  <div>
-                    <span className="text-slate-400 block text-[9px]">BUDGET CEILING</span>
-                    <span className="font-bold text-slate-300">₹21.39L</span>
-                  </div>
-                  <div>
-                    <span className="text-slate-400 block text-[9px]">MARGIN AFTER PO</span>
-                    <span className="font-bold text-emerald-400">28.1%</span>
-                  </div>
-                </div>
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                <div className="text-xs text-slate-400">Maker-Checker Status</div>
+                <div className="text-lg font-bold text-white font-mono mt-1">2 Pending Approvals</div>
+                <div className="text-[11px] text-amber-400 mt-0.5">Awaiting Director Sign-Off</div>
               </div>
             </div>
 
-            <div className="p-4 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-between text-xs font-sans">
-              <div className="flex items-center gap-2 text-slate-200">
-                <Lock className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Zero unapproved commitments: Purchase orders cannot be issued if rates or quantities exceed approved BOQ caps.</span>
+            {/* PO Approval Sample */}
+            <div className="p-4 rounded-xl border border-white/10 bg-white/[0.02] space-y-3">
+              <div className="flex items-center justify-between text-xs">
+                <div className="flex items-center gap-2">
+                  <Lock className="w-3.5 h-3.5 text-amber-400" />
+                  <span className="font-semibold text-white">Pending Executive Approval: PO-DLF-026 (Acoustic Ceiling Panels)</span>
+                </div>
+                <span className="font-mono text-slate-400">Threshold: &gt; ₹15 Lakhs</span>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                <div><span className="text-slate-400">Vendor:</span> <span className="text-white font-medium">Saint-Gobain Gyproc Ltd</span></div>
+                <div><span className="text-slate-400">PO Value:</span> <span className="text-white font-mono font-medium">₹18,40,000</span></div>
+                <div><span className="text-slate-400">BOQ Ceiling:</span> <span className="text-white font-mono font-medium">₹19,20,000</span></div>
+                <div><span className="text-slate-400">Budget Variance:</span> <span className="text-emerald-400 font-mono font-medium">+₹80,000 Saved</span></div>
               </div>
             </div>
           </div>
         )}
 
-        {/* ========================================================
-            TAB 4: SITE DPR & SNAGGING
-            ======================================================== */}
+        {/* TAB 4: SITE DPR & GRN */}
         {activeTab === 'site' && (
-          <div className="space-y-6 pt-2">
-            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
-              <div>
-                <span className="apple-eyebrow text-slate-400 block">
-                  CONSTRUCT-O-GENIE OS • MOBILE SITE DPR & SNAGGING
-                </span>
-                <h3 className="text-xl sm:text-2xl font-bold text-white font-display mt-0.5">
-                  Daily Progress Reports & Photo Snagging
-                </h3>
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                <div className="text-xs text-slate-400">Today&apos;s Labor Headcount</div>
+                <div className="text-lg font-bold text-white font-mono mt-1">68 Tradespersons</div>
+                <div className="text-[11px] text-slate-400 mt-0.5">Joinery (24), MEP (22), Drywall (22)</div>
               </div>
-              <span className="px-3 py-1 rounded-md bg-white/[0.06] border border-white/10 text-xs font-mono text-slate-300">
-                Today: 42 Active Workers On Site
-              </span>
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                <div className="text-xs text-slate-400">Physical Execution Progress</div>
+                <div className="text-lg font-bold text-emerald-400 font-mono mt-1">67.0% Certified</div>
+                <div className="text-[11px] text-slate-400 mt-0.5">S-Curve on schedule</div>
+              </div>
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                <div className="text-xs text-slate-400">Gate GRN Verification</div>
+                <div className="text-lg font-bold text-white font-mono mt-1">3 Deliveries Inspected</div>
+                <div className="text-[11px] text-emerald-400 mt-0.5">Challans matched with PO</div>
+              </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 font-sans text-xs">
-              <div className="p-4 rounded-2xl bg-black/60 border border-white/10 space-y-2">
-                <span className="text-[10px] font-mono text-slate-400 uppercase block">Trade Headcount</span>
-                <div className="text-sm font-bold text-white">Carpentry: 18 • Electrical: 12 • Painting: 8 • MEP: 4</div>
-                <span className="text-[10px] font-mono text-emerald-400 block">Verified via Gate Pass</span>
+            <div className="p-4 rounded-xl bg-black/40 border border-white/5 text-xs space-y-2">
+              <div className="flex items-center justify-between text-slate-300 font-medium">
+                <span>Latest Mobile DPR Log (Site In-Charge: R. Sharma)</span>
+                <span className="font-mono text-slate-400">Logged 18:30 IST • Offline Cached &amp; Synced</span>
               </div>
+              <p className="text-slate-400 text-[11px] leading-relaxed">
+                Level 15 south-wing acoustic ceiling framing completed (100%). Glass partition channel fixing in progress on Level 14. 240 running meters of primary linear LED conduits laid. All material delivery challans uploaded with gate photos.
+              </p>
+            </div>
+          </div>
+        )}
 
-              <div className="p-4 rounded-2xl bg-black/60 border border-white/10 space-y-2">
-                <span className="text-[10px] font-mono text-slate-400 uppercase block">Material GRN Inward</span>
-                <div className="text-sm font-bold text-white">480 m² Oak Veneer received with physical QC inspection</div>
-                <span className="text-[10px] font-mono text-emerald-400 block">PO #26041-042 Match</span>
+        {/* TAB 5: JMR & RA BILLING */}
+        {activeTab === 'jmr' && (
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                <div className="text-xs text-slate-400">Cumulative RA Bills Certified</div>
+                <div className="text-lg font-bold text-white font-mono mt-1">{formatINR(30800000, true)}</div>
+                <div className="text-[11px] text-slate-400 mt-0.5">RA Bill 04 certified by PMC</div>
               </div>
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                <div className="text-xs text-slate-400">Advance Mobilization Recovered</div>
+                <div className="text-lg font-bold text-slate-200 font-mono mt-1">{formatINR(4825000, true)}</div>
+                <div className="text-[11px] text-slate-400 mt-0.5">10% contract mobilization</div>
+              </div>
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                <div className="text-xs text-slate-400">Billing Turnaround Time</div>
+                <div className="text-lg font-bold text-emerald-400 font-mono mt-1">~4 Days</div>
+                <div className="text-[11px] text-slate-400 mt-0.5">From JMR sign-off to RA bill</div>
+              </div>
+            </div>
 
-              <div className="p-4 rounded-2xl bg-black/60 border border-white/10 space-y-2">
-                <span className="text-[10px] font-mono text-slate-400 uppercase block">Floor Plan Pin Snag</span>
-                <div className="text-sm font-bold text-white">Grid D-4: Linear fixture conduit clearance flagged</div>
-                <span className="text-[10px] font-mono text-amber-400 block">Assigned to MEP PM</span>
+            <div className="p-4 rounded-xl border border-white/10 bg-white/[0.02] space-y-2">
+              <div className="flex items-center justify-between text-xs">
+                <span className="font-semibold text-white">Tripartite Certified JMR #04 Sign-Off Record</span>
+                <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 text-[10px] font-mono">Signatures Complete</span>
+              </div>
+              <div className="grid grid-cols-3 gap-2 text-[11px] text-slate-400 bg-black/40 p-3 rounded-lg border border-white/5">
+                <div><span className="text-slate-400">Fit-Out Contractor:</span> <span className="text-white">Certified (Lead QS)</span></div>
+                <div><span className="text-slate-400">Client PMC:</span> <span className="text-white">Certified (Sr. PM)</span></div>
+                <div><span className="text-slate-400">Client Rep:</span> <span className="text-white">Approved for Billing</span></div>
               </div>
             </div>
           </div>
         )}
 
-        {/* ========================================================
-            TAB 5: JMR & RA BILLING
-            ======================================================== */}
-        {activeTab === 'billing' && (
-          <div className="space-y-6 pt-2">
-            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
-              <div>
-                <span className="apple-eyebrow text-slate-400 block">
-                  CONSTRUCT-O-GENIE OS • CERTIFIED JMR & RA BILLING
-                </span>
-                <h3 className="text-xl sm:text-2xl font-bold text-white font-display mt-0.5">
-                  Tripartite Measurement to Client RA Invoice
-                </h3>
+        {/* TAB 6: TALLY & SAP ACCOUNTING */}
+        {activeTab === 'accounting' && (
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                <div className="text-xs text-slate-400">Tally / SAP Sync Status</div>
+                <div className="text-lg font-bold text-emerald-400 font-mono mt-1">Connected</div>
+                <div className="text-[11px] text-slate-400 mt-0.5">Direct XML / REST Bridge</div>
               </div>
-              <span className="px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold">
-                JMR-04 SIGNED BY PMC
-              </span>
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                <div className="text-xs text-slate-400">TDS u/s 194C Deducted</div>
+                <div className="text-lg font-bold text-white font-mono mt-1">{formatINR(376000, true)}</div>
+                <div className="text-[11px] text-slate-400 mt-0.5">Challan 281 reconciliation</div>
+              </div>
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                <div className="text-xs text-slate-400">Bank UTR Reconciled</div>
+                <div className="text-lg font-bold text-white font-mono mt-1">{formatINR(15400000, true)}</div>
+                <div className="text-[11px] text-slate-400 mt-0.5">Matched with vendor POs</div>
+              </div>
             </div>
 
-            <div className="p-5 rounded-2xl bg-black/60 border border-white/10 space-y-4 font-mono text-xs tabular-nums">
-              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-3 font-sans">
-                <div>
-                  <div className="text-sm font-bold text-white">Client Running Account Bill #04</div>
-                  <div className="text-xs text-slate-400">Horizon Workspace • Level 14 Executive Floor</div>
-                </div>
-                <span className="text-emerald-400 font-mono font-bold text-sm">₹64,50,000 Verified</span>
-              </div>
-
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-[11px]">
-                <div className="p-2.5 rounded-lg bg-white/[0.04]">
-                  <span className="text-slate-400 block text-[9px]">GROSS JMR VALUE</span>
-                  <span className="font-bold text-white">₹64.50L</span>
-                </div>
-                <div className="p-2.5 rounded-lg bg-white/[0.04]">
-                  <span className="text-slate-400 block text-[9px]">5% RETENTION HELD</span>
-                  <span className="font-bold text-amber-400">-₹3.22L</span>
-                </div>
-                <div className="p-2.5 rounded-lg bg-white/[0.04]">
-                  <span className="text-slate-400 block text-[9px]">MOBILIZATION RECOVERY</span>
-                  <span className="font-bold text-slate-300">-₹6.45L</span>
-                </div>
-                <div className="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
-                  <span className="text-emerald-400 block text-[9px]">NET PAYABLE FROM CLIENT</span>
-                  <span className="font-black text-emerald-400">₹54.83L</span>
-                </div>
-              </div>
+            <div className="p-4 rounded-xl bg-black/40 border border-white/5 text-xs text-slate-400 leading-relaxed">
+              When finance clears a vendor payment in Tally or NetBanking, the bank UTR reference number automatically updates the Construct-O-Genie purchase order ledger, reconciling committed liability with zero double entry.
             </div>
           </div>
         )}
 
-        {/* ========================================================
-            TAB 6: TALLY & STATUTORY SYNC
-            ======================================================== */}
-        {activeTab === 'finance' && (
-          <div className="space-y-6 pt-2">
-            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
-              <div>
-                <span className="apple-eyebrow text-slate-400 block">
-                  CONSTRUCT-O-GENIE OS • TWO-WAY ACCOUNTING ENGINE
-                </span>
-                <h3 className="text-xl sm:text-2xl font-bold text-white font-display mt-0.5">
-                  Tally Prime & Enterprise ERP Synchronization
-                </h3>
-              </div>
-              <span className="px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold">
-                TALLY PRIME CONNECTED
-              </span>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-sans">
-              <div className="p-4 rounded-2xl bg-black/60 border border-white/10 space-y-2">
-                <span className="text-[10px] font-mono text-slate-400 uppercase block">Automatic Ledger Postings</span>
-                <p className="text-slate-300 leading-relaxed">
-                  Vendor purchase vouchers, contractor TDS u/s 194C (1% or 2%), and GST e-invoices are pushed directly to Tally Prime without re-typing.
-                </p>
-                <div className="text-[10px] font-mono text-emerald-400">Sync Status: Real-time via Direct XML Connector</div>
-              </div>
-
-              <div className="p-4 rounded-2xl bg-black/60 border border-white/10 space-y-2">
-                <span className="text-[10px] font-mono text-slate-400 uppercase block">Bank UTR & Payment Reconciliation</span>
-                <p className="text-slate-300 leading-relaxed">
-                  When finance clears a vendor payment in Tally or NetBanking, the UTR reference number automatically updates the Construct-O-Genie PO ledger.
-                </p>
-                <div className="text-[10px] font-mono text-emerald-400">UTR Reconciliation: Active</div>
-              </div>
-            </div>
+        {/* Action CTA Bar */}
+        <div className="mt-6 pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="text-xs text-slate-400 text-center sm:text-left">
+            Sanitized reference project data from commercial fit-out operations.
           </div>
-        )}
+          <button
+            onClick={onOpenDemo}
+            className="px-5 py-2.5 rounded-xl bg-white text-slate-950 font-semibold text-xs hover:bg-slate-100 transition-all flex items-center gap-2"
+          >
+            <span>Request a Tailored Demo</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
 
       </div>
 

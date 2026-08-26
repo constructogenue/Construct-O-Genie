@@ -1,83 +1,109 @@
 'use client';
 
 import React from 'react';
-import { ShieldCheck, CheckCircle2, XCircle, ArrowRight } from 'lucide-react';
+import { DEMO_PROJECT, formatINR } from './marketingData';
+import { AlertTriangle, CheckCircle2 } from 'lucide-react';
 
 export default function CaseBreakdown({ onOpenDemo }) {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 relative">
+    <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10">
       
-      <div className="p-6 sm:p-10 rounded-3xl bg-[#080B10]/95 border border-white/15 backdrop-blur-2xl shadow-2xl space-y-8 text-left">
+      {/* Clearly Identified Illustrative Model */}
+      <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 sm:mb-12">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-medium text-slate-300">
+          <span>MODELLED REFERENCE CASE</span>
+        </div>
+        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+          Illustrative Project Scenario
+        </h2>
+        <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+          Comparing disconnected manual workflows against connected project controls for a 42,500 sq.ft commercial office fit-out.
+        </p>
+      </div>
+
+      {/* Side-by-Side Comparison Container */}
+      <div className="rounded-2xl bg-black/60 border border-white/10 backdrop-blur-xl p-6 sm:p-8">
         
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-6">
+        {/* Project Header Info */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 mb-6 border-b border-white/10 gap-4">
           <div>
-            <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest block">
-              MODELLED REFERENCE CASE STUDY
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white font-display mt-0.5">
-              ₹48.25 Cr Turnkey Corporate Fit-Out (42,500 sq.ft)
-            </h2>
+            <span className="text-xs font-mono text-slate-400">REFERENCE SPECIFICATION</span>
+            <h3 className="text-lg font-bold text-white mt-0.5">42,500 sq.ft Commercial Fit-Out (Gurugram)</h3>
           </div>
-          <div className="p-3 rounded-2xl bg-white/[0.04] border border-white/10 text-right font-mono text-xs">
-            <span className="text-slate-400 block uppercase text-[10px]">Contract Duration</span>
-            <span className="text-white font-bold">14 Weeks Fast-Track</span>
+          <div className="flex items-center gap-4 text-xs font-mono">
+            <div>
+              <span className="text-slate-400">Contract Value: </span>
+              <span className="font-bold text-white">{formatINR(DEMO_PROJECT.contractValue, true)}</span>
+            </div>
+            <div>
+              <span className="text-slate-400">Tender Baseline: </span>
+              <span className="font-bold text-slate-300">{formatINR(DEMO_PROJECT.bcsBudget, true)}</span>
+            </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Before vs With Construct-O-Genie Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           
-          {/* Before Column */}
-          <div className="p-5 sm:p-6 rounded-2xl bg-red-500/[0.04] border border-red-500/20 space-y-4">
-            <div className="flex items-center gap-2 text-red-400 font-bold font-display text-base">
-              <XCircle className="w-5 h-5" />
-              <span>Before Construct-O-Genie</span>
+          {/* Column 1: Disconnected Manual Operations */}
+          <div className="p-5 sm:p-6 rounded-xl bg-red-500/[0.02] border border-red-500/15 space-y-4">
+            <div className="flex items-center gap-2 text-rose-400">
+              <AlertTriangle className="w-4 h-4" />
+              <h4 className="text-sm font-bold uppercase tracking-wider">Without Connected Controls</h4>
             </div>
-            <div className="space-y-2.5 text-xs text-slate-300 font-sans">
-              <div className="flex items-start gap-2">
-                <span className="text-red-400 font-bold">•</span>
-                <span>Tender BOQs managed in disconnected Excel sheets with untracked rate formulas.</span>
+
+            <div className="space-y-3 text-xs text-slate-300">
+              <div className="flex justify-between py-2 border-b border-white/5">
+                <span className="text-slate-400">JMR &amp; Billing Cycle:</span>
+                <span className="font-mono text-rose-300 font-semibold">~28 Days (Disputes)</span>
               </div>
-              <div className="flex items-start gap-2">
-                <span className="text-red-400 font-bold">•</span>
-                <span>Site engineers ordered extra materials via WhatsApp with no prior margin check.</span>
+              <div className="flex justify-between py-2 border-b border-white/5">
+                <span className="text-slate-400">Uncaptured Scope Variations:</span>
+                <span className="font-mono text-rose-300 font-semibold">~5.8% Scope Leakage</span>
               </div>
-              <div className="flex items-start gap-2">
-                <span className="text-red-400 font-bold">•</span>
-                <span>Joint Measurement Records (JMR) took 28+ days to sign off with client PMCs.</span>
+              <div className="flex justify-between py-2 border-b border-white/5">
+                <span className="text-slate-400">Procurement Budget Control:</span>
+                <span className="text-slate-400">Post-facto Tally Entry</span>
               </div>
-              <div className="flex items-start gap-2">
-                <span className="text-red-400 font-bold">•</span>
-                <span>Final gross profit eroded by 6% due to unbilled architectural scope revisions.</span>
+              <div className="flex justify-between py-2">
+                <span className="text-slate-400">Typical Realized Gross Margin:</span>
+                <span className="font-mono text-rose-400 font-bold">~12.5% (Margin Slippage)</span>
               </div>
             </div>
           </div>
 
-          {/* After Column */}
-          <div className="p-5 sm:p-6 rounded-2xl bg-emerald-500/[0.04] border border-emerald-500/20 space-y-4">
-            <div className="flex items-center gap-2 text-emerald-400 font-bold font-display text-base">
-              <CheckCircle2 className="w-5 h-5" />
-              <span>With Construct-O-Genie OS</span>
+          {/* Column 2: With Construct-O-Genie OS */}
+          <div className="p-5 sm:p-6 rounded-xl bg-emerald-500/[0.03] border border-emerald-500/20 space-y-4">
+            <div className="flex items-center gap-2 text-emerald-400">
+              <CheckCircle2 className="w-4 h-4" />
+              <h4 className="text-sm font-bold uppercase tracking-wider">With Integrated Workflow</h4>
             </div>
-            <div className="space-y-2.5 text-xs text-slate-200 font-sans">
-              <div className="flex items-start gap-2">
-                <span className="text-emerald-400 font-bold">✓</span>
-                <span>100% purchase orders budget-locked directly against internal cost ceilings.</span>
+
+            <div className="space-y-3 text-xs text-slate-300">
+              <div className="flex justify-between py-2 border-b border-white/5">
+                <span className="text-slate-400">Potential JMR Turnaround:</span>
+                <span className="font-mono text-emerald-400 font-semibold">~4 Days (Digital Sign-Off)</span>
               </div>
-              <div className="flex items-start gap-2">
-                <span className="text-emerald-400 font-bold">✓</span>
-                <span>High-value POs routed to Director mobile with instant margin impact visibility.</span>
+              <div className="flex justify-between py-2 border-b border-white/5">
+                <span className="text-slate-400">Variation Capture:</span>
+                <span className="font-mono text-emerald-400 font-semibold">Flagged before PO Issuance</span>
               </div>
-              <div className="flex items-start gap-2">
-                <span className="text-emerald-400 font-bold">✓</span>
-                <span>Digital JMR certified in 4 days with 1-click Running Account bill generation.</span>
+              <div className="flex justify-between py-2 border-b border-white/5">
+                <span className="text-slate-400">Procurement Budget Control:</span>
+                <span className="text-emerald-300">Hard BCC Line Locking</span>
               </div>
-              <div className="flex items-start gap-2">
-                <span className="text-emerald-400 font-bold">✓</span>
-                <span>Baseline project margin protected at 18.4% with full Tally ledger reconciliation.</span>
+              <div className="flex justify-between py-2">
+                <span className="text-slate-400">Target / Protected Gross Margin:</span>
+                <span className="font-mono text-emerald-400 font-bold">18.34% ({formatINR(DEMO_PROJECT.projectedGrossProfit, true)})</span>
               </div>
             </div>
           </div>
 
+        </div>
+
+        {/* Prominent Mandatory Disclaimer */}
+        <div className="mt-6 pt-4 border-t border-white/5 text-center text-xs text-slate-400">
+          Illustrative scenario. Actual results depend on project workflow, client certification, and operating discipline.
         </div>
 
       </div>
