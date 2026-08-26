@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Menu, X, Smartphone } from 'lucide-react';
+import { ArrowRight, Menu, X } from 'lucide-react';
 
 export default function Navbar({ onOpenDemo, onOpenLogin }) {
   const [scrolled, setScrolled] = useState(false);
@@ -10,11 +10,10 @@ export default function Navbar({ onOpenDemo, onOpenLogin }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 25);
+      setScrolled(window.scrollY > 20);
 
-      // Simple active section detector
-      const sections = ['overview', 'command-centre', 'boq-spine', 'approvals', 'finance', 'roles', 'about', 'faq'];
-      const scrollPos = window.scrollY + 200;
+      const sections = ['overview', 'outcomes', 'product', 'workflow', 'roles', 'integrations', 'roi', 'faq'];
+      const scrollPos = window.scrollY + 180;
 
       for (const s of sections) {
         const el = document.getElementById(s);
@@ -35,12 +34,12 @@ export default function Navbar({ onOpenDemo, onOpenLogin }) {
 
   const navLinks = [
     { name: 'Overview', href: '#overview', id: 'overview' },
-    { name: 'Command Centre', href: '#command-centre', id: 'command-centre' },
-    { name: 'BOQ Spine', href: '#boq-spine', id: 'boq-spine' },
-    { name: 'Approvals', href: '#approvals', id: 'approvals' },
-    { name: 'Tally / SAP & ERP', href: '#finance', id: 'finance' },
-    { name: 'Role Views', href: '#roles', id: 'roles' },
-    { name: 'About Us', href: '#about', id: 'about' },
+    { name: 'Outcomes', href: '#outcomes', id: 'outcomes' },
+    { name: 'Platform', href: '#product', id: 'product' },
+    { name: 'Workflow', href: '#workflow', id: 'workflow' },
+    { name: 'Roles', href: '#roles', id: 'roles' },
+    { name: 'Integrations', href: '#integrations', id: 'integrations' },
+    { name: 'ROI', href: '#roi', id: 'roi' },
     { name: 'FAQ', href: '#faq', id: 'faq' },
   ];
 
@@ -49,9 +48,10 @@ export default function Navbar({ onOpenDemo, onOpenLogin }) {
       <nav
         className={`pointer-events-auto w-full max-w-7xl flex items-center justify-between px-4 sm:px-6 py-2.5 rounded-2xl transition-all duration-300 ${
           scrolled
-            ? 'bg-[#080B10]/95 border border-white/20 backdrop-blur-2xl shadow-[0_12px_40px_rgba(0,0,0,0.85)]'
-            : 'bg-[#080B10]/70 border border-white/10 backdrop-blur-md'
+            ? 'apple-glass shadow-[0_12px_40px_rgba(0,0,0,0.85)]'
+            : 'bg-[#080B10]/75 border border-white/10 backdrop-blur-md'
         }`}
+        aria-label="Main Navigation"
       >
         {/* Brand Logo */}
         <div className="flex items-center gap-3">
@@ -60,11 +60,11 @@ export default function Navbar({ onOpenDemo, onOpenLogin }) {
               <img
                 src="/brand/logo-icon.png"
                 alt="Construct-O-Genie"
-                className="w-full h-full object-contain filter drop-shadow-[0_0_12px_rgba(255,255,255,0.4)] group-hover:scale-105 transition-transform"
+                className="w-full h-full object-contain filter drop-shadow-[0_0_12px_rgba(255,255,255,0.25)] group-hover:scale-105 transition-transform"
               />
             </div>
             <div className="text-left">
-              <span className="font-extrabold text-white text-sm sm:text-base tracking-tight leading-none block font-display">
+              <span className="font-bold text-white text-sm sm:text-base tracking-tight leading-none block font-display">
                 Construct-O-Genie
               </span>
               <span className="text-[9px] sm:text-[10px] text-slate-400 font-mono tracking-wider uppercase block mt-0.5">
@@ -74,7 +74,7 @@ export default function Navbar({ onOpenDemo, onOpenLogin }) {
           </a>
         </div>
 
-        {/* Desktop Navigation Links with Active Scroll-Spy */}
+        {/* Desktop Navigation Links */}
         <div className="hidden xl:flex items-center gap-5 text-xs font-medium text-slate-300">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
@@ -83,12 +83,12 @@ export default function Navbar({ onOpenDemo, onOpenLogin }) {
                 key={link.name}
                 href={link.href}
                 className={`transition-colors py-1 relative ${
-                  isActive ? 'text-white font-bold' : 'text-slate-300 hover:text-white'
+                  isActive ? 'text-white font-semibold' : 'text-slate-300 hover:text-white'
                 }`}
               >
                 {link.name}
                 {isActive && (
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)] rounded-full" />
+                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-white shadow-[0_0_8px_rgba(255,255,255,0.7)] rounded-full" />
                 )}
               </a>
             );
@@ -106,9 +106,9 @@ export default function Navbar({ onOpenDemo, onOpenLogin }) {
           
           <button
             onClick={onOpenDemo}
-            className="group inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-white text-slate-950 font-bold text-xs hover:bg-slate-200 active:scale-95 transition-all duration-200 shadow-md cursor-pointer uppercase tracking-wider"
+            className="group inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-white text-slate-950 font-bold text-xs hover:bg-slate-200 active:scale-95 transition-all duration-200 shadow-md cursor-pointer tracking-wide"
           >
-            <span>Book a Demo</span>
+            <span>Book a 15-Min Demo</span>
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
           </button>
 
@@ -123,25 +123,25 @@ export default function Navbar({ onOpenDemo, onOpenLogin }) {
         </div>
       </nav>
 
-      {/* Mobile Drawer (with Scroll Safety for small phones) */}
+      {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
         <>
           <div 
-            className="pointer-events-auto fixed inset-0 bg-black/70 backdrop-blur-md z-40 xl:hidden"
+            className="pointer-events-auto fixed inset-0 bg-black/75 backdrop-blur-sm z-40 xl:hidden"
             onClick={() => setMobileMenuOpen(false)}
           />
-          <div className="pointer-events-auto fixed inset-x-4 top-20 max-h-[80vh] overflow-y-auto p-6 rounded-3xl bg-[#0A0D12]/98 border border-white/20 backdrop-blur-2xl shadow-2xl flex flex-col gap-2.5 text-sm font-medium z-50 xl:hidden">
+          <div className="pointer-events-auto fixed inset-x-4 top-20 max-h-[85vh] overflow-y-auto p-6 rounded-3xl apple-glass shadow-2xl flex flex-col gap-2.5 text-sm font-medium z-50 xl:hidden">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="py-2 text-slate-200 hover:text-white border-b border-white/10 font-sans"
+                className="py-2.5 text-slate-200 hover:text-white border-b border-white/10 font-sans"
               >
                 {link.name}
               </a>
             ))}
-            <div className="pt-2 flex flex-col gap-2">
+            <div className="pt-3 flex flex-col gap-2.5">
               <button
                 onClick={() => { setMobileMenuOpen(false); onOpenLogin(); }}
                 className="w-full py-2.5 rounded-xl bg-white/10 text-white text-xs font-semibold"
@@ -150,9 +150,9 @@ export default function Navbar({ onOpenDemo, onOpenLogin }) {
               </button>
               <button
                 onClick={() => { setMobileMenuOpen(false); onOpenDemo(); }}
-                className="w-full py-3 rounded-xl bg-white text-slate-950 font-bold text-xs uppercase tracking-wider"
+                className="w-full py-3 rounded-xl bg-white text-slate-950 font-bold text-xs tracking-wide"
               >
-                Book a Live Demo
+                Book a 15-Min Demo
               </button>
             </div>
           </div>

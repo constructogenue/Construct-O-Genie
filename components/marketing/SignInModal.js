@@ -1,137 +1,101 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { X, ShieldCheck, CheckCircle2, Loader2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { X, Lock, ArrowRight, ShieldCheck } from 'lucide-react';
 
 export default function SignInModal({ isOpen, onClose }) {
+  const [role, setRole] = useState('founder');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [status, setStatus] = useState('idle'); // 'idle' | 'loading' | 'success'
-
-  useEffect(() => {
-    if (!isOpen) return;
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') onClose();
-    };
-    document.addEventListener('keydown', handleKeyDown);
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
   const handleLogin = (e) => {
     e.preventDefault();
-    setStatus('loading');
-    setTimeout(() => {
-      setStatus('success');
-      setTimeout(() => {
-        setStatus('idle');
-        onClose();
-      }, 1500);
-    }, 1000);
+    alert(`Demo sign-in simulated for ${role} role (${email || 'demo@constructogenie.in'}).`);
+    onClose();
   };
 
   return (
-    <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-2xl animate-fade-in"
-      onClick={onClose}
-    >
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
       <div 
-        className="relative w-full max-w-md rounded-3xl border border-white/20 bg-[#0A0D14] text-white p-6 sm:p-8 shadow-[0_25px_80px_rgba(0,0,0,0.9)] text-left"
-        onClick={(e) => e.stopPropagation()}
-      >
+        className="fixed inset-0"
+        onClick={onClose}
+      />
+      
+      <div className="relative w-full max-w-md p-6 sm:p-8 rounded-3xl bg-[#080B10] border border-white/20 backdrop-blur-2xl shadow-2xl text-left z-10 space-y-6 font-sans">
+        
+        {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-full bg-white/10 text-slate-300 hover:text-white hover:bg-white/20 transition-all cursor-pointer"
-          aria-label="Close modal"
+          className="absolute top-5 right-5 p-2 rounded-full text-slate-400 hover:text-white hover:bg-white/10 transition-all cursor-pointer"
+          aria-label="Close Modal"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-9 h-9 flex items-center justify-center shrink-0">
-            <img
-              src="/brand/logo-icon.png"
-              alt="Construct-O-Genie"
-              className="w-full h-full object-contain filter drop-shadow-[0_0_12px_rgba(255,255,255,0.4)]"
-            />
-          </div>
-          <div>
-            <div className="font-extrabold text-white text-base leading-none font-display">Construct-O-Genie</div>
-            <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider mt-0.5">Enterprise Portal</div>
-          </div>
+        <div>
+          <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest block">
+            SECURE ENTERPRISE PORTAL
+          </span>
+          <h3 className="text-xl font-bold text-white font-display mt-0.5">
+            Sign In to Construct-O-Genie
+          </h3>
         </div>
 
-        <h3 className="text-xl font-bold text-white tracking-tight font-display">Sign In to Your Workspace</h3>
-        <p className="text-xs text-slate-300 mt-1 font-light">Access your active fit-out projects and BOQ registers.</p>
-
-        {status === 'success' ? (
-          <div className="py-8 text-center space-y-3">
-            <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" />
-            <div className="text-sm font-bold text-white">Authenticated Successfully</div>
-            <p className="text-xs text-slate-400">Connecting to {email} workspace instance...</p>
+        <form onSubmit={handleLogin} className="space-y-4 text-xs">
+          <div>
+            <label className="block text-slate-300 font-medium mb-1">Select Workspace</label>
+            <select
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              className="w-full px-3 py-2.5 rounded-xl bg-black/80 border border-white/15 text-white focus:outline-none focus:border-white transition-colors"
+            >
+              <option value="founder">Founder / Managing Director</option>
+              <option value="qs">Quantity Surveyor & Estimator</option>
+              <option value="pm">Project Manager</option>
+              <option value="site">Site Supervisor (DPR)</option>
+              <option value="finance">Finance & Accounts Head</option>
+            </select>
           </div>
-        ) : (
-          <form onSubmit={handleLogin} className="mt-5 space-y-3.5 font-sans text-xs">
-            <div>
-              <label className="block text-slate-300 font-mono text-[11px] mb-1">Work Email</label>
-              <input
-                required
-                type="email"
-                placeholder="name@company.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-white/40 font-sans"
-              />
-            </div>
 
-            <div>
-              <label className="block text-slate-300 font-mono text-[11px] mb-1">Password</label>
-              <input
-                required
-                type="password"
-                placeholder="••••••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-white/40 font-sans"
-              />
-            </div>
+          <div>
+            <label className="block text-slate-300 font-medium mb-1">Work Email</label>
+            <input
+              type="email"
+              required
+              placeholder="user@fitoutfirm.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-white transition-colors"
+            />
+          </div>
 
-            <div className="flex justify-between items-center text-[11px] font-mono pt-1 text-slate-400">
-              <label className="flex items-center gap-1.5 cursor-pointer">
-                <input type="checkbox" defaultChecked className="rounded bg-black border-white/20 text-white" />
-                <span>Remember device</span>
-              </label>
-              <a href="#" className="text-white hover:underline">Forgot password?</a>
-            </div>
+          <div>
+            <label className="block text-slate-300 font-medium mb-1">Password</label>
+            <input
+              type="password"
+              required
+              placeholder="••••••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-white transition-colors"
+            />
+          </div>
 
-            <div className="pt-2">
-              <button
-                type="submit"
-                disabled={status === 'loading'}
-                className="w-full py-3.5 rounded-xl bg-white text-slate-950 font-bold text-xs uppercase tracking-wider hover:bg-slate-200 transition-all shadow-lg cursor-pointer flex items-center justify-center gap-2"
-              >
-                {status === 'loading' ? (
-                  <>
-                    <Loader2 className="w-4 h-4 animate-spin text-slate-950" />
-                    <span>Connecting Instance...</span>
-                  </>
-                ) : (
-                  <span>Sign In to Workspace</span>
-                )}
-              </button>
-            </div>
+          <button
+            type="submit"
+            className="w-full py-3.5 rounded-xl bg-white text-slate-950 font-bold text-xs uppercase tracking-wider hover:bg-slate-200 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg mt-2"
+          >
+            <span>Access Workspace</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </form>
 
-            <div className="flex items-center justify-center gap-2 text-[10px] font-mono text-slate-400 pt-2">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Encrypted Single Sign-On (SSO / SAML)</span>
-            </div>
-          </form>
-        )}
+        <div className="flex items-center justify-center gap-1.5 text-[10px] font-mono text-slate-400">
+          <Lock className="w-3.5 h-3.5 text-emerald-400" />
+          <span>Role-Based Access Control (RBAC) • SSL 256-Bit</span>
+        </div>
 
       </div>
     </div>

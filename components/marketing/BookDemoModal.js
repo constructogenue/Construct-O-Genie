@@ -1,32 +1,16 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { X, CheckCircle2, ShieldCheck } from 'lucide-react';
+import React, { useState } from 'react';
+import { X, CheckCircle2, ArrowRight, ShieldCheck } from 'lucide-react';
 
 export default function BookDemoModal({ isOpen, onClose }) {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    turnover: '₹25 Cr - ₹75 Cr',
-    projectType: 'Commercial Turnkey Fit-Out',
+    workEmail: '',
+    companyName: '',
+    annualTurnover: '₹20 Cr - ₹50 Cr',
+    activeProjects: '3 - 8 Projects',
   });
-
-  // Handle Escape key and body scroll lock
-  useEffect(() => {
-    if (!isOpen) return;
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') onClose();
-    };
-    document.addEventListener('keydown', handleKeyDown);
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -36,153 +20,126 @@ export default function BookDemoModal({ isOpen, onClose }) {
   };
 
   return (
-    <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-2xl animate-fade-in"
-      onClick={onClose}
-    >
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
       <div 
-        className="relative w-full max-w-xl rounded-3xl border border-white/20 bg-[#0A0D14] text-white p-6 sm:p-8 shadow-[0_25px_80px_rgba(0,0,0,0.9)] overflow-hidden text-left"
-        onClick={(e) => e.stopPropagation()}
-      >
+        className="fixed inset-0"
+        onClick={onClose}
+      />
+      
+      <div className="relative w-full max-w-lg p-6 sm:p-8 rounded-3xl bg-[#080B10] border border-white/20 backdrop-blur-2xl shadow-2xl text-left z-10 space-y-6">
+        
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-full bg-white/10 text-slate-300 hover:text-white hover:bg-white/20 transition-all cursor-pointer"
-          aria-label="Close modal"
+          className="absolute top-5 right-5 p-2 rounded-full text-slate-400 hover:text-white hover:bg-white/10 transition-all cursor-pointer"
+          aria-label="Close Modal"
         >
           <X className="w-5 h-5" />
         </button>
 
         {submitted ? (
-          <div className="py-10 text-center space-y-4">
-            <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center mx-auto shadow-lg shadow-emerald-500/20">
-              <CheckCircle2 className="w-8 h-8" />
+          <div className="py-8 text-center space-y-4 font-sans">
+            <div className="w-12 h-12 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto">
+              <CheckCircle2 className="w-6 h-6" />
             </div>
-            <h3 className="text-2xl font-bold text-white tracking-tight font-display">
-              Executive Walkthrough Scheduled
+            <h3 className="text-xl font-bold text-white font-display">
+              Demo Request Scheduled
             </h3>
-            <p className="text-sm text-slate-300 max-w-md mx-auto font-sans font-light">
-              Our enterprise solutions specialist will connect with <span className="text-white font-semibold">{formData.name || 'your team'}</span> to tailor a live demonstration for your active fit-out project portfolio.
+            <p className="text-xs text-slate-300 max-w-sm mx-auto leading-relaxed">
+              Thank you. Our enterprise solutions team has received your information for <span className="text-white font-semibold">{formData.companyName || 'your company'}</span>. We will connect with a tailored product walkthrough link.
             </p>
-            <div className="pt-4">
-              <button
-                onClick={() => { setSubmitted(false); onClose(); }}
-                className="px-6 py-2.5 rounded-xl bg-white text-slate-950 font-bold text-xs hover:bg-slate-200 transition-all cursor-pointer"
-              >
-                Close Window
-              </button>
-            </div>
+            <button
+              onClick={() => { setSubmitted(false); onClose(); }}
+              className="px-6 py-2.5 rounded-xl bg-white text-slate-950 text-xs font-bold uppercase tracking-wider hover:bg-slate-200 transition-colors"
+            >
+              Close
+            </button>
           </div>
         ) : (
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.06] border border-white/[0.12] text-slate-200 font-mono text-[10px] uppercase font-bold tracking-wider mb-3">
-              EXECUTIVE PRODUCT DEMO
+          <form onSubmit={handleSubmit} className="space-y-4 font-sans">
+            <div>
+              <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest font-bold block">
+                15-MINUTE OPERATIONAL WALKTHROUGH
+              </span>
+              <h3 className="text-xl sm:text-2xl font-bold text-white font-display mt-0.5">
+                Book a 15-Min Demo
+              </h3>
+              <p className="text-xs text-slate-400 mt-1">
+                See live margin locking, mobile DPRs and Tally sync configured for your contracting volume.
+              </p>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-display">
-              Experience Construct-O-Genie
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300 mt-1 font-sans font-light">
-              Customized walkthrough with real BOQ, site execution, and automated client billing workflows.
-            </p>
-
-            <form onSubmit={handleSubmit} className="mt-6 space-y-4 font-sans text-xs">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                <div>
-                  <label className="block text-slate-300 font-mono text-[11px] mb-1">Your Full Name *</label>
-                  <input
-                    required
-                    type="text"
-                    placeholder="e.g. Vikram Singhania"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-white/40 font-sans"
-                  />
-                </div>
-                <div>
-                  <label className="block text-slate-300 font-mono text-[11px] mb-1">Official Work Email *</label>
-                  <input
-                    required
-                    type="email"
-                    placeholder="vikram@turnkeyinteriors.in"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-white/40 font-sans"
-                  />
-                </div>
+            <div className="space-y-3 text-xs">
+              <div>
+                <label className="block text-slate-300 font-medium mb-1">Work Email</label>
+                <input
+                  type="email"
+                  required
+                  placeholder="director@fitoutcontractor.com"
+                  value={formData.workEmail}
+                  onChange={(e) => setFormData({ ...formData, workEmail: e.target.value })}
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-white transition-colors"
+                />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                <div>
-                  <label className="block text-slate-300 font-mono text-[11px] mb-1">Mobile Number (WhatsApp) *</label>
-                  <input
-                    required
-                    type="tel"
-                    placeholder="+91 98765 43210"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-white/40 font-sans"
-                  />
-                </div>
-                <div>
-                  <label className="block text-slate-300 font-mono text-[11px] mb-1">Company / Studio Name *</label>
-                  <input
-                    required
-                    type="text"
-                    placeholder="e.g. Apex Fit-Out Works"
-                    value={formData.company}
-                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-white/40 font-sans"
-                  />
-                </div>
+              <div>
+                <label className="block text-slate-300 font-medium mb-1">Company Name</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="Atelier Interiors & Projects"
+                  value={formData.companyName}
+                  onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-white transition-colors"
+                />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-slate-300 font-mono text-[11px] mb-1">Annual Project Turnover</label>
+                  <label className="block text-slate-300 font-medium mb-1">Annual Turnover</label>
                   <select
-                    value={formData.turnover}
-                    onChange={(e) => setFormData({ ...formData, turnover: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-black/80 border border-white/15 text-white focus:outline-none focus:border-white/40 font-sans"
+                    value={formData.annualTurnover}
+                    onChange={(e) => setFormData({ ...formData, annualTurnover: e.target.value })}
+                    className="w-full px-3 py-2.5 rounded-xl bg-black/80 border border-white/15 text-white focus:outline-none focus:border-white transition-colors"
                   >
-                    <option value="Under ₹10 Cr">Under ₹10 Cr</option>
-                    <option value="₹10 Cr - ₹25 Cr">₹10 Cr - ₹25 Cr</option>
-                    <option value="₹25 Cr - ₹75 Cr">₹25 Cr - ₹75 Cr</option>
-                    <option value="₹75 Cr - ₹200 Cr">₹75 Cr - ₹200 Cr</option>
-                    <option value="₹200+ Cr">₹200+ Cr</option>
+                    <option value="₹5 Cr - ₹20 Cr">₹5 Cr - ₹20 Cr</option>
+                    <option value="₹20 Cr - ₹50 Cr">₹20 Cr - ₹50 Cr</option>
+                    <option value="₹50 Cr - ₹150 Cr">₹50 Cr - ₹150 Cr</option>
+                    <option value="₹150 Cr+">₹150 Cr+</option>
                   </select>
                 </div>
+
                 <div>
-                  <label className="block text-slate-300 font-mono text-[11px] mb-1">Primary Project Type</label>
+                  <label className="block text-slate-300 font-medium mb-1">Active Projects</label>
                   <select
-                    value={formData.projectType}
-                    onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-black/80 border border-white/15 text-white focus:outline-none focus:border-white/40 font-sans"
+                    value={formData.activeProjects}
+                    onChange={(e) => setFormData({ ...formData, activeProjects: e.target.value })}
+                    className="w-full px-3 py-2.5 rounded-xl bg-black/80 border border-white/15 text-white focus:outline-none focus:border-white transition-colors"
                   >
-                    <option value="Commercial Turnkey Fit-Out">Commercial Turnkey Fit-Out</option>
-                    <option value="Luxury Residential Interiors">Luxury Residential Interiors</option>
-                    <option value="Retail & Hospitality Projects">Retail & Hospitality Projects</option>
-                    <option value="MEP Specialized Contracting">MEP Specialized Contracting</option>
+                    <option value="1 - 3 Projects">1 - 3 Projects</option>
+                    <option value="3 - 8 Projects">3 - 8 Projects</option>
+                    <option value="8 - 20 Projects">8 - 20 Projects</option>
+                    <option value="20+ Projects">20+ Projects</option>
                   </select>
                 </div>
               </div>
+            </div>
 
-              <div className="pt-3">
-                <button
-                  type="submit"
-                  className="w-full py-3.5 rounded-xl bg-white text-slate-950 font-bold text-xs uppercase tracking-wider hover:bg-slate-200 active:scale-[0.98] transition-all shadow-[0_0_25px_rgba(255,255,255,0.3)] cursor-pointer font-sans"
-                >
-                  Confirm Executive Demo Booking
-                </button>
-              </div>
+            <button
+              type="submit"
+              className="w-full py-3.5 rounded-xl bg-white text-slate-950 font-bold text-xs uppercase tracking-wider hover:bg-slate-200 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg mt-4"
+            >
+              <span>Continue to Schedule</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
 
-              <div className="flex items-center justify-center gap-2 text-[10px] font-mono text-slate-400 pt-1">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Zero Commitment • NDA Protected • Custom Sandbox</span>
-              </div>
-            </form>
-          </div>
+            <div className="flex items-center justify-center gap-1.5 text-[10px] font-mono text-slate-400 pt-1">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Strictly confidential • No spam • NDA protected</span>
+            </div>
+          </form>
         )}
+
       </div>
     </div>
   );

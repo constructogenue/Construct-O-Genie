@@ -1,21 +1,21 @@
 import "./globals.css";
 import { Plus_Jakarta_Sans, Inter, JetBrains_Mono } from "next/font/google";
 
-const jakarta = Plus_Jakarta_Sans({
+const displayFont = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-display",
   display: "swap",
 });
 
-const inter = Inter({
+const bodyFont = Inter({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-body",
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const monoFont = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-mono",
@@ -23,29 +23,29 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const viewport = {
-  themeColor: "#040609",
+  themeColor: "#030508",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
 };
 
 export const metadata = {
-  metadataBase: new URL("https://construct-o-genie.vercel.app"),
-  title: "Construct-O-Genie — Interior & Turnkey Fit-Out Construction OS",
-  description: "The complete operating system for turnkey interior contractors. Living BOQ Spine, Site DPRs, Maker-Checker PO Approvals, and two-way sync with Tally, SAP & other ERPs.",
+  metadataBase: new URL("https://www.constructogenie.in"),
+  title: "Construct-O-Genie — The Operating System for Turnkey Interiors & Fit-Out",
+  description: "Run every fit-out project with total margin certainty. Living BOQ, itemized procurement caps, mobile site DPRs, certified JMR billing, and bi-directional Tally & SAP sync.",
   keywords: [
     "turnkey interior software",
     "fit-out construction OS",
-    "BOQ item locking",
-    "Tally SAP ERP construction sync",
+    "BOQ margin protection",
+    "Tally Prime construction sync",
     "JMR measurement record",
-    "interior general contractor ERP",
+    "commercial fit-out ERP",
   ],
   authors: [{ name: "Construct-O-Genie Technologies" }],
   openGraph: {
-    title: "Construct-O-Genie — From Bare Shell to Handover",
-    description: "The enterprise OS for turnkey interior design and commercial fit-out contractors.",
-    url: "https://construct-o-genie.vercel.app",
+    title: "Construct-O-Genie — From Bare Shell to Certified Handover",
+    description: "Run every fit-out project with total margin certainty. Manage budgets, procurement, execution, and billing from one connected platform.",
+    url: "https://www.constructogenie.in",
     siteName: "Construct-O-Genie",
     images: [
       {
@@ -60,8 +60,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Construct-O-Genie — Turnkey Fit-Out OS",
-    description: "BOQ Line Locking, Site DPRs, Maker/Checker Approvals, and Tally/SAP & ERP Invoicing.",
+    title: "Construct-O-Genie — Fit-Out Construction OS",
+    description: "BOQ Line Locking, Site DPRs, Maker/Checker Approvals, and Tally/SAP ERP Invoicing.",
     images: ["/dashboard-screen.jpg"],
   },
   icons: {
@@ -73,7 +73,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${jakarta.variable} ${inter.variable} ${jetbrainsMono.variable} dark`}>
+    <html lang="en" className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable} dark`}>
       <body className="bg-[#030508] text-slate-100 antialiased font-sans selection:bg-white/20 selection:text-white">
         {children}
       </body>

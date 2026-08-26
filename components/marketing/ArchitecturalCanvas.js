@@ -2,33 +2,37 @@
 
 import React, { useState, useEffect } from 'react';
 
-const ARCHITECTURAL_STAGES = [
+export const ARCHITECTURAL_STAGES = [
   {
     id: 1,
-    title: 'STAGE 01 : BASE BUILDING HANDOVER',
+    title: 'STAGE 01 : COMPLETED COMMERCIAL FIT-OUT',
+    subtitle: 'High-end boardroom joinery, acoustic ceilings, architectural lighting, verified handover',
     src: '/hero-interior.jpg',
   },
   {
     id: 2,
-    title: 'STAGE 02 : FRAMING & JOINERY SUBSTRATES',
+    title: 'STAGE 02 : FRAMING & SUBSTRATES',
+    subtitle: 'Partition framing, HDHMR substrate paneling, glazing tracks, millwork substructure',
     src: '/building-stage2.jpg',
   },
   {
     id: 3,
-    title: 'STAGE 03 : MEP FIRST-FIX SERVICES',
+    title: 'STAGE 03 : MEP FIRST-FIX & CEILING GRIDS',
+    subtitle: 'Ductwork, fire protection sprinklers, cable trays, linear lighting conduits',
     src: '/building-mep.jpg',
   },
   {
     id: 4,
-    title: 'STAGE 04 : BARE CONCRETE SLAB',
+    title: 'STAGE 04 : BARE CONCRETE SHELL',
+    subtitle: 'Base building handover slab, structural columns, perimeter glazing baseline',
     src: '/building-stage3.jpg',
   },
 ];
 
-export default function ArchitecturalCanvas({ scrollProgress: propProgress }) {
+export default function ArchitecturalCanvas({ scrollProgress = 0, manualStage = null }) {
   const [internalProgress, setInternalProgress] = useState(0);
 
-  // Preload background images
+  // Preload background images for smooth zero-lag transitions
   useEffect(() => {
     ARCHITECTURAL_STAGES.forEach((stage) => {
       const img = new Image();
@@ -36,35 +40,20 @@ export default function ArchitecturalCanvas({ scrollProgress: propProgress }) {
     });
   }, []);
 
-  useEffect(() => {
-    if (typeof propProgress === 'number') return;
-
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
-          if (totalScroll > 0) {
-            const progress = Math.min(Math.max(window.scrollY / totalScroll, 0), 1);
-            setInternalProgress(progress);
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [propProgress]);
-
-  const effectiveProgress = typeof propProgress === 'number' ? propProgress : internalProgress;
-
   const totalStages = ARCHITECTURAL_STAGES.length;
-  const scaledProgress = effectiveProgress * (totalStages - 1);
-  const activeIndex = Math.min(Math.floor(scaledProgress), totalStages - 2);
-  const blendFactor = Math.min(Math.max(scaledProgress - activeIndex, 0), 1);
+
+  let activeIndex = 0;
+  let blendFactor = 0;
+
+  if (manualStage !== null && manualStage >= 0 && manualStage < totalStages) {
+    activeIndex = manualStage === totalStages - 1 ? totalStages - 2 : manualStage;
+    blendFactor = manualStage === totalStages - 1 ? 1 : 0;
+  } else {
+    // Scroll-linked interpolation
+    const scaledProgress = scrollProgress * (totalStages - 1);
+    activeIndex = Math.min(Math.floor(scaledProgress), totalStages - 2);
+    blendFactor = Math.min(Math.max(scaledProgress - activeIndex, 0), 1);
+  }
 
   return (
     <div
@@ -75,7 +64,7 @@ export default function ArchitecturalCanvas({ scrollProgress: propProgress }) {
       }}
       aria-hidden="true"
     >
-      {/* 4 Architectural Crossfade Layers */}
+      {/* 4 Progressive Architectural Layers */}
       {ARCHITECTURAL_STAGES.map((stage, idx) => {
         let opacity = 0;
         if (idx === activeIndex) {
@@ -89,7 +78,7 @@ export default function ArchitecturalCanvas({ scrollProgress: propProgress }) {
         return (
           <div
             key={stage.id}
-            className="absolute inset-0 w-full h-full transition-opacity duration-300 ease-out"
+            className="absolute inset-0 w-full h-full transition-opacity duration-500 ease-out"
             style={{
               opacity: opacity,
               zIndex: idx,
@@ -99,27 +88,27 @@ export default function ArchitecturalCanvas({ scrollProgress: propProgress }) {
               src={stage.src}
               alt={stage.title}
               loading="eager"
-              className="w-full h-full object-cover object-center filter brightness-[0.88] contrast-[1.08] saturate-[1.1]"
+              className="w-full h-full object-cover object-center filter brightness-[0.75] contrast-[1.12] saturate-[1.05]"
               style={{
-                transform: `scale(${1.01 + effectiveProgress * 0.03})`,
-                transition: 'transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                transform: `scale(${1.01 + scrollProgress * 0.03})`,
+                transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
               }}
             />
           </div>
         );
       })}
 
-      {/* Atmospheric Contrast Layers (Clear Architectural Visibility + Clean Readability) */}
-      <div className="absolute inset-0 bg-[#030508]/40 pointer-events-none z-10" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#030508]/80 via-[#030508]/25 to-[#030508]/90 pointer-events-none z-10" />
+      {/* Atmospheric Contrast Layers for pristine text legibility */}
+      <div className="absolute inset-0 bg-[#030508]/65 pointer-events-none z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#030508]/85 via-[#030508]/40 to-[#030508]/95 pointer-events-none z-10" />
 
-      {/* Subtle CAD Blueprint Reticle Grid */}
+      {/* Architectural Blueprint CAD Grid & Coordinate Lines */}
       <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none z-10"
+        className="absolute inset-0 opacity-[0.04] pointer-events-none z-10"
         style={{
           backgroundImage:
-            'linear-gradient(to right, rgba(255, 255, 255, 0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 1px, transparent 1px)',
-          backgroundSize: '80px 80px',
+            'linear-gradient(to right, rgba(255, 255, 255, 0.4) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.4) 1px, transparent 1px)',
+          backgroundSize: '96px 96px',
         }}
       />
     </div>
