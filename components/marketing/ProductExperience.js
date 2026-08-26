@@ -8,7 +8,18 @@ import {
   Smartphone, 
   FileText, 
   RefreshCw, 
-  Lock
+  Lock,
+  CheckCircle2,
+  AlertTriangle,
+  Clock,
+  ShieldCheck,
+  TrendingUp,
+  FileCheck,
+  HardHat,
+  Receipt,
+  Download,
+  ArrowRight,
+  Eye
 } from 'lucide-react';
 import { PORTFOLIO_PROJECTS, BOQ_SAMPLE_ITEMS, DEMO_PROJECT, formatINR } from './marketingData';
 
@@ -16,14 +27,15 @@ export default function ProductExperience({ onOpenDemo }) {
   const [activeTab, setActiveTab] = useState('founder');
   const [selectedBOQItem, setSelectedBOQItem] = useState(BOQ_SAMPLE_ITEMS[0]);
   const [selectedProject, setSelectedProject] = useState(PORTFOLIO_PROJECTS[0]);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const tabs = [
-    { id: 'founder', name: 'Founder Radar', icon: Building2 },
-    { id: 'boq', name: 'Living BOQ Spine', icon: Layers },
-    { id: 'procurement', name: 'Procurement & POs', icon: ShoppingCart },
-    { id: 'site', name: 'Site DPR & Snagging', icon: Smartphone },
-    { id: 'billing', name: 'JMR & RA Billing', icon: FileText },
-    { id: 'finance', name: 'Tally & ERP Sync', icon: RefreshCw },
+    { id: 'founder', name: 'Executive Radar', icon: Building2, desc: 'Multi-site margins, cashflow & director approvals' },
+    { id: 'boq', name: 'Living BOQ Spine', icon: Layers, desc: 'Rate analysis, drawing deltas & cost ceilings' },
+    { id: 'procurement', name: 'Procurement & POs', icon: ShoppingCart, desc: 'Maker-checker approvals & budget headroom locks' },
+    { id: 'site', name: 'Site DPR & Snagging', icon: Smartphone, desc: 'Mobile daily reports, headcounts & photo snags' },
+    { id: 'billing', name: 'JMR & RA Billing', icon: FileText, desc: 'Tripartite measurements & client RA invoices' },
+    { id: 'finance', name: 'Tally & Statutory Sync', icon: RefreshCw, desc: 'Two-way XML/API ledger & TDS u/s 194C sync' },
   ];
 
   return (
@@ -33,13 +45,13 @@ export default function ProductExperience({ onOpenDemo }) {
       <div className="text-center max-w-3xl mx-auto space-y-3 mb-10">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/15 text-slate-200 font-mono text-[11px] uppercase tracking-wider backdrop-blur-md">
           <Layers className="w-3.5 h-3.5 text-emerald-400" />
-          AUTHENTIC SOFTWARE EXPERIENCE
+          GENUINE PRODUCT INTERFACE
         </div>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight font-display">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight apple-headline">
           The Operating System in Action.
         </h2>
-        <p className="text-sm sm:text-base text-slate-300 font-sans font-light">
-          Real enterprise software designed for the real workflows and financial mechanics of fit-out businesses.
+        <p className="apple-lead font-light">
+          An authentic interactive preview of Construct-O-Genie ERP modules with sanitized reference project data.
         </p>
       </div>
 
@@ -65,19 +77,27 @@ export default function ProductExperience({ onOpenDemo }) {
         })}
       </div>
 
-      {/* Interactive Module Frame */}
-      <div className="p-5 sm:p-8 rounded-3xl apple-glass shadow-2xl text-left">
+      {/* Main Glass Workspace Console */}
+      <div className="p-5 sm:p-8 rounded-3xl apple-glass shadow-2xl text-left relative overflow-hidden">
         
-        {/* TAB 1: FOUNDER RADAR */}
+        {/* Environment Watermark */}
+        <div className="absolute top-4 right-6 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.05] border border-white/10 text-[10px] font-mono text-slate-400">
+          <ShieldCheck className="w-3 h-3 text-emerald-400" />
+          <span>DEMO WORKSPACE • SANITIZED DATA</span>
+        </div>
+
+        {/* ========================================================
+            TAB 1: EXECUTIVE FOUNDER RADAR
+            ======================================================== */}
         {activeTab === 'founder' && (
-          <div className="space-y-6">
+          <div className="space-y-6 pt-2">
             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
               <div>
-                <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest block">
-                  DEMO DATA • EXECUTIVE COMMAND CONSOLE
+                <span className="apple-eyebrow text-slate-400 block">
+                  CONSTRUCT-O-GENIE OS • EXECUTIVE PORTFOLIO DASHBOARD
                 </span>
                 <h3 className="text-xl sm:text-2xl font-bold text-white font-display mt-0.5">
-                  Multi-Site Profit & Risk Radar
+                  Multi-Site Margin Health & Cashflow Radar
                 </h3>
               </div>
               <div className="flex items-center gap-2">
@@ -87,7 +107,7 @@ export default function ProductExperience({ onOpenDemo }) {
               </div>
             </div>
 
-            {/* Project Selector Cards */}
+            {/* Active Portfolio Projects Selector */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {PORTFOLIO_PROJECTS.map((proj) => {
                 const isSelected = proj.id === selectedProject.id;
@@ -118,16 +138,16 @@ export default function ProductExperience({ onOpenDemo }) {
               })}
             </div>
 
-            {/* Metrics Panel for Selected Project */}
+            {/* Live Financial Metrics for Selected Project */}
             <div className="p-5 rounded-2xl bg-black/60 border border-white/10 space-y-4">
-              <div className="flex flex-wrap items-center justify-between gap-3">
+              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-3">
                 <div>
-                  <span className="text-[10px] font-mono text-slate-400 uppercase">Selected Workspace</span>
+                  <span className="text-[10px] font-mono text-slate-400 uppercase">Selected Active Site</span>
                   <div className="text-lg font-bold text-white font-display">{selectedProject.name} ({selectedProject.area})</div>
                 </div>
                 <div className="text-right font-mono text-xs tabular-nums">
                   <span className="text-slate-400 block uppercase text-[10px]">Physical Milestone</span>
-                  <span className="text-emerald-400 font-bold text-base">{selectedProject.progress}% Completed</span>
+                  <span className="text-emerald-400 font-bold text-base">{selectedProject.progress}% Verified</span>
                 </div>
               </div>
 
@@ -140,12 +160,12 @@ export default function ProductExperience({ onOpenDemo }) {
                 <div className="p-3 rounded-xl bg-white/[0.04] border border-white/10">
                   <span className="text-[10px] text-slate-400 block uppercase">Committed Expenses</span>
                   <span className="text-base font-bold text-white block mt-0.5">{formatINR(selectedProject.committedCost, true)}</span>
-                  <span className="text-[10px] text-emerald-400 block mt-0.5">Within Cost Limit</span>
+                  <span className="text-[10px] text-emerald-400 block mt-0.5">Within Cost Ceiling</span>
                 </div>
                 <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
-                  <span className="text-[10px] text-emerald-400 font-bold block uppercase">Protected Gross Margin</span>
+                  <span className="text-[10px] text-emerald-400 font-bold block uppercase">Protected Margin</span>
                   <span className="text-base font-black text-emerald-400 block mt-0.5">{selectedProject.margin}% Realized</span>
-                  <span className="text-[10px] text-emerald-300 block mt-0.5">Baseline Target Met</span>
+                  <span className="text-[10px] text-emerald-300 block mt-0.5">Zero Scope Leakage</span>
                 </div>
                 <div className="p-3 rounded-xl bg-white/[0.04] border border-white/10">
                   <span className="text-[10px] text-slate-400 block uppercase">Pending Director Approvals</span>
@@ -157,13 +177,15 @@ export default function ProductExperience({ onOpenDemo }) {
           </div>
         )}
 
-        {/* TAB 2: LIVING BOQ SPINE */}
+        {/* ========================================================
+            TAB 2: LIVING BOQ SPINE
+            ======================================================== */}
         {activeTab === 'boq' && (
-          <div className="space-y-6">
+          <div className="space-y-6 pt-2">
             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
               <div>
-                <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest block">
-                  DEMO DATA • LIVING BOQ SPINE & RATE ANALYSIS
+                <span className="apple-eyebrow text-slate-400 block">
+                  CONSTRUCT-O-GENIE OS • LIVING BOQ & ITEM RATE ANALYSIS
                 </span>
                 <h3 className="text-xl sm:text-2xl font-bold text-white font-display mt-0.5">
                   Itemized Rate Breakdown & Budget Cost Ceilings
@@ -174,7 +196,7 @@ export default function ProductExperience({ onOpenDemo }) {
               </span>
             </div>
 
-            {/* Desktop Table */}
+            {/* BOQ Items Table */}
             <div className="overflow-x-auto">
               <table className="w-full text-left font-sans text-xs border-collapse">
                 <thead>
@@ -195,7 +217,7 @@ export default function ProductExperience({ onOpenDemo }) {
                     return (
                       <tr
                         key={item.id}
-                        onClick={() => setSelectedBOQItem(item)}
+                        onClick={() => { setSelectedBOQItem(item); setDrawerOpen(true); }}
                         className={`cursor-pointer transition-colors ${
                           isSelected ? 'bg-white/10' : 'hover:bg-white/[0.04]'
                         }`}
@@ -222,20 +244,20 @@ export default function ProductExperience({ onOpenDemo }) {
               </table>
             </div>
 
-            {/* Progressive Disclosure Card for selected BOQ line */}
+            {/* Line Item Rate Breakdown Drawer */}
             <div className="p-4 rounded-2xl bg-black/60 border border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-sans">
               <div>
-                <span className="text-[10px] font-mono text-slate-400 uppercase">Selected Line Item</span>
+                <span className="text-[10px] font-mono text-slate-400 uppercase">Selected Line Item Rate Analysis</span>
                 <div className="text-sm font-bold text-white">{selectedBOQItem.code} • {selectedBOQItem.package}</div>
-                <div className="text-xs text-slate-300 mt-0.5">Drawing Reference: {selectedBOQItem.drawingRef} ({selectedBOQItem.gfcRevision})</div>
+                <div className="text-xs text-slate-300 mt-0.5">GFC Drawing Delta: {selectedBOQItem.drawingRef} ({selectedBOQItem.gfcRevision})</div>
               </div>
               <div className="flex items-center gap-4 font-mono text-xs tabular-nums">
                 <div>
-                  <span className="text-[10px] text-slate-400 block">Total Budget</span>
+                  <span className="text-[10px] text-slate-400 block">Total Budget Cap</span>
                   <span className="font-bold text-white">{formatINR(selectedBOQItem.totalBudget)}</span>
                 </div>
                 <div>
-                  <span className="text-[10px] text-slate-400 block">PO Balance</span>
+                  <span className="text-[10px] text-slate-400 block">Available Headroom</span>
                   <span className="font-bold text-emerald-400">{formatINR(selectedBOQItem.poBalance)}</span>
                 </div>
               </div>
@@ -243,13 +265,15 @@ export default function ProductExperience({ onOpenDemo }) {
           </div>
         )}
 
-        {/* TAB 3: PROCUREMENT & PO ENGINE */}
+        {/* ========================================================
+            TAB 3: PROCUREMENT & PO ENGINE
+            ======================================================== */}
         {activeTab === 'procurement' && (
-          <div className="space-y-6">
+          <div className="space-y-6 pt-2">
             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
               <div>
-                <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest block">
-                  DEMO DATA • MAKER-CHECKER PROCUREMENT ENGINE
+                <span className="apple-eyebrow text-slate-400 block">
+                  CONSTRUCT-O-GENIE OS • MAKER-CHECKER PROCUREMENT ENGINE
                 </span>
                 <h3 className="text-xl sm:text-2xl font-bold text-white font-display mt-0.5">
                   Itemized Purchase Orders with Hard Budget Caps
@@ -263,7 +287,7 @@ export default function ProductExperience({ onOpenDemo }) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-sans">
               <div className="p-5 rounded-2xl bg-black/60 border border-white/10 space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono text-slate-400 uppercase">PO-26041-042 • Joinery Package</span>
+                  <span className="text-[10px] font-mono text-slate-400 uppercase">PO #26041-042 • Joinery Package</span>
                   <span className="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 font-mono font-bold text-[10px]">APPROVED</span>
                 </div>
                 <div className="text-base font-bold text-white font-display">WoodCraft Studio & Atelier</div>
@@ -286,7 +310,7 @@ export default function ProductExperience({ onOpenDemo }) {
 
               <div className="p-5 rounded-2xl bg-black/60 border border-white/10 space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono text-slate-400 uppercase">PO-26041-043 • Electrical Package</span>
+                  <span className="text-[10px] font-mono text-slate-400 uppercase">PO #26041-043 • Electrical Package</span>
                   <span className="px-2 py-0.5 rounded bg-amber-500/15 text-amber-400 font-mono font-bold text-[10px]">DIRECTOR APPROVAL PENDING</span>
                 </div>
                 <div className="text-base font-bold text-white font-display">Lumina Tech Systems</div>
@@ -317,13 +341,15 @@ export default function ProductExperience({ onOpenDemo }) {
           </div>
         )}
 
-        {/* TAB 4: SITE DPR & SNAGGING */}
+        {/* ========================================================
+            TAB 4: SITE DPR & SNAGGING
+            ======================================================== */}
         {activeTab === 'site' && (
-          <div className="space-y-6">
+          <div className="space-y-6 pt-2">
             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
               <div>
-                <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest block">
-                  DEMO DATA • MOBILE SITE EXECUTION & DPR
+                <span className="apple-eyebrow text-slate-400 block">
+                  CONSTRUCT-O-GENIE OS • MOBILE SITE DPR & SNAGGING
                 </span>
                 <h3 className="text-xl sm:text-2xl font-bold text-white font-display mt-0.5">
                   Daily Progress Reports & Photo Snagging
@@ -356,13 +382,15 @@ export default function ProductExperience({ onOpenDemo }) {
           </div>
         )}
 
-        {/* TAB 5: JMR & RA BILLING */}
+        {/* ========================================================
+            TAB 5: JMR & RA BILLING
+            ======================================================== */}
         {activeTab === 'billing' && (
-          <div className="space-y-6">
+          <div className="space-y-6 pt-2">
             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
               <div>
-                <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest block">
-                  DEMO DATA • CERTIFIED JMR & RA BILLING
+                <span className="apple-eyebrow text-slate-400 block">
+                  CONSTRUCT-O-GENIE OS • CERTIFIED JMR & RA BILLING
                 </span>
                 <h3 className="text-xl sm:text-2xl font-bold text-white font-display mt-0.5">
                   Tripartite Measurement to Client RA Invoice
@@ -404,13 +432,15 @@ export default function ProductExperience({ onOpenDemo }) {
           </div>
         )}
 
-        {/* TAB 6: TALLY & ERP SYNC */}
+        {/* ========================================================
+            TAB 6: TALLY & STATUTORY SYNC
+            ======================================================== */}
         {activeTab === 'finance' && (
-          <div className="space-y-6">
+          <div className="space-y-6 pt-2">
             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
               <div>
-                <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest block">
-                  DEMO DATA • TWO-WAY ACCOUNTING ENGINE
+                <span className="apple-eyebrow text-slate-400 block">
+                  CONSTRUCT-O-GENIE OS • TWO-WAY ACCOUNTING ENGINE
                 </span>
                 <h3 className="text-xl sm:text-2xl font-bold text-white font-display mt-0.5">
                   Tally Prime & Enterprise ERP Synchronization
